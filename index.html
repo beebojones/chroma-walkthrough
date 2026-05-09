@@ -1556,6 +1556,9 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// Immediately reveal hero elements (already in viewport on load)
+document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+
 // ================================================
 // NAV SCROLL BEHAVIOR
 // ================================================

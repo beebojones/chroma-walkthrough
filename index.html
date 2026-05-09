@@ -1160,320 +1160,335 @@ section {
 
 /* ── MCP ECOSYSTEM ── */
 #mcp {
-  padding: 120px 8% 80px;
+  min-height: 100vh;
+  padding: 120px 36px 80px;
   position: relative;
+  overflow: hidden;
 }
 
-.mcp-architecture {
-  max-width: 700px;
-  margin: 60px auto 80px;
+#mcp .mcp-canvas-wrap {
+  width: 100%;
+  max-width: 900px;
+  height: 520px;
+  position: relative;
+  margin: 48px auto 0;
+  border-radius: var(--vox-radius-4);
+  overflow: hidden;
+}
+
+#mcp .mcp-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Subheading between blocks */
+.mcp-sub-heading {
   text-align: center;
-  position: relative;
+  max-width: 640px;
+  margin: 80px auto 40px;
 }
 
-.mcp-arch-label {
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: #ffd700;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-
-.mcp-arch-brain {
-  background: rgba(255, 215, 0, 0.08);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 20px;
-  padding: 28px 40px;
-  display: inline-block;
-  position: relative;
-}
-
-.mcp-arch-brain span {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.mcp-arch-brain > div:first-of-type {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffd700;
-  letter-spacing: 1px;
-}
-
-.mcp-arch-sub {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.5);
-  margin-top: 4px;
-}
-
-.mcp-arch-connector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin: 20px 0;
-}
-
-.mcp-pulse-line {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-  animation: mcpPulse 2s ease-in-out infinite;
-}
-
-.mcp-connector-label {
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: #00d4ff;
-  font-weight: 700;
-  white-space: nowrap;
-  padding: 6px 18px;
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  border-radius: 20px;
-  background: rgba(0, 212, 255, 0.06);
-}
-
-@keyframes mcpPulse {
-  0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
-  50% { opacity: 1; transform: scaleX(1); }
-}
-
-.mcp-arch-hands-label {
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.4);
-  margin: 20px 0 16px;
-  font-weight: 600;
-}
-
-.mcp-hands-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.mcp-hand-node {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
-  padding: 20px 24px;
-  min-width: 110px;
-  transition: all 0.3s ease;
-}
-
-.mcp-hand-node:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 212, 255, 0.4);
-  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
-}
-
-.mcp-hand-node span {
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.mcp-hand-node div {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.8);
-  letter-spacing: 1px;
-}
-
-.mcp-arch-agents-label {
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: rgba(255,255,255,0.4);
-  margin: 28px 0 12px;
-  font-weight: 600;
-}
-
-.mcp-agents-row {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.mcp-agent-badge {
-  padding: 8px 24px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.mcp-agent-surge {
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  color: #00d4ff;
-}
-
-.mcp-agent-pulse {
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: #ffd700;
-}
-
-.mcp-agent-prism {
-  background: rgba(168, 85, 247, 0.1);
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  color: #a855f7;
-}
-
-.mcp-tools-heading, .mcp-trust-heading {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-
-.mcp-tools-heading h3, .mcp-trust-heading h3 {
-  font-size: 1.5rem;
+.mcp-sub-heading h3 {
+  font-size: clamp(20px, 3vw, 26px);
   font-weight: 700;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--vox-ink-100);
 }
 
-.mcp-tools-heading p, .mcp-trust-heading p {
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.55);
+.mcp-sub-heading p {
+  font-size: 15px;
+  color: var(--vox-ink-400);
   line-height: 1.6;
 }
 
+/* Tool Cards Grid */
 .mcp-card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  max-width: 900px;
-  margin: 0 auto 80px;
-}
-
-@media (max-width: 700px) {
-  .mcp-card-grid { grid-template-columns: 1fr; }
+  gap: 20px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto 0;
 }
 
 .mcp-card {
-  padding: 32px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--vox-ease-out), box-shadow 0.3s var(--vox-ease-out);
 }
 
 .mcp-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0, 212, 255, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.mcp-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .mcp-card-icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.mcp-card-icon.fs   { background: rgba(57, 217, 255, 0.12); border: 1px solid rgba(57, 217, 255, 0.25); }
+.mcp-card-icon.shell { background: rgba(57, 255, 20, 0.10); border: 1px solid rgba(57, 255, 20, 0.25); }
+.mcp-card-icon.db    { background: rgba(159, 120, 255, 0.12); border: 1px solid rgba(159, 120, 255, 0.25); }
+.mcp-card-icon.browser { background: rgba(255, 156, 66, 0.12); border: 1px solid rgba(255, 156, 66, 0.25); }
+
+.mcp-card-meta {
+  flex: 1;
 }
 
 .mcp-card-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vox-ink-100);
+  margin-bottom: 2px;
+}
+
+.mcp-card-count {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--vox-ink-500);
 }
 
 .mcp-card-desc {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.6);
+  font-size: 13px;
   line-height: 1.6;
+  color: var(--vox-ink-400);
   margin-bottom: 16px;
 }
 
 .mcp-card-tools {
-  font-size: 0.72rem;
-  color: rgba(0, 212, 255, 0.6);
-  letter-spacing: 0.5px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
+
+.mcp-tool-chip {
+  padding: 3px 10px;
+  border-radius: var(--vox-radius-pill);
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--vox-line-100);
+  color: var(--vox-ink-400);
+  background: rgba(5, 5, 12, 0.6);
+}
+
+.mcp-card.fs-card .mcp-tool-chip   { border-color: rgba(57, 217, 255, 0.15); color: rgba(57, 217, 255, 0.7); }
+.mcp-card.shell-card .mcp-tool-chip { border-color: rgba(57, 255, 20, 0.15); color: rgba(57, 255, 20, 0.7); }
+.mcp-card.db-card .mcp-tool-chip    { border-color: rgba(159, 120, 255, 0.15); color: rgba(159, 120, 255, 0.7); }
+.mcp-card.browser-card .mcp-tool-chip { border-color: rgba(255, 156, 66, 0.15); color: rgba(255, 156, 66, 0.7); }
 
 /* Trust Pipeline */
 .mcp-pipeline {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  max-width: 900px;
-  margin: 0 auto 80px;
-  flex-wrap: wrap;
+  gap: 0;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto 0;
 }
 
 .mcp-pipe-step {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 24px 20px;
+  flex: 1;
+  padding: 24px 16px;
   text-align: center;
-  min-width: 100px;
-  transition: all 0.3s ease;
+  position: relative;
+  transition: all 0.3s var(--vox-ease-out);
 }
 
 .mcp-pipe-step:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  background: rgba(0, 212, 255, 0.04);
+  background: rgba(57, 217, 255, 0.03);
 }
 
+.mcp-pipe-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--vox-line-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vox-ink-300);
+  position: relative;
+  z-index: 1;
+  background: var(--vox-void);
+}
+
+.mcp-pipe-step:nth-child(1) .mcp-pipe-num { border-color: var(--vox-cyan-500); color: var(--vox-cyan-400); }
+.mcp-pipe-step:nth-child(2) .mcp-pipe-num { border-color: var(--vox-orange); color: var(--vox-orange); }
+.mcp-pipe-step:nth-child(3) .mcp-pipe-num { border-color: var(--vox-green); color: var(--vox-green); }
+.mcp-pipe-step:nth-child(4) .mcp-pipe-num { border-color: var(--vox-purple); color: var(--vox-purple); }
+.mcp-pipe-step:nth-child(5) .mcp-pipe-num { border-color: var(--vox-magenta); color: var(--vox-magenta); }
+
 .mcp-pipe-icon {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .mcp-pipe-label {
-  font-size: 0.72rem;
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
   font-weight: 600;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vox-ink-300);
   line-height: 1.4;
 }
 
-.mcp-pipe-arrow {
-  font-size: 1.4rem;
-  color: rgba(0, 212, 255, 0.4);
-  font-weight: 300;
+.mcp-pipe-desc {
+  font-size: 11px;
+  color: var(--vox-ink-500);
+  margin-top: 6px;
+  line-height: 1.4;
 }
 
-@media (max-width: 700px) {
-  .mcp-pipeline { flex-direction: column; }
-  .mcp-pipe-arrow { transform: rotate(90deg); }
+/* Connector line between pipeline steps */
+.mcp-pipe-connector {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vox-line-300), var(--vox-line-200));
+  position: relative;
+  flex-shrink: 0;
 }
 
-/* Extensibility */
+.mcp-pipe-connector::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid var(--vox-line-300);
+  border-right: 1.5px solid var(--vox-line-300);
+  transform: rotate(45deg);
+}
+
+/* Animated pulse on pipeline connectors */
+@keyframes mcpPipeFlow {
+  0% { left: 0; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { left: calc(100% - 4px); opacity: 0; }
+}
+
+.mcp-pipe-connector::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--vox-cyan-500);
+  box-shadow: 0 0 8px var(--vox-cyan-500);
+  animation: mcpPipeFlow 2.5s ease-in-out infinite;
+}
+
+.mcp-pipe-connector:nth-of-type(2)::before { animation-delay: 0.5s; }
+.mcp-pipe-connector:nth-of-type(3)::before { animation-delay: 1.0s; }
+.mcp-pipe-connector:nth-of-type(4)::before { animation-delay: 1.5s; }
+
+/* Extensibility CTA */
 .mcp-extend {
   display: flex;
   align-items: center;
   gap: 28px;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 36px 40px;
-  border-radius: 20px;
+  margin: 80px auto 0;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 700px) {
-  .mcp-extend { flex-direction: column; text-align: center; }
+.mcp-extend::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: radial-gradient(circle at 100% 50%, rgba(57, 217, 255, 0.06), transparent 70%);
+  pointer-events: none;
 }
 
 .mcp-extend-icon {
-  font-size: 2.8rem;
+  font-size: 36px;
   flex-shrink: 0;
 }
 
+.mcp-extend-content { flex: 1; }
+
 .mcp-extend-title {
-  font-size: 1.15rem;
+  font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color: var(--vox-ink-100);
   margin-bottom: 8px;
 }
 
 .mcp-extend-desc {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.7;
+  font-size: 14px;
+  color: var(--vox-ink-400);
+  line-height: 1.6;
+}
+
+.mcp-extend-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mcp-extend-tag {
+  padding: 4px 12px;
+  border-radius: var(--vox-radius-pill);
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--vox-line-200);
+  color: var(--vox-ink-400);
+  background: rgba(5, 5, 12, 0.4);
+  transition: all 0.2s var(--vox-ease-out);
+}
+
+.mcp-extend-tag:hover {
+  border-color: rgba(57, 217, 255, 0.3);
+  color: var(--vox-cyan-400);
+  background: rgba(57, 217, 255, 0.06);
+}
+
+@media (max-width: 920px) {
+  .mcp-card-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .mcp-pipeline { flex-wrap: wrap; gap: 12px; }
+  .mcp-pipe-connector { display: none; }
+  .mcp-extend { flex-direction: column; text-align: center; }
+  .mcp-extend-tags { justify-content: center; }
+  #mcp .mcp-canvas-wrap { height: 380px; }
+}
+
+@media (max-width: 600px) {
+  .mcp-pipeline { flex-direction: column; align-items: center; }
+  .mcp-pipe-step { width: 100%; max-width: 200px; }
 }
 
 </style>
@@ -1800,125 +1815,156 @@ section {
      7.5 MCP ECOSYSTEM
      ============================================ -->
 <section id="mcp">
-  <div class="section-label reveal">The Hands of Intelligence</div>
-  <h2 class="section-title reveal reveal-delay-1">MCP Ecosystem</h2>
+  <div class="section-label reveal">One Protocol. Every Tool.</div>
+  <h2 class="section-title reveal reveal-delay-1">MCP <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-green)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Ecosystem</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Model Context Protocol turns Vox from a conversationalist into an operator.<br>
-    One universal standard. Any tool. Infinite capability.
+    Intelligence without action is just commentary. Through the Model Context Protocol, Chroma agents don't just think &mdash; they operate. Files, databases, browsers, shells &mdash; every tool speaks one language.
   </p>
 
-  <!-- Architecture Diagram -->
-  <div class="mcp-architecture reveal reveal-delay-2">
-    <div class="mcp-arch-label">YOUR PERSONAL CHATGPT</div>
-    <div class="mcp-arch-brain">
-      <span>&#x1f9e0;</span>
-      <div>The Brain</div>
-      <div class="mcp-arch-sub">Your history. Your context. Your AI.</div>
-    </div>
-    <div class="mcp-arch-connector">
-      <div class="mcp-pulse-line"></div>
-      <div class="mcp-connector-label">VOX BRIDGE</div>
-      <div class="mcp-pulse-line"></div>
-    </div>
-    <div class="mcp-arch-hands-label">MCP SERVERS &mdash; THE HANDS</div>
-    <div class="mcp-hands-grid">
-      <div class="mcp-hand-node mcp-node-fs">
-        <span>&#x1f4c1;</span>
-        <div>Filesystem</div>
-      </div>
-      <div class="mcp-hand-node mcp-node-shell">
-        <span>&#x26a1;</span>
-        <div>Shell</div>
-      </div>
-      <div class="mcp-hand-node mcp-node-db">
-        <span>&#x1f5c4;</span>
-        <div>Database</div>
-      </div>
-      <div class="mcp-hand-node mcp-node-browser">
-        <span>&#x1f310;</span>
-        <div>Browser</div>
-      </div>
-    </div>
-    <div class="mcp-arch-agents-label">AGENTS</div>
-    <div class="mcp-agents-row">
-      <div class="mcp-agent-badge mcp-agent-surge">Surge</div>
-      <div class="mcp-agent-badge mcp-agent-pulse">Pulse</div>
-      <div class="mcp-agent-badge mcp-agent-prism">Prism</div>
-    </div>
+  <!-- Animated Architecture Canvas -->
+  <div class="mcp-canvas-wrap reveal reveal-delay-3">
+    <canvas id="mcpCanvas"></canvas>
   </div>
 
-  <!-- Tool Cards -->
-  <div class="mcp-tools-heading reveal reveal-delay-3">
+  <!-- Tier 1 Tool Cards -->
+  <div class="mcp-sub-heading reveal">
     <h3>Tier 1 MCP Servers</h3>
     <p>Four foundational servers ship with Chroma. Each is sandboxed, audited, and permission-gated per agent.</p>
   </div>
 
   <div class="mcp-card-grid">
-    <div class="mcp-card glass reveal reveal-delay-3">
-      <div class="mcp-card-icon">&#x1f4c1;</div>
-      <div class="mcp-card-title">Filesystem</div>
+    <div class="mcp-card glass fs-card reveal reveal-delay-2">
+      <div class="mcp-card-header">
+        <div class="mcp-card-icon fs">&#x1f4c1;</div>
+        <div class="mcp-card-meta">
+          <div class="mcp-card-title">Filesystem</div>
+          <div class="mcp-card-count">7 TOOLS</div>
+        </div>
+      </div>
       <div class="mcp-card-desc">Read, write, search, and organize files within sandboxed directories. Symlink-escape prevention keeps agents in their lane.</div>
-      <div class="mcp-card-tools">7 tools &middot; read &middot; write &middot; search &middot; move &middot; delete &middot; info &middot; list</div>
+      <div class="mcp-card-tools">
+        <span class="mcp-tool-chip">read</span>
+        <span class="mcp-tool-chip">write</span>
+        <span class="mcp-tool-chip">search</span>
+        <span class="mcp-tool-chip">move</span>
+        <span class="mcp-tool-chip">delete</span>
+        <span class="mcp-tool-chip">info</span>
+        <span class="mcp-tool-chip">list</span>
+      </div>
     </div>
-    <div class="mcp-card glass reveal reveal-delay-3">
-      <div class="mcp-card-icon">&#x26a1;</div>
-      <div class="mcp-card-title">Shell</div>
-      <div class="mcp-card-desc">Execute system commands with whitelist protection. Dangerous commands are blocked. Shell injection is impossible&mdash;shell=False always.</div>
-      <div class="mcp-card-tools">4 tools &middot; execute &middot; start &middot; read output &middot; kill</div>
+    <div class="mcp-card glass shell-card reveal reveal-delay-2">
+      <div class="mcp-card-header">
+        <div class="mcp-card-icon shell">&#x26a1;</div>
+        <div class="mcp-card-meta">
+          <div class="mcp-card-title">Shell</div>
+          <div class="mcp-card-count">4 TOOLS</div>
+        </div>
+      </div>
+      <div class="mcp-card-desc">Execute system commands with allowlist protection. Dangerous commands are blocked at the protocol level. Injection-proof by design.</div>
+      <div class="mcp-card-tools">
+        <span class="mcp-tool-chip">execute</span>
+        <span class="mcp-tool-chip">start</span>
+        <span class="mcp-tool-chip">read_output</span>
+        <span class="mcp-tool-chip">kill</span>
+      </div>
     </div>
-    <div class="mcp-card glass reveal reveal-delay-4">
-      <div class="mcp-card-icon">&#x1f5c4;</div>
-      <div class="mcp-card-title">Database</div>
-      <div class="mcp-card-desc">Query PostgreSQL with read-only safety by default. DDL is blocked. Connection pooling via asyncpg keeps things fast.</div>
-      <div class="mcp-card-tools">5 tools &middot; query &middot; execute &middot; list tables &middot; describe &middot; explain</div>
+    <div class="mcp-card glass db-card reveal reveal-delay-3">
+      <div class="mcp-card-header">
+        <div class="mcp-card-icon db">&#x1f5c4;</div>
+        <div class="mcp-card-meta">
+          <div class="mcp-card-title">PostgreSQL</div>
+          <div class="mcp-card-count">5 TOOLS</div>
+        </div>
+      </div>
+      <div class="mcp-card-desc">Query PostgreSQL with read-only safety by default. DDL is blocked. Connection pooling via asyncpg keeps things fast and safe.</div>
+      <div class="mcp-card-tools">
+        <span class="mcp-tool-chip">query</span>
+        <span class="mcp-tool-chip">execute</span>
+        <span class="mcp-tool-chip">list_tables</span>
+        <span class="mcp-tool-chip">describe</span>
+        <span class="mcp-tool-chip">explain</span>
+      </div>
     </div>
-    <div class="mcp-card glass reveal reveal-delay-4">
-      <div class="mcp-card-icon">&#x1f310;</div>
-      <div class="mcp-card-title">Browser</div>
-      <div class="mcp-card-desc">Headless Chromium via Playwright. Isolated contexts per session. Navigate, screenshot, click, type&mdash;full web automation.</div>
-      <div class="mcp-card-tools">8 tools &middot; navigate &middot; screenshot &middot; click &middot; type &middot; evaluate JS &middot; get text</div>
+    <div class="mcp-card glass browser-card reveal reveal-delay-3">
+      <div class="mcp-card-header">
+        <div class="mcp-card-icon browser">&#x1f310;</div>
+        <div class="mcp-card-meta">
+          <div class="mcp-card-title">Browser</div>
+          <div class="mcp-card-count">8 TOOLS</div>
+        </div>
+      </div>
+      <div class="mcp-card-desc">Headless Chromium via Playwright. Isolated contexts per session. Navigate, screenshot, click, type &mdash; full web automation.</div>
+      <div class="mcp-card-tools">
+        <span class="mcp-tool-chip">navigate</span>
+        <span class="mcp-tool-chip">screenshot</span>
+        <span class="mcp-tool-chip">click</span>
+        <span class="mcp-tool-chip">type</span>
+        <span class="mcp-tool-chip">eval_js</span>
+        <span class="mcp-tool-chip">get_text</span>
+        <span class="mcp-tool-chip">wait</span>
+        <span class="mcp-tool-chip">scroll</span>
+      </div>
     </div>
   </div>
 
   <!-- Trust Pipeline -->
-  <div class="mcp-trust-heading reveal reveal-delay-4">
+  <div class="mcp-sub-heading reveal reveal-delay-2" style="margin-top: 80px;">
     <h3>The Trust Pipeline</h3>
-    <p>Every MCP action flows through a five-stage safety pipeline before touching your system.</p>
+    <p>Every tool call flows through a five-stage safety pipeline. No action touches your system without passing every gate.</p>
   </div>
 
-  <div class="mcp-pipeline reveal reveal-delay-5">
+  <div class="mcp-pipeline reveal reveal-delay-3">
     <div class="mcp-pipe-step">
+      <div class="mcp-pipe-num">1</div>
       <div class="mcp-pipe-icon">&#x1f916;</div>
-      <div class="mcp-pipe-label">Agent<br>Request</div>
+      <div class="mcp-pipe-label">Propose</div>
+      <div class="mcp-pipe-desc">Agent requests action</div>
     </div>
-    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-connector"></div>
     <div class="mcp-pipe-step">
+      <div class="mcp-pipe-num">2</div>
       <div class="mcp-pipe-icon">&#x1f6e1;</div>
-      <div class="mcp-pipe-label">Risk<br>Classification</div>
+      <div class="mcp-pipe-label">Classify</div>
+      <div class="mcp-pipe-desc">Risk level assessed</div>
     </div>
-    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-connector"></div>
     <div class="mcp-pipe-step">
+      <div class="mcp-pipe-num">3</div>
       <div class="mcp-pipe-icon">&#x2705;</div>
-      <div class="mcp-pipe-label">User<br>Approval</div>
+      <div class="mcp-pipe-label">Approve</div>
+      <div class="mcp-pipe-desc">Human confirms</div>
     </div>
-    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-connector"></div>
     <div class="mcp-pipe-step">
+      <div class="mcp-pipe-num">4</div>
       <div class="mcp-pipe-icon">&#x1f512;</div>
-      <div class="mcp-pipe-label">Sandboxed<br>Execution</div>
+      <div class="mcp-pipe-label">Execute</div>
+      <div class="mcp-pipe-desc">Sandboxed runtime</div>
     </div>
-    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-connector"></div>
     <div class="mcp-pipe-step">
+      <div class="mcp-pipe-num">5</div>
       <div class="mcp-pipe-icon">&#x1f4cb;</div>
-      <div class="mcp-pipe-label">Audit<br>Log</div>
+      <div class="mcp-pipe-label">Audit</div>
+      <div class="mcp-pipe-desc">Logged &amp; traceable</div>
     </div>
   </div>
 
   <!-- Extensibility -->
-  <div class="mcp-extend glass reveal reveal-delay-5">
+  <div class="mcp-extend glass chroma-edge reveal reveal-delay-4">
     <div class="mcp-extend-icon">&#x1f50c;</div>
     <div class="mcp-extend-content">
-      <div class="mcp-extend-title">Universal Protocol. Infinite Tools.</div>
-      <div class="mcp-extend-desc">MCP is an open standard&mdash;the USB-C of AI. Any MCP-compatible server plugs into Chroma instantly. Slack, GitHub, Notion, your internal APIs&mdash;if it speaks MCP, Vox can use it. No custom integrations. No vendor lock-in. Just plug in and go.</div>
+      <div class="mcp-extend-title">Extensible by Anyone</div>
+      <div class="mcp-extend-desc">MCP is an open standard &mdash; the USB-C of AI tooling. Any MCP-compatible server plugs into Chroma instantly. Your internal APIs, third-party services, custom workflows. No vendor lock-in. Just plug in and go.</div>
+      <div class="mcp-extend-tags">
+        <span class="mcp-extend-tag">GitHub</span>
+        <span class="mcp-extend-tag">Slack</span>
+        <span class="mcp-extend-tag">Figma</span>
+        <span class="mcp-extend-tag">Notion</span>
+        <span class="mcp-extend-tag">Jira</span>
+        <span class="mcp-extend-tag">Custom APIs</span>
+        <span class="mcp-extend-tag">+ anything</span>
+      </div>
     </div>
   </div>
 </section>
@@ -2341,6 +2387,311 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ================================================
+// MCP ECOSYSTEM — ANIMATED ARCHITECTURE CANVAS
+// ================================================
+(function() {
+  const canvas = document.getElementById('mcpCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, time = 0, pulses = [], particles = [];
+
+  const CYAN  = { r: 57,  g: 217, b: 255 };
+  const GOLD  = { r: 255, g: 156, b: 66  };
+  const VIOLET = { r: 159, g: 120, b: 255 };
+  const GREEN = { r: 57,  g: 255, b: 20  };
+  const MAGENTA = { r: 255, g: 73, b: 213 };
+  const WHITE = { r: 200, g: 220, b: 255 };
+
+  // Architecture nodes (positions computed in resize)
+  const hub = { label: 'VOX BRIDGE', color: WHITE, r: 30, x: 0, y: 0 };
+  const mcpRingLabel = 'MCP PROTOCOL';
+
+  const servers = [
+    { label: 'FILESYSTEM', tools: 7, color: CYAN, angle: -Math.PI / 2 },
+    { label: 'SHELL',      tools: 4, color: GREEN, angle: 0 },
+    { label: 'DATABASE',   tools: 5, color: VIOLET, angle: Math.PI / 2 },
+    { label: 'BROWSER',    tools: 8, color: GOLD, angle: Math.PI },
+  ];
+
+  const agents = [
+    { label: 'SURGE', color: CYAN, angle: -Math.PI * 0.75, servers: [0, 1, 2] },
+    { label: 'PULSE', color: GOLD, angle: -Math.PI * 0.25, servers: [2, 3] },
+    { label: 'PRISM', color: VIOLET, angle: Math.PI * 0.35, servers: [0, 3] },
+  ];
+
+  let serverRadius, agentRadius, mcpRingRadius;
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width;
+    h = canvas.height = rect.height;
+    const cx = w / 2, cy = h / 2;
+    hub.x = cx; hub.y = cy;
+    const baseR = Math.min(w, h) * 0.5;
+    mcpRingRadius = baseR * 0.32;
+    serverRadius = baseR * 0.55;
+    agentRadius = baseR * 0.82;
+
+    servers.forEach(s => {
+      s.x = cx + Math.cos(s.angle) * serverRadius;
+      s.y = cy + Math.sin(s.angle) * serverRadius;
+      s.r = 20;
+    });
+    agents.forEach(a => {
+      a.x = cx + Math.cos(a.angle) * agentRadius;
+      a.y = cy + Math.sin(a.angle) * agentRadius;
+      a.r = 16;
+    });
+
+    // Seed ambient particles
+    particles = [];
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15,
+        r: Math.random() * 1.2 + 0.3,
+        alpha: Math.random() * 0.3 + 0.1,
+        color: [CYAN, GOLD, VIOLET, GREEN][Math.floor(Math.random() * 4)]
+      });
+    }
+  }
+
+  function rgba(c, a) {
+    return 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + a + ')';
+  }
+
+  function spawnPulse() {
+    // Agent -> server -> hub flow
+    const agent = agents[Math.floor(Math.random() * agents.length)];
+    const sIdx = agent.servers[Math.floor(Math.random() * agent.servers.length)];
+    const server = servers[sIdx];
+    const col = agent.color;
+    // Two-leg pulse: agent → server → hub
+    pulses.push({
+      x0: agent.x, y0: agent.y,
+      x1: server.x, y1: server.y,
+      x2: hub.x, y2: hub.y,
+      progress: 0,
+      speed: 0.006 + Math.random() * 0.004,
+      color: col,
+      size: 2.5 + Math.random() * 1.5,
+      leg: 0 // 0 = agent→server, 1 = server→hub
+    });
+  }
+
+  function drawGlowCircle(x, y, r, color, glowR, breathe) {
+    const b = breathe || 1;
+    const grad = ctx.createRadialGradient(x, y, 0, x, y, glowR * b);
+    grad.addColorStop(0, rgba(color, 0.18));
+    grad.addColorStop(0.6, rgba(color, 0.04));
+    grad.addColorStop(1, rgba(color, 0));
+    ctx.beginPath();
+    ctx.arc(x, y, glowR * b, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(color, 0.08);
+    ctx.fill();
+    ctx.strokeStyle = rgba(color, 0.45);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  function draw() {
+    time++;
+    ctx.clearRect(0, 0, w, h);
+
+    // Ambient particles
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = rgba(p.color, p.alpha * (0.5 + Math.sin(time * 0.02 + p.x) * 0.5));
+      ctx.fill();
+    });
+
+    // MCP Protocol ring (dashed)
+    ctx.beginPath();
+    ctx.arc(hub.x, hub.y, mcpRingRadius, 0, Math.PI * 2);
+    ctx.strokeStyle = rgba(CYAN, 0.08);
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 8]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // MCP ring label
+    ctx.save();
+    ctx.translate(hub.x, hub.y);
+    ctx.rotate(-Math.PI / 2);
+    ctx.font = '500 9px "JetBrains Mono"';
+    ctx.fillStyle = rgba(CYAN, 0.25);
+    ctx.textAlign = 'center';
+    const labelR = mcpRingRadius + 12;
+    for (let i = 0; i < mcpRingLabel.length; i++) {
+      const charAngle = (i - mcpRingLabel.length / 2) * 0.12;
+      ctx.save();
+      ctx.rotate(charAngle);
+      ctx.translate(0, -labelR);
+      ctx.fillText(mcpRingLabel[i], 0, 0);
+      ctx.restore();
+    }
+    ctx.restore();
+
+    // Orbiting dot on MCP ring
+    const orbA = time * 0.012;
+    const ox = hub.x + Math.cos(orbA) * mcpRingRadius;
+    const oy = hub.y + Math.sin(orbA) * mcpRingRadius;
+    ctx.beginPath();
+    ctx.arc(ox, oy, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(CYAN, 0.6);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(ox, oy, 6, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(CYAN, 0.12);
+    ctx.fill();
+
+    // Connection lines: agents → their permitted servers
+    agents.forEach(agent => {
+      agent.servers.forEach(sIdx => {
+        const server = servers[sIdx];
+        ctx.beginPath();
+        ctx.moveTo(agent.x, agent.y);
+        // Curve through midpoint offset toward hub
+        const mx = (agent.x + server.x) / 2 + (hub.x - (agent.x + server.x) / 2) * 0.25;
+        const my = (agent.y + server.y) / 2 + (hub.y - (agent.y + server.y) / 2) * 0.25;
+        ctx.quadraticCurveTo(mx, my, server.x, server.y);
+        ctx.strokeStyle = rgba(agent.color, 0.06);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+    });
+
+    // Connection lines: servers → hub
+    servers.forEach(s => {
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(hub.x, hub.y);
+      ctx.strokeStyle = rgba(s.color, 0.06);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Spawn pulses
+    if (time % 18 === 0) spawnPulse();
+
+    // Update & draw pulses
+    pulses = pulses.filter(p => p.progress <= 1 || p.leg < 1);
+    pulses.forEach(p => {
+      p.progress += p.speed;
+      let fx, fy;
+      if (p.leg === 0) {
+        // Agent → Server
+        const t = Math.min(p.progress * 2, 1);
+        const mx = (p.x0 + p.x1) / 2 + (p.x2 - (p.x0 + p.x1) / 2) * 0.25;
+        const my = (p.y0 + p.y1) / 2 + (p.y2 - (p.y0 + p.y1) / 2) * 0.25;
+        const t1 = 1 - t;
+        fx = t1 * t1 * p.x0 + 2 * t1 * t * mx + t * t * p.x1;
+        fy = t1 * t1 * p.y0 + 2 * t1 * t * my + t * t * p.y1;
+        if (p.progress * 2 >= 1) { p.leg = 1; p.progress = 0.5; }
+      } else {
+        // Server → Hub
+        const t = (p.progress - 0.5) * 2;
+        fx = p.x1 + (p.x2 - p.x1) * t;
+        fy = p.y1 + (p.y2 - p.y1) * t;
+        if (t >= 1) { p.progress = 2; } // mark done
+      }
+
+      if (fx !== undefined) {
+        const fadeIn = Math.min(p.progress * 4, 1);
+        ctx.beginPath();
+        ctx.arc(fx, fy, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = rgba(p.color, 0.85 * fadeIn);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(fx, fy, p.size * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = rgba(p.color, 0.12 * fadeIn);
+        ctx.fill();
+      }
+    });
+    pulses = pulses.filter(p => p.progress <= 1.5);
+
+    // Draw server nodes
+    servers.forEach((s, i) => {
+      const breathe = 1 + Math.sin(time * 0.018 + i * 1.5) * 0.06;
+      drawGlowCircle(s.x, s.y, s.r, s.color, s.r * 2.5, breathe);
+
+      // Icon character
+      const icons = ['\u{1F4C1}', '⚡', '\u{1F5C4}', '\u{1F310}'];
+      ctx.font = '16px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(icons[i], s.x, s.y);
+
+      // Label
+      ctx.font = '600 10px "JetBrains Mono"';
+      ctx.fillStyle = rgba(s.color, 0.8);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(s.label, s.x, s.y + s.r + 10);
+
+      // Tool count
+      ctx.font = '400 9px "JetBrains Mono"';
+      ctx.fillStyle = rgba(s.color, 0.4);
+      ctx.fillText(s.tools + ' tools', s.x, s.y + s.r + 24);
+    });
+
+    // Draw agent nodes
+    agents.forEach((a, i) => {
+      const breathe = 1 + Math.sin(time * 0.02 + i * 2) * 0.08;
+      drawGlowCircle(a.x, a.y, a.r, a.color, a.r * 2.2, breathe);
+
+      const icons = ['⚡', '\u{1F4CA}', '\u{1F3A8}'];
+      ctx.font = '13px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(icons[i], a.x, a.y);
+
+      ctx.font = '600 10px "JetBrains Mono"';
+      ctx.fillStyle = rgba(a.color, 0.9);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(a.label, a.x, a.y + a.r + 8);
+    });
+
+    // Draw hub
+    const hubBreathe = 1 + Math.sin(time * 0.015) * 0.04;
+    drawGlowCircle(hub.x, hub.y, hub.r, WHITE, hub.r * 3, hubBreathe);
+
+    // Hub inner ring
+    ctx.beginPath();
+    ctx.arc(hub.x, hub.y, hub.r + 8, 0, Math.PI * 2);
+    ctx.strokeStyle = rgba(CYAN, 0.08);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Hub label
+    ctx.font = '700 10px "JetBrains Mono"';
+    ctx.fillStyle = rgba(WHITE, 0.9);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('VOX', hub.x, hub.y - 6);
+    ctx.font = '500 8px "JetBrains Mono"';
+    ctx.fillStyle = rgba(CYAN, 0.7);
+    ctx.fillText('BRIDGE', hub.x, hub.y + 6);
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  draw();
+  window.addEventListener('resize', resize);
+})();
 </script>
 
 </body>

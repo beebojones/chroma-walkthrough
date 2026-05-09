@@ -1157,6 +1157,325 @@ section {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* ── MCP ECOSYSTEM ── */
+#mcp {
+  padding: 120px 8% 80px;
+  position: relative;
+}
+
+.mcp-architecture {
+  max-width: 700px;
+  margin: 60px auto 80px;
+  text-align: center;
+  position: relative;
+}
+
+.mcp-arch-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #ffd700;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.mcp-arch-brain {
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  padding: 28px 40px;
+  display: inline-block;
+  position: relative;
+}
+
+.mcp-arch-brain span {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.mcp-arch-brain > div:first-of-type {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 1px;
+}
+
+.mcp-arch-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+
+.mcp-arch-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.mcp-pulse-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  animation: mcpPulse 2s ease-in-out infinite;
+}
+
+.mcp-connector-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #00d4ff;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 6px 18px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 20px;
+  background: rgba(0, 212, 255, 0.06);
+}
+
+@keyframes mcpPulse {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+.mcp-arch-hands-label {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.4);
+  margin: 20px 0 16px;
+  font-weight: 600;
+}
+
+.mcp-hands-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.mcp-hand-node {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  min-width: 110px;
+  transition: all 0.3s ease;
+}
+
+.mcp-hand-node:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+}
+
+.mcp-hand-node span {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.mcp-hand-node div {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+}
+
+.mcp-arch-agents-label {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.4);
+  margin: 28px 0 12px;
+  font-weight: 600;
+}
+
+.mcp-agents-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.mcp-agent-badge {
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.mcp-agent-surge {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+}
+
+.mcp-agent-pulse {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+}
+
+.mcp-agent-prism {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #a855f7;
+}
+
+.mcp-tools-heading, .mcp-trust-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.mcp-tools-heading h3, .mcp-trust-heading h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mcp-tools-heading p, .mcp-trust-heading p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+.mcp-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto 80px;
+}
+
+@media (max-width: 700px) {
+  .mcp-card-grid { grid-template-columns: 1fr; }
+}
+
+.mcp-card {
+  padding: 32px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.mcp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 212, 255, 0.12);
+}
+
+.mcp-card-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.mcp-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.mcp-card-desc {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.mcp-card-tools {
+  font-size: 0.72rem;
+  color: rgba(0, 212, 255, 0.6);
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 12px;
+}
+
+/* Trust Pipeline */
+.mcp-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 900px;
+  margin: 0 auto 80px;
+  flex-wrap: wrap;
+}
+
+.mcp-pipe-step {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+
+.mcp-pipe-step:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.mcp-pipe-icon {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.mcp-pipe-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.mcp-pipe-arrow {
+  font-size: 1.4rem;
+  color: rgba(0, 212, 255, 0.4);
+  font-weight: 300;
+}
+
+@media (max-width: 700px) {
+  .mcp-pipeline { flex-direction: column; }
+  .mcp-pipe-arrow { transform: rotate(90deg); }
+}
+
+/* Extensibility */
+.mcp-extend {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 36px 40px;
+  border-radius: 20px;
+}
+
+@media (max-width: 700px) {
+  .mcp-extend { flex-direction: column; text-align: center; }
+}
+
+.mcp-extend-icon {
+  font-size: 2.8rem;
+  flex-shrink: 0;
+}
+
+.mcp-extend-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.mcp-extend-desc {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+}
+
 </style>
 </head>
 <body>
@@ -1174,6 +1493,7 @@ section {
     <li><a href="#studio">Agent Studio</a></li>
     <li><a href="#design">Design</a></li>
     <li><a href="#tech">Technology</a></li>
+    <li><a href="#mcp">MCP</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ul>
 </nav>
@@ -1472,6 +1792,133 @@ section {
       <span class="tech-icon">&#x1f4c4;</span>
       <div class="tech-name">Shared Documents</div>
       <div class="tech-desc">Collaborative workspace</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7.5 MCP ECOSYSTEM
+     ============================================ -->
+<section id="mcp">
+  <div class="section-label reveal">The Hands of Intelligence</div>
+  <h2 class="section-title reveal reveal-delay-1">MCP Ecosystem</h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Model Context Protocol turns Vox from a conversationalist into an operator.<br>
+    One universal standard. Any tool. Infinite capability.
+  </p>
+
+  <!-- Architecture Diagram -->
+  <div class="mcp-architecture reveal reveal-delay-2">
+    <div class="mcp-arch-label">YOUR PERSONAL CHATGPT</div>
+    <div class="mcp-arch-brain">
+      <span>&#x1f9e0;</span>
+      <div>The Brain</div>
+      <div class="mcp-arch-sub">Your history. Your context. Your AI.</div>
+    </div>
+    <div class="mcp-arch-connector">
+      <div class="mcp-pulse-line"></div>
+      <div class="mcp-connector-label">VOX BRIDGE</div>
+      <div class="mcp-pulse-line"></div>
+    </div>
+    <div class="mcp-arch-hands-label">MCP SERVERS &mdash; THE HANDS</div>
+    <div class="mcp-hands-grid">
+      <div class="mcp-hand-node mcp-node-fs">
+        <span>&#x1f4c1;</span>
+        <div>Filesystem</div>
+      </div>
+      <div class="mcp-hand-node mcp-node-shell">
+        <span>&#x26a1;</span>
+        <div>Shell</div>
+      </div>
+      <div class="mcp-hand-node mcp-node-db">
+        <span>&#x1f5c4;</span>
+        <div>Database</div>
+      </div>
+      <div class="mcp-hand-node mcp-node-browser">
+        <span>&#x1f310;</span>
+        <div>Browser</div>
+      </div>
+    </div>
+    <div class="mcp-arch-agents-label">AGENTS</div>
+    <div class="mcp-agents-row">
+      <div class="mcp-agent-badge mcp-agent-surge">Surge</div>
+      <div class="mcp-agent-badge mcp-agent-pulse">Pulse</div>
+      <div class="mcp-agent-badge mcp-agent-prism">Prism</div>
+    </div>
+  </div>
+
+  <!-- Tool Cards -->
+  <div class="mcp-tools-heading reveal reveal-delay-3">
+    <h3>Tier 1 MCP Servers</h3>
+    <p>Four foundational servers ship with Chroma. Each is sandboxed, audited, and permission-gated per agent.</p>
+  </div>
+
+  <div class="mcp-card-grid">
+    <div class="mcp-card glass reveal reveal-delay-3">
+      <div class="mcp-card-icon">&#x1f4c1;</div>
+      <div class="mcp-card-title">Filesystem</div>
+      <div class="mcp-card-desc">Read, write, search, and organize files within sandboxed directories. Symlink-escape prevention keeps agents in their lane.</div>
+      <div class="mcp-card-tools">7 tools &middot; read &middot; write &middot; search &middot; move &middot; delete &middot; info &middot; list</div>
+    </div>
+    <div class="mcp-card glass reveal reveal-delay-3">
+      <div class="mcp-card-icon">&#x26a1;</div>
+      <div class="mcp-card-title">Shell</div>
+      <div class="mcp-card-desc">Execute system commands with whitelist protection. Dangerous commands are blocked. Shell injection is impossible&mdash;shell=False always.</div>
+      <div class="mcp-card-tools">4 tools &middot; execute &middot; start &middot; read output &middot; kill</div>
+    </div>
+    <div class="mcp-card glass reveal reveal-delay-4">
+      <div class="mcp-card-icon">&#x1f5c4;</div>
+      <div class="mcp-card-title">Database</div>
+      <div class="mcp-card-desc">Query PostgreSQL with read-only safety by default. DDL is blocked. Connection pooling via asyncpg keeps things fast.</div>
+      <div class="mcp-card-tools">5 tools &middot; query &middot; execute &middot; list tables &middot; describe &middot; explain</div>
+    </div>
+    <div class="mcp-card glass reveal reveal-delay-4">
+      <div class="mcp-card-icon">&#x1f310;</div>
+      <div class="mcp-card-title">Browser</div>
+      <div class="mcp-card-desc">Headless Chromium via Playwright. Isolated contexts per session. Navigate, screenshot, click, type&mdash;full web automation.</div>
+      <div class="mcp-card-tools">8 tools &middot; navigate &middot; screenshot &middot; click &middot; type &middot; evaluate JS &middot; get text</div>
+    </div>
+  </div>
+
+  <!-- Trust Pipeline -->
+  <div class="mcp-trust-heading reveal reveal-delay-4">
+    <h3>The Trust Pipeline</h3>
+    <p>Every MCP action flows through a five-stage safety pipeline before touching your system.</p>
+  </div>
+
+  <div class="mcp-pipeline reveal reveal-delay-5">
+    <div class="mcp-pipe-step">
+      <div class="mcp-pipe-icon">&#x1f916;</div>
+      <div class="mcp-pipe-label">Agent<br>Request</div>
+    </div>
+    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-step">
+      <div class="mcp-pipe-icon">&#x1f6e1;</div>
+      <div class="mcp-pipe-label">Risk<br>Classification</div>
+    </div>
+    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-step">
+      <div class="mcp-pipe-icon">&#x2705;</div>
+      <div class="mcp-pipe-label">User<br>Approval</div>
+    </div>
+    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-step">
+      <div class="mcp-pipe-icon">&#x1f512;</div>
+      <div class="mcp-pipe-label">Sandboxed<br>Execution</div>
+    </div>
+    <div class="mcp-pipe-arrow">&rarr;</div>
+    <div class="mcp-pipe-step">
+      <div class="mcp-pipe-icon">&#x1f4cb;</div>
+      <div class="mcp-pipe-label">Audit<br>Log</div>
+    </div>
+  </div>
+
+  <!-- Extensibility -->
+  <div class="mcp-extend glass reveal reveal-delay-5">
+    <div class="mcp-extend-icon">&#x1f50c;</div>
+    <div class="mcp-extend-content">
+      <div class="mcp-extend-title">Universal Protocol. Infinite Tools.</div>
+      <div class="mcp-extend-desc">MCP is an open standard&mdash;the USB-C of AI. Any MCP-compatible server plugs into Chroma instantly. Slack, GitHub, Notion, your internal APIs&mdash;if it speaks MCP, Vox can use it. No custom integrations. No vendor lock-in. Just plug in and go.</div>
     </div>
   </div>
 </section>

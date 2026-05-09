@@ -2256,25 +2256,8 @@ sections.forEach(section => navObserver.observe(section));
     pulses.forEach(p => {
       p.progress += p.speed;
       const t = p.progress;
-      p.x = p.x + (p.tx - p.x) * p.speed * 2.5;
-      p.y = p.y + (p.ty - p.y) * p.speed * 2.5;
-      const px = (1 - t) * (p.x - (p.tx - p.x) * (1 / p.speed) * (1 - t)) + t * p.tx;
-      const py = (1 - t) * (p.y - (p.ty - p.y) * (1 / p.speed) * (1 - t)) + t * p.ty;
 
-      const cx2 = p.tx * t + (p.x + (p.tx - p.x) * 0) * (1 - t);
-      const cy2 = p.ty * t + (p.y + (p.ty - p.y) * 0) * (1 - t);
-
-      // Simple lerp
-      const lx = (1 - t) * (w / 2 + (p.tx - w / 2) * 0) + t * p.tx;
-      const ly = (1 - t) * (h / 2 + (p.ty - h / 2) * 0) + t * p.ty;
-
-      const finalX = p.tx * t + p.trail.length > 0 ? p.trail[p.trail.length - 1].x + (p.tx - (p.trail.length > 0 ? p.trail[p.trail.length - 1].x : p.tx)) * 0.05 : p.tx;
-
-      // Simpler approach: just lerp
-      const drawX = p.tx + (1 - t) * ((p.tx - p.tx * 2 + w / 2));
-      const drawY = p.ty + (1 - t) * ((p.ty - p.ty * 2 + h / 2));
-
-      // Actually simplest: line from origin to target
+      // Lerp from hub center to target node
       const startX = w / 2, startY = h / 2;
       const ex = startX + (p.tx - startX) * t;
       const ey = startY + (p.ty - startY) * t;

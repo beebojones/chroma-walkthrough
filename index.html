@@ -1491,6 +1491,78 @@ section {
   .mcp-pipe-step { width: 100%; max-width: 200px; }
 }
 
+
+/* ── BRIDGE EXPLAINER ── */
+.bridge-explainer {
+  max-width: 900px;
+  margin: 60px auto 50px;
+  text-align: center;
+}
+
+.bridge-how {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 32px;
+  border-radius: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .bridge-how { flex-direction: column; align-items: center; }
+  .bridge-how-arrow { transform: rotate(90deg); }
+}
+
+.bridge-how-step {
+  flex: 1;
+  max-width: 240px;
+  text-align: center;
+}
+
+.bridge-how-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.bridge-how-icon-glow {
+  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.5));
+}
+
+.bridge-how-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.bridge-how-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+.bridge-how-arrow {
+  font-size: 1.8rem;
+  color: rgba(0, 212, 255, 0.4);
+  margin-top: 24px;
+  flex-shrink: 0;
+}
+
+.bridge-thesis {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bridge-thesis strong {
+  color: #00d4ff;
+  font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -1614,11 +1686,34 @@ section {
   <div class="section-label reveal">Core Architecture</div>
   <h2 class="section-title reveal reveal-delay-1">Vox Bridge</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    The nervous system of Chroma. Vox Bridge maintains persistent identity, routes context between agents, preserves memory across sessions, and orchestrates browser-level workflows &mdash; a connective layer that makes multi-agent collaboration real.
+    Connect <em>your</em> ChatGPT or Claude &mdash; the one with your history, your custom instructions, your Pro subscription &mdash; and let it orchestrate real work on your desktop. Vox Bridge turns your personal AI into the brain of a multi-agent system, while keeping you in control.
   </p>
 
   <div class="bridge-viz reveal reveal-delay-3">
     <canvas id="bridgeCanvas"></canvas>
+  </div>
+
+  <div class="bridge-explainer reveal reveal-delay-3">
+    <div class="bridge-how glass-strong">
+      <div class="bridge-how-step">
+        <div class="bridge-how-icon">&#x1f9d1;&#x200d;&#x1f4bb;</div>
+        <div class="bridge-how-label">Your AI</div>
+        <div class="bridge-how-desc">Your personal ChatGPT or Claude instance &mdash; with all your history, context, and relationship intact</div>
+      </div>
+      <div class="bridge-how-arrow">&harr;</div>
+      <div class="bridge-how-step">
+        <div class="bridge-how-icon bridge-how-icon-glow">&#x1f309;</div>
+        <div class="bridge-how-label">Vox Bridge</div>
+        <div class="bridge-how-desc">Translates conversation into structured actions, routes tasks to specialist agents, enforces safety gates</div>
+      </div>
+      <div class="bridge-how-arrow">&harr;</div>
+      <div class="bridge-how-step">
+        <div class="bridge-how-icon">&#x1f5a5;</div>
+        <div class="bridge-how-label">Your Desktop</div>
+        <div class="bridge-how-desc">Files, databases, browsers, shell commands &mdash; real tools executing real work on your machine</div>
+      </div>
+    </div>
+    <p class="bridge-thesis">Most AI tools throw away your relationship with your AI and start fresh. Chroma does the opposite &mdash; it <strong>supercharges</strong> the AI you already know and trust.</p>
   </div>
 
   <div class="bridge-features">

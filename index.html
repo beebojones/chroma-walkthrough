@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================
-   VOX OS TOKENS (subset for this presentation)
+   VOX OS TOKENS
    ============================================ */
 :root {
   --vox-void: #050509;
@@ -41,6 +41,8 @@
   --vox-orange: #ff9c42;
   --vox-green: #39ff14;
   --vox-red: #ff5b7c;
+  --vox-indigo: #6366F1;
+  --vox-gold: #E8A838;
 
   --vox-font-sans: Inter, "Segoe UI", system-ui, sans-serif;
   --vox-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -140,12 +142,12 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   list-style: none;
 }
 
 .nav-links a {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -237,6 +239,7 @@ section {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
 
 /* ============================================
    GLASS PANEL
@@ -523,19 +526,18 @@ section {
 }
 
 /* ============================================
-   3. THE VISION
+   3. THE VISION — AGENTS
    ============================================ */
 #vision .vision-agents {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 20px;
   justify-content: center;
   max-width: 1000px;
 }
 
 .agent-card {
-  width: 220px;
-  padding: 28px 24px;
+  padding: 24px 20px;
   text-align: center;
   position: relative;
   transition: transform 0.3s var(--vox-ease-out), box-shadow 0.3s var(--vox-ease-out);
@@ -566,6 +568,14 @@ section {
   animation: agentPulse 3s ease-in-out infinite;
 }
 
+.agent-card[data-agent="vox"] .agent-avatar { background: rgba(232, 168, 56, 0.15); }
+.agent-card[data-agent="vox"] .agent-avatar::after { border-color: #E8A838; }
+.agent-card[data-agent="vox"] .agent-name { color: #E8A838; }
+
+.agent-card[data-agent="claude"] .agent-avatar { background: rgba(99, 102, 241, 0.15); }
+.agent-card[data-agent="claude"] .agent-avatar::after { border-color: #6366F1; }
+.agent-card[data-agent="claude"] .agent-name { color: #6366F1; }
+
 .agent-card[data-agent="surge"] .agent-avatar { background: rgba(57, 217, 255, 0.15); }
 .agent-card[data-agent="surge"] .agent-avatar::after { border-color: var(--vox-cyan-500); }
 .agent-card[data-agent="surge"] .agent-name { color: var(--vox-cyan-500); }
@@ -578,9 +588,9 @@ section {
 .agent-card[data-agent="prism"] .agent-avatar::after { border-color: var(--vox-purple); }
 .agent-card[data-agent="prism"] .agent-name { color: var(--vox-purple); }
 
-.agent-card[data-agent="ember"] .agent-avatar { background: rgba(255, 73, 213, 0.15); }
-.agent-card[data-agent="ember"] .agent-avatar::after { border-color: var(--vox-magenta); }
-.agent-card[data-agent="ember"] .agent-name { color: var(--vox-magenta); }
+.agent-card[data-agent="static"] .agent-avatar { background: rgba(255, 73, 213, 0.15); }
+.agent-card[data-agent="static"] .agent-avatar::after { border-color: var(--vox-magenta); }
+.agent-card[data-agent="static"] .agent-name { color: var(--vox-magenta); }
 
 @keyframes agentPulse {
   0%, 100% { opacity: 0.5; transform: scale(1); }
@@ -626,7 +636,7 @@ section {
 }
 
 /* ============================================
-   4. VOX BRIDGE — HERO SECTION
+   4. THE BRIDGE
    ============================================ */
 #bridge {
   min-height: 120vh;
@@ -677,12 +687,298 @@ section {
 }
 
 .bridge-feat.cyan h4 { color: var(--vox-cyan-500); }
-.bridge-feat.magenta h4 { color: var(--vox-magenta); }
+.bridge-feat.gold h4 { color: var(--vox-gold); }
 .bridge-feat.purple h4 { color: var(--vox-purple); }
-.bridge-feat.orange h4 { color: var(--vox-orange); }
+.bridge-feat.indigo h4 { color: var(--vox-indigo); }
 
 /* ============================================
-   5. AGENT STUDIO
+   5. AGENT MEMORY
+   ============================================ */
+#memory .memory-mockup {
+  width: 100%;
+  max-width: 960px;
+  border-radius: var(--vox-radius-4);
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.memory-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--vox-line-100);
+  background: var(--vox-alpha-panel-80);
+}
+
+.mem-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mem-dot.red { background: #ff5f57; }
+.mem-dot.yellow { background: #ffbd2e; }
+.mem-dot.green { background: #28ca41; }
+
+.memory-title-bar {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  color: var(--vox-ink-400);
+  margin-left: 8px;
+}
+
+.memory-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--vox-line-100);
+}
+
+.memory-pane {
+  padding: 28px;
+  background: var(--vox-alpha-panel-96);
+}
+
+.memory-pane h4 {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--vox-ink-500);
+  margin-bottom: 16px;
+}
+
+.memory-tier {
+  padding: 14px 16px;
+  border: 1px solid var(--vox-line-100);
+  border-radius: var(--vox-radius-3);
+  background: rgba(5, 5, 12, 0.6);
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+}
+
+.memory-tier:hover { border-color: var(--vox-line-300); }
+
+.memory-tier-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vox-ink-200);
+  margin-bottom: 4px;
+}
+
+.memory-tier-desc {
+  font-size: 11px;
+  color: var(--vox-ink-500);
+  line-height: 1.4;
+}
+
+.memory-tier.curated .memory-tier-name { color: var(--vox-purple); }
+.memory-tier.learnings .memory-tier-name { color: var(--vox-cyan-400); }
+.memory-tier.summaries .memory-tier-name { color: var(--vox-orange); }
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--vox-line-100);
+  border-radius: var(--vox-radius-3);
+  background: rgba(5, 5, 12, 0.6);
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--vox-ink-300);
+  transition: border-color 0.2s;
+}
+
+.pipeline-step:hover { border-color: var(--vox-line-300); }
+
+.pipeline-step .step-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.pipeline-step .step-arrow {
+  color: var(--vox-ink-500);
+  font-size: 10px;
+  margin-left: auto;
+}
+
+.memory-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 960px;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.memory-feat {
+  padding: 20px;
+  text-align: center;
+}
+
+.memory-feat h4 {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--vox-purple);
+}
+
+.memory-feat p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--vox-ink-400);
+}
+
+/* ============================================
+   6. MULTI-PARTICIPANT CHAT
+   ============================================ */
+#chat .chat-mockup {
+  width: 100%;
+  max-width: 720px;
+  border-radius: var(--vox-radius-4);
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.chat-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--vox-line-100);
+  background: var(--vox-alpha-panel-80);
+}
+
+.chat-dot { width: 10px; height: 10px; border-radius: 50%; }
+.chat-dot.red { background: #ff5f57; }
+.chat-dot.yellow { background: #ffbd2e; }
+.chat-dot.green { background: #28ca41; }
+
+.chat-title-bar {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  color: var(--vox-ink-400);
+  margin-left: 8px;
+}
+
+.chat-messages {
+  padding: 24px;
+  background: var(--vox-alpha-panel-96);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-msg {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.chat-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  border: 1.5px solid;
+}
+
+.chat-msg-body {
+  flex: 1;
+}
+
+.chat-msg-name {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.chat-msg-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--vox-ink-300);
+}
+
+.chat-msg.john .chat-msg-avatar { background: rgba(233, 181, 116, 0.15); border-color: #E9B574; }
+.chat-msg.john .chat-msg-name { color: #E9B574; }
+.chat-msg.vox .chat-msg-avatar { background: rgba(232, 168, 56, 0.15); border-color: var(--vox-gold); }
+.chat-msg.vox .chat-msg-name { color: var(--vox-gold); }
+.chat-msg.claude-msg .chat-msg-avatar { background: rgba(99, 102, 241, 0.15); border-color: var(--vox-indigo); }
+.chat-msg.claude-msg .chat-msg-name { color: var(--vox-indigo); }
+.chat-msg.surge .chat-msg-avatar { background: rgba(57, 217, 255, 0.15); border-color: var(--vox-cyan-500); }
+.chat-msg.surge .chat-msg-name { color: var(--vox-cyan-500); }
+
+.chat-input-bar {
+  padding: 16px 20px;
+  border-top: 1px solid var(--vox-line-100);
+  background: var(--vox-alpha-panel-80);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-input-field {
+  flex: 1;
+  padding: 10px 14px;
+  background: rgba(5, 5, 12, 0.94);
+  border: 1px solid var(--vox-line-200);
+  border-radius: var(--vox-radius-3);
+  color: var(--vox-ink-400);
+  font-family: var(--vox-font-sans);
+  font-size: 13px;
+  outline: none;
+}
+
+.chat-mention-hint {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  color: var(--vox-cyan-500);
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border: 1px solid rgba(57, 217, 255, 0.2);
+  border-radius: var(--vox-radius-pill);
+  background: rgba(57, 217, 255, 0.06);
+}
+
+.chat-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 720px;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.chat-feat {
+  padding: 20px;
+  text-align: center;
+}
+
+.chat-feat h4 {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--vox-cyan-500);
+}
+
+.chat-feat p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--vox-ink-400);
+}
+
+/* ============================================
+   7. AGENT STUDIO
    ============================================ */
 #studio .studio-mockup {
   width: 100%;
@@ -830,7 +1126,7 @@ section {
 }
 
 /* ============================================
-   6. DESIGN LANGUAGE
+   8. DESIGN LANGUAGE
    ============================================ */
 #design .design-grid {
   display: grid;
@@ -950,7 +1246,7 @@ section {
 .state-chip.error { border-color: var(--vox-red); color: var(--vox-red); background: rgba(255,91,124,0.08); }
 
 /* ============================================
-   7. TECHNOLOGY
+   9. TECHNOLOGY
    ============================================ */
 #tech .tech-grid {
   display: grid;
@@ -991,174 +1287,8 @@ section {
 }
 
 /* ============================================
-   8. ROADMAP
+   10. MCP ECOSYSTEM
    ============================================ */
-#roadmap .timeline {
-  position: relative;
-  max-width: 700px;
-  width: 100%;
-  padding-left: 40px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--vox-cyan-500), var(--vox-magenta), var(--vox-purple), var(--vox-orange));
-}
-
-.timeline-item {
-  position: relative;
-  padding: 0 0 48px 32px;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -25px;
-  top: 6px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--vox-cyan-500);
-  background: var(--vox-void);
-}
-
-.timeline-item:nth-child(2)::before { border-color: var(--vox-magenta); }
-.timeline-item:nth-child(3)::before { border-color: var(--vox-purple); }
-.timeline-item:nth-child(4)::before { border-color: var(--vox-orange); }
-.timeline-item:nth-child(5)::before { border-color: var(--vox-green); }
-.timeline-item:nth-child(6)::before { border-color: var(--vox-cyan-400); }
-
-.timeline-phase {
-  font-family: var(--vox-font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--vox-ink-500);
-  margin-bottom: 6px;
-}
-
-.timeline-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: var(--vox-ink-100);
-}
-
-.timeline-desc {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--vox-ink-400);
-}
-
-/* ============================================
-   9. CLOSE
-   ============================================ */
-#close {
-  text-align: center;
-}
-
-.close-title {
-  font-size: clamp(36px, 6vw, 72px);
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, var(--vox-ink-100), var(--vox-cyan-500));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.close-sub {
-  font-size: 16px;
-  color: var(--vox-ink-400);
-  margin-bottom: 40px;
-  max-width: 480px;
-}
-
-.close-footer {
-  margin-top: 80px;
-  font-family: var(--vox-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--vox-ink-500);
-}
-
-.close-footer a {
-  color: var(--vox-cyan-500);
-  text-decoration: none;
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media (max-width: 920px) {
-  .nav-links { display: none; }
-  section { padding: 100px 20px 60px; }
-  .studio-body { grid-template-columns: 1fr; }
-  .bridge-features { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 600px) {
-  .hero-title { font-size: 56px; }
-  .bridge-features { grid-template-columns: 1fr; }
-  .problem-grid { grid-template-columns: 1fr; }
-  .vision-agents { flex-direction: column; align-items: center; }
-  .hero-cta-row { flex-direction: column; align-items: center; }
-}
-
-/* ============================================
-   CONSOLE-CARD EDGE ANIMATION
-   ============================================ */
-@keyframes consoleEdge {
-  0% { border-color: rgba(57, 217, 255, 0.35); box-shadow: 0 0 10px rgba(0, 246, 255, 0.15); }
-  25% { border-color: rgba(255, 0, 212, 0.35); box-shadow: 0 0 12px rgba(255, 0, 212, 0.15); }
-  50% { border-color: rgba(154, 77, 255, 0.35); box-shadow: 0 0 14px rgba(154, 77, 255, 0.15); }
-  75% { border-color: rgba(255, 122, 0, 0.35); box-shadow: 0 0 12px rgba(255, 122, 0, 0.13); }
-  100% { border-color: rgba(57, 217, 255, 0.35); box-shadow: 0 0 10px rgba(0, 246, 255, 0.15); }
-}
-
-.console-edge {
-  animation: consoleEdge 8s ease-in-out infinite;
-}
-
-.console-edge-b { animation-delay: -2s; }
-.console-edge-c { animation-delay: -4s; }
-.console-edge-d { animation-delay: -6s; }
-
-/* ============================================
-   SECTION DIVIDERS
-   ============================================ */
-.section-divider {
-  width: 100%;
-  max-width: 200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--vox-line-300), transparent);
-  margin: 0 auto;
-}
-
-/* Typing cursor */
-.typing-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: var(--vox-cyan-500);
-  margin-left: 2px;
-  animation: cursorBlink 1s step-end infinite;
-  vertical-align: text-bottom;
-}
-
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* ── MCP ECOSYSTEM ── */
 #mcp {
   min-height: 100vh;
   padding: 120px 36px 80px;
@@ -1181,7 +1311,6 @@ section {
   height: 100%;
 }
 
-/* Subheading between blocks */
 .mcp-sub-heading {
   text-align: center;
   max-width: 640px;
@@ -1201,7 +1330,6 @@ section {
   line-height: 1.6;
 }
 
-/* Tool Cards Grid */
 .mcp-card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1246,9 +1374,7 @@ section {
 .mcp-card-icon.db    { background: rgba(159, 120, 255, 0.12); border: 1px solid rgba(159, 120, 255, 0.25); }
 .mcp-card-icon.browser { background: rgba(255, 156, 66, 0.12); border: 1px solid rgba(255, 156, 66, 0.25); }
 
-.mcp-card-meta {
-  flex: 1;
-}
+.mcp-card-meta { flex: 1; }
 
 .mcp-card-title {
   font-size: 16px;
@@ -1312,9 +1438,7 @@ section {
   transition: all 0.3s var(--vox-ease-out);
 }
 
-.mcp-pipe-step:hover {
-  background: rgba(57, 217, 255, 0.03);
-}
+.mcp-pipe-step:hover { background: rgba(57, 217, 255, 0.03); }
 
 .mcp-pipe-num {
   width: 32px;
@@ -1363,7 +1487,6 @@ section {
   line-height: 1.4;
 }
 
-/* Connector line between pipeline steps */
 .mcp-pipe-connector {
   width: 40px;
   height: 2px;
@@ -1384,7 +1507,6 @@ section {
   transform: rotate(45deg);
 }
 
-/* Animated pulse on pipeline connectors */
 @keyframes mcpPipeFlow {
   0% { left: 0; opacity: 0; }
   20% { opacity: 1; }
@@ -1432,11 +1554,7 @@ section {
   pointer-events: none;
 }
 
-.mcp-extend-icon {
-  font-size: 36px;
-  flex-shrink: 0;
-}
-
+.mcp-extend-icon { font-size: 36px; flex-shrink: 0; }
 .mcp-extend-content { flex: 1; }
 
 .mcp-extend-title {
@@ -1477,90 +1595,188 @@ section {
   background: rgba(57, 217, 255, 0.06);
 }
 
+/* ============================================
+   11. ROADMAP
+   ============================================ */
+#roadmap .timeline {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--vox-green), var(--vox-green), var(--vox-green), var(--vox-cyan-500), var(--vox-magenta), var(--vox-purple), var(--vox-orange));
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 48px 32px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--vox-green);
+  background: var(--vox-void);
+}
+
+/* Shipped items: filled green dots */
+.timeline-item.shipped::before {
+  background: var(--vox-green);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+.timeline-item:nth-child(1)::before { border-color: var(--vox-green); }
+.timeline-item:nth-child(2)::before { border-color: var(--vox-green); }
+.timeline-item:nth-child(3)::before { border-color: var(--vox-green); }
+.timeline-item:nth-child(4)::before { border-color: var(--vox-cyan-500); }
+.timeline-item:nth-child(5)::before { border-color: var(--vox-magenta); }
+.timeline-item:nth-child(6)::before { border-color: var(--vox-purple); }
+.timeline-item:nth-child(7)::before { border-color: var(--vox-orange); }
+
+.timeline-phase {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vox-ink-500);
+  margin-bottom: 6px;
+}
+
+.timeline-phase .check {
+  color: var(--vox-green);
+}
+
+.timeline-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--vox-ink-100);
+}
+
+.timeline-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--vox-ink-400);
+}
+
+/* ============================================
+   12. CLOSE
+   ============================================ */
+#close {
+  text-align: center;
+}
+
+.close-title {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, var(--vox-ink-100), var(--vox-cyan-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.close-sub {
+  font-size: 16px;
+  color: var(--vox-ink-400);
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.close-footer {
+  margin-top: 80px;
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--vox-ink-500);
+}
+
+/* ============================================
+   CONSOLE-CARD EDGE ANIMATION
+   ============================================ */
+@keyframes consoleEdge {
+  0% { border-color: rgba(57, 217, 255, 0.35); box-shadow: 0 0 10px rgba(0, 246, 255, 0.15); }
+  25% { border-color: rgba(255, 0, 212, 0.35); box-shadow: 0 0 12px rgba(255, 0, 212, 0.15); }
+  50% { border-color: rgba(154, 77, 255, 0.35); box-shadow: 0 0 14px rgba(154, 77, 255, 0.15); }
+  75% { border-color: rgba(255, 122, 0, 0.35); box-shadow: 0 0 12px rgba(255, 122, 0, 0.13); }
+  100% { border-color: rgba(57, 217, 255, 0.35); box-shadow: 0 0 10px rgba(0, 246, 255, 0.15); }
+}
+
+.console-edge { animation: consoleEdge 8s ease-in-out infinite; }
+.console-edge-b { animation-delay: -1.3s; }
+.console-edge-c { animation-delay: -2.6s; }
+.console-edge-d { animation-delay: -4s; }
+.console-edge-e { animation-delay: -5.3s; }
+.console-edge-f { animation-delay: -6.6s; }
+
+/* SECTION DIVIDERS */
+.section-divider {
+  width: 100%;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vox-line-300), transparent);
+  margin: 0 auto;
+}
+
+/* Typing cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--vox-cyan-500);
+  margin-left: 2px;
+  animation: cursorBlink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 920px) {
+  .nav-links { display: none; }
+  section { padding: 100px 20px 60px; }
+  .studio-body { grid-template-columns: 1fr; }
+  .memory-body { grid-template-columns: 1fr; }
+  .bridge-features { grid-template-columns: 1fr 1fr; }
   .mcp-card-grid { grid-template-columns: 1fr; max-width: 480px; }
   .mcp-pipeline { flex-wrap: wrap; gap: 12px; }
   .mcp-pipe-connector { display: none; }
   .mcp-extend { flex-direction: column; text-align: center; }
   .mcp-extend-tags { justify-content: center; }
   #mcp .mcp-canvas-wrap { height: 380px; }
+  .vision-agents { grid-template-columns: repeat(2, 200px); }
+  .memory-features { grid-template-columns: 1fr; max-width: 360px; }
+  .chat-features { grid-template-columns: 1fr; max-width: 360px; }
 }
 
 @media (max-width: 600px) {
+  .hero-title { font-size: 56px; }
+  .bridge-features { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .vision-agents { grid-template-columns: 1fr; justify-items: center; }
+  .hero-cta-row { flex-direction: column; align-items: center; }
   .mcp-pipeline { flex-direction: column; align-items: center; }
   .mcp-pipe-step { width: 100%; max-width: 200px; }
-}
-
-
-/* ── BRIDGE EXPLAINER ── */
-.bridge-explainer {
-  max-width: 900px;
-  margin: 60px auto 50px;
-  text-align: center;
-}
-
-.bridge-how {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px 32px;
-  border-radius: 24px;
-  margin-bottom: 32px;
-}
-
-@media (max-width: 700px) {
-  .bridge-how { flex-direction: column; align-items: center; }
-  .bridge-how-arrow { transform: rotate(90deg); }
-}
-
-.bridge-how-step {
-  flex: 1;
-  max-width: 240px;
-  text-align: center;
-}
-
-.bridge-how-icon {
-  font-size: 2.4rem;
-  margin-bottom: 12px;
-}
-
-.bridge-how-icon-glow {
-  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.5));
-}
-
-.bridge-how-label {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-}
-
-.bridge-how-desc {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.6;
-}
-
-.bridge-how-arrow {
-  font-size: 1.8rem;
-  color: rgba(0, 212, 255, 0.4);
-  margin-top: 24px;
-  flex-shrink: 0;
-}
-
-.bridge-thesis {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.bridge-thesis strong {
-  color: #00d4ff;
-  font-weight: 700;
 }
 
 </style>
@@ -1575,11 +1791,13 @@ section {
   <a href="#hero" class="nav-brand">CHROMA</a>
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
-    <li><a href="#vision">Vision</a></li>
-    <li><a href="#bridge">Vox Bridge</a></li>
-    <li><a href="#studio">Agent Studio</a></li>
+    <li><a href="#vision">Agents</a></li>
+    <li><a href="#bridge">Bridge</a></li>
+    <li><a href="#memory">Memory</a></li>
+    <li><a href="#chat">Chat</a></li>
+    <li><a href="#studio">Studio</a></li>
     <li><a href="#design">Design</a></li>
-    <li><a href="#tech">Technology</a></li>
+    <li><a href="#tech">Tech</a></li>
     <li><a href="#mcp">MCP</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ul>
@@ -1642,7 +1860,7 @@ section {
 </section>
 
 <!-- ============================================
-     3. THE VISION
+     3. THE VISION — AGENTS
      ============================================ -->
 <section id="vision">
   <div class="section-label reveal">The Vision</div>
@@ -1652,27 +1870,39 @@ section {
   </p>
 
   <div class="vision-agents">
-    <div class="agent-card glass console-edge reveal reveal-delay-2" data-agent="surge">
+    <div class="agent-card glass console-edge reveal reveal-delay-1" data-agent="vox">
+      <div class="agent-avatar">&#x1f309;</div>
+      <div class="agent-name">VOX</div>
+      <div class="agent-role">ChatGPT Bridge</div>
+      <div class="agent-state"><span class="dot" style="color: #E8A838;"></span> CONNECTED</div>
+    </div>
+    <div class="agent-card glass console-edge console-edge-b reveal reveal-delay-2" data-agent="claude">
+      <div class="agent-avatar">&#x2726;</div>
+      <div class="agent-name">CLAUDE</div>
+      <div class="agent-role">Claude Bridge</div>
+      <div class="agent-state"><span class="dot" style="color: #6366F1;"></span> CONNECTED</div>
+    </div>
+    <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-3" data-agent="surge">
       <div class="agent-avatar">&#x26a1;</div>
       <div class="agent-name">SURGE</div>
       <div class="agent-role">Engineering Agent</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-cyan-500);"></span> OBSERVING</div>
     </div>
-    <div class="agent-card glass console-edge console-edge-b reveal reveal-delay-3" data-agent="pulse">
+    <div class="agent-card glass console-edge console-edge-d reveal reveal-delay-4" data-agent="pulse">
       <div class="agent-avatar">&#x1f4ca;</div>
       <div class="agent-name">PULSE</div>
       <div class="agent-role">Analysis Agent</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-orange);"></span> ANALYSIS</div>
     </div>
-    <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-4" data-agent="prism">
+    <div class="agent-card glass console-edge console-edge-e reveal reveal-delay-5" data-agent="prism">
       <div class="agent-avatar">&#x1f3a8;</div>
       <div class="agent-name">PRISM</div>
       <div class="agent-role">Design Agent</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-purple);"></span> DESIGN</div>
     </div>
-    <div class="agent-card glass console-edge console-edge-d reveal reveal-delay-5" data-agent="ember">
+    <div class="agent-card glass console-edge console-edge-f reveal reveal-delay-6" data-agent="static">
       <div class="agent-avatar">&#x1f525;</div>
-      <div class="agent-name">EMBER</div>
+      <div class="agent-name">STATIC</div>
       <div class="agent-role">Disruption Agent</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-magenta);"></span> RISK</div>
     </div>
@@ -1680,64 +1910,184 @@ section {
 </section>
 
 <!-- ============================================
-     4. VOX BRIDGE
+     4. THE BRIDGE — Dual Bridge Architecture
      ============================================ -->
 <section id="bridge">
   <div class="section-label reveal">Core Architecture</div>
-  <h2 class="section-title reveal reveal-delay-1">Vox Bridge</h2>
+  <h2 class="section-title reveal reveal-delay-1">The Bridge</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Connect <em>your</em> ChatGPT or Claude &mdash; the one with your history, your custom instructions, your Pro subscription &mdash; and let it orchestrate real work on your desktop. Vox Bridge turns your personal AI into the brain of a multi-agent system, while keeping you in control.
+    Your personal ChatGPT and Claude instances &mdash; the ones you already trust, already pay for &mdash; become first-class participants in your workspace. No API middleman. Your conversations, your context, your accounts.
   </p>
 
   <div class="bridge-viz reveal reveal-delay-3">
     <canvas id="bridgeCanvas"></canvas>
   </div>
 
-  <div class="bridge-explainer reveal reveal-delay-3">
-    <div class="bridge-how glass-strong">
-      <div class="bridge-how-step">
-        <div class="bridge-how-icon">&#x1f9d1;&#x200d;&#x1f4bb;</div>
-        <div class="bridge-how-label">Your AI</div>
-        <div class="bridge-how-desc">Your personal ChatGPT or Claude instance &mdash; with all your history, context, and relationship intact</div>
-      </div>
-      <div class="bridge-how-arrow">&harr;</div>
-      <div class="bridge-how-step">
-        <div class="bridge-how-icon bridge-how-icon-glow">&#x1f309;</div>
-        <div class="bridge-how-label">Vox Bridge</div>
-        <div class="bridge-how-desc">Translates conversation into structured actions, routes tasks to specialist agents, enforces safety gates</div>
-      </div>
-      <div class="bridge-how-arrow">&harr;</div>
-      <div class="bridge-how-step">
-        <div class="bridge-how-icon">&#x1f5a5;</div>
-        <div class="bridge-how-label">Your Desktop</div>
-        <div class="bridge-how-desc">Files, databases, browsers, shell commands &mdash; real tools executing real work on your machine</div>
-      </div>
-    </div>
-    <p class="bridge-thesis">Most AI tools throw away your relationship with your AI and start fresh. Chroma does the opposite &mdash; it <strong>supercharges</strong> the AI you already know and trust.</p>
-  </div>
-
   <div class="bridge-features">
     <div class="bridge-feat glass cyan reveal reveal-delay-2">
-      <h4>Persistent Context</h4>
-      <p>Conversations, decisions, and working documents survive across sessions and agents.</p>
+      <h4>Dual Bridge Protocol</h4>
+      <p>Both bridges implement the same BridgeProtocol interface. Different DOM automation, same contract.</p>
     </div>
-    <div class="bridge-feat glass magenta reveal reveal-delay-3">
-      <h4>Agent Orchestration</h4>
-      <p>Route tasks to the right specialist. Agents share workspace without losing autonomy.</p>
+    <div class="bridge-feat glass gold reveal reveal-delay-3">
+      <h4>Browser Automation</h4>
+      <p>Playwright + CDP on dedicated ports. Real keyboard input, real browser sessions, real isTrusted events.</p>
     </div>
     <div class="bridge-feat glass purple reveal reveal-delay-4">
       <h4>Memory Layer</h4>
-      <p>Structured recall of past interactions, preferences, and domain knowledge.</p>
+      <p>Three-tier memory: curated knowledge, per-agent learnings, conversation summaries. Relevance-scored recall.</p>
     </div>
-    <div class="bridge-feat glass orange reveal reveal-delay-5">
-      <h4>Workflow Continuity</h4>
-      <p>Pick up where you left off. Proposals, approvals, and shared documents persist.</p>
+    <div class="bridge-feat glass indigo reveal reveal-delay-5">
+      <h4>Conversation Router</h4>
+      <p>@mention routing, group fanout, round-robin turns. Eight participants, one unified conversation.</p>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     5. AGENT STUDIO
+     5. AGENT MEMORY
+     ============================================ -->
+<section id="memory">
+  <div class="section-label reveal">Persistence</div>
+  <h2 class="section-title reveal reveal-delay-1">AI That <span style="background: linear-gradient(90deg, var(--vox-purple), var(--vox-cyan-500)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Remembers</span> You</h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Every conversation builds context. Every interaction deepens understanding. Chroma agents don't just respond &mdash; they learn, adapt, and remember.
+  </p>
+
+  <div class="memory-mockup glass-strong reveal reveal-delay-3">
+    <div class="memory-header">
+      <div class="mem-dot red"></div>
+      <div class="mem-dot yellow"></div>
+      <div class="mem-dot green"></div>
+      <span class="memory-title-bar">memory-engine &mdash; three-tier persistence</span>
+    </div>
+    <div class="memory-body">
+      <div class="memory-pane">
+        <h4>Memory Tiers</h4>
+        <div class="memory-tier curated">
+          <div class="memory-tier-name">Curated Memories</div>
+          <div class="memory-tier-desc">Importance-ranked, manually verified, global across agents</div>
+        </div>
+        <div class="memory-tier learnings">
+          <div class="memory-tier-name">Agent Learnings</div>
+          <div class="memory-tier-desc">Confidence-scored event-stream, per-agent, auto-extracted</div>
+        </div>
+        <div class="memory-tier summaries">
+          <div class="memory-tier-name">Conversation Summaries</div>
+          <div class="memory-tier-desc">Rolling per-conversation, compressed context</div>
+        </div>
+      </div>
+      <div class="memory-pane">
+        <h4>How It Works</h4>
+        <div class="pipeline-step">
+          <span class="step-icon">&#x1f4ac;</span> Conversation Turn
+          <span class="step-arrow">&#x25B6;</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-icon">&#x2728;</span> Haiku Extraction
+          <span class="step-arrow">&#x25B6;</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-icon">&#x1f3af;</span> Confidence Scoring
+          <span class="step-arrow">&#x25B6;</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-icon">&#x1f418;</span> PostgreSQL
+          <span class="step-arrow">&#x25B6;</span>
+        </div>
+        <div class="pipeline-step">
+          <span class="step-icon">&#x1f50d;</span> Relevance Recall
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="memory-features">
+    <div class="memory-feat glass reveal reveal-delay-3">
+      <h4>Relevance Scoring</h4>
+      <p>Importance + recency decay. Recent high-importance memories surface first.</p>
+    </div>
+    <div class="memory-feat glass reveal reveal-delay-4">
+      <h4>Fire &amp; Forget</h4>
+      <p>Memory hooks run asynchronously. Zero latency impact on conversations.</p>
+    </div>
+    <div class="memory-feat glass reveal reveal-delay-5">
+      <h4>Fail-Soft Design</h4>
+      <p>Memory service failures never break conversations. CHROMA_MEMORY_DISABLED kill switch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     6. MULTI-PARTICIPANT CHAT
+     ============================================ -->
+<section id="chat">
+  <div class="section-label reveal">Conversation</div>
+  <h2 class="section-title reveal reveal-delay-1">Everyone at the Table</h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Type @Vox and your ChatGPT responds. Type @Claude and your Claude responds. @Surge for code, @Pulse for analysis. Or just talk to the group and let the router decide.
+  </p>
+
+  <div class="chat-mockup glass-strong reveal reveal-delay-3">
+    <div class="chat-header">
+      <div class="chat-dot red"></div>
+      <div class="chat-dot yellow"></div>
+      <div class="chat-dot green"></div>
+      <span class="chat-title-bar">chroma &mdash; #workspace</span>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-msg john">
+        <div class="chat-msg-avatar">J</div>
+        <div class="chat-msg-body">
+          <div class="chat-msg-name">JOHN</div>
+          <div class="chat-msg-text">What do you think about the new auth flow?</div>
+        </div>
+      </div>
+      <div class="chat-msg vox">
+        <div class="chat-msg-avatar">&#x1f309;</div>
+        <div class="chat-msg-body">
+          <div class="chat-msg-name">VOX</div>
+          <div class="chat-msg-text">@Claude can you review the security implications?</div>
+        </div>
+      </div>
+      <div class="chat-msg claude-msg">
+        <div class="chat-msg-avatar">&#x2726;</div>
+        <div class="chat-msg-body">
+          <div class="chat-msg-name">CLAUDE</div>
+          <div class="chat-msg-text">I've reviewed the flow. The token rotation is solid, but I'd add PKCE for the authorization code exchange to prevent interception attacks.</div>
+        </div>
+      </div>
+      <div class="chat-msg surge">
+        <div class="chat-msg-avatar">&#x26a1;</div>
+        <div class="chat-msg-body">
+          <div class="chat-msg-name">SURGE</div>
+          <div class="chat-msg-text">I can implement that. Want me to draft a proposal?</div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input-bar">
+      <div class="chat-input-field">Type a message or @mention an agent...</div>
+      <div class="chat-mention-hint">@ MENTION</div>
+    </div>
+  </div>
+
+  <div class="chat-features">
+    <div class="chat-feat glass reveal reveal-delay-3">
+      <h4>8 Participants</h4>
+      <p>John, Vox, Claude, Surge, Pulse, Prism, Static, and Group &mdash; each with distinct identity.</p>
+    </div>
+    <div class="chat-feat glass reveal reveal-delay-4">
+      <h4>@Mention Routing</h4>
+      <p>Autocomplete popup, regex parsing, direct/group/fanout modes.</p>
+    </div>
+    <div class="chat-feat glass reveal reveal-delay-5">
+      <h4>Cross-Review</h4>
+      <p>Vox and Claude can review each other's work for multi-perspective reasoning.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7. AGENT STUDIO
      ============================================ -->
 <section id="studio">
   <div class="section-label reveal">Customize</div>
@@ -1771,7 +2121,7 @@ section {
         <h4>Model Provider</h4>
         <div class="provider-list">
           <div class="provider-item selected">
-            <span class="provider-name">Claude 3.5 Sonnet</span>
+            <span class="provider-name">Claude Opus 4</span>
             <span class="provider-tag">API</span>
           </div>
           <div class="provider-item">
@@ -1779,12 +2129,12 @@ section {
             <span class="provider-tag">API</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">Llama 3.1 70B</span>
-            <span class="provider-tag local">LOCAL</span>
+            <span class="provider-name">Claude 3.5 Sonnet</span>
+            <span class="provider-tag">API</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">Mistral Large</span>
-            <span class="provider-tag">API</span>
+            <span class="provider-name">Llama 3.1 70B</span>
+            <span class="provider-tag local">LOCAL</span>
           </div>
           <div class="provider-item">
             <span class="provider-name">Qwen 2.5 72B</span>
@@ -1797,7 +2147,7 @@ section {
 </section>
 
 <!-- ============================================
-     6. DESIGN LANGUAGE
+     8. DESIGN LANGUAGE
      ============================================ -->
 <section id="design">
   <div class="section-label reveal">Identity</div>
@@ -1817,6 +2167,8 @@ section {
         <div class="color-swatch" data-label="Orange" style="background: var(--vox-orange);"></div>
         <div class="color-swatch" data-label="Green" style="background: var(--vox-green);"></div>
         <div class="color-swatch" data-label="Red" style="background: var(--vox-red);"></div>
+        <div class="color-swatch" data-label="Indigo" style="background: var(--vox-indigo);"></div>
+        <div class="color-swatch" data-label="Gold" style="background: var(--vox-gold);"></div>
       </div>
     </div>
     <div class="design-card glass reveal reveal-delay-3">
@@ -1853,7 +2205,7 @@ section {
 </section>
 
 <!-- ============================================
-     7. TECHNOLOGY
+     9. TECHNOLOGY
      ============================================ -->
 <section id="tech">
   <div class="section-label reveal">Built From Experimentation</div>
@@ -1879,9 +2231,9 @@ section {
       <div class="tech-desc">Local LLM inference</div>
     </div>
     <div class="tech-item glass reveal reveal-delay-3">
-      <span class="tech-icon">&#x1f310;</span>
-      <div class="tech-name">Vox Bridge</div>
-      <div class="tech-desc">Browser orchestration</div>
+      <span class="tech-icon">&#x1f309;</span>
+      <div class="tech-name">Dual Bridge</div>
+      <div class="tech-desc">Playwright + CDP</div>
     </div>
     <div class="tech-item glass reveal reveal-delay-4">
       <span class="tech-icon">&#x1f50c;</span>
@@ -1896,18 +2248,18 @@ section {
     <div class="tech-item glass reveal reveal-delay-5">
       <span class="tech-icon">&#x1f4be;</span>
       <div class="tech-name">Memory Engine</div>
-      <div class="tech-desc">Structured recall</div>
+      <div class="tech-desc">3-tier persistence</div>
     </div>
     <div class="tech-item glass reveal reveal-delay-5">
-      <span class="tech-icon">&#x1f4c4;</span>
-      <div class="tech-name">Shared Documents</div>
-      <div class="tech-desc">Collaborative workspace</div>
+      <span class="tech-icon">&#x1f517;</span>
+      <div class="tech-name">MCP Protocol</div>
+      <div class="tech-desc">Extensible tool layer</div>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     7.5 MCP ECOSYSTEM
+     10. MCP ECOSYSTEM
      ============================================ -->
 <section id="mcp">
   <div class="section-label reveal">One Protocol. Every Tool.</div>
@@ -2065,51 +2417,56 @@ section {
 </section>
 
 <!-- ============================================
-     8. ROADMAP
+     11. ROADMAP
      ============================================ -->
 <section id="roadmap">
   <div class="section-label reveal">What's Next</div>
   <h2 class="section-title reveal reveal-delay-1">Roadmap</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Chroma is actively evolving. Here's where we're headed.
+    Chroma is actively evolving. Here's where we are and where we're headed.
   </p>
 
   <div class="timeline">
-    <div class="timeline-item reveal reveal-delay-1">
-      <div class="timeline-phase">Now</div>
-      <div class="timeline-title">Core Multi-Agent Chat</div>
-      <div class="timeline-desc">Persistent workspace, agent orchestration, proposal workflows, shared documents, Vox Bridge browser layer.</div>
+    <div class="timeline-item shipped reveal reveal-delay-1">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Core Platform</div>
+      <div class="timeline-desc">Multi-agent chat, proposal workflows, shared documents, Vox OS design system, MCP ecosystem.</div>
     </div>
-    <div class="timeline-item reveal reveal-delay-2">
-      <div class="timeline-phase">Next</div>
-      <div class="timeline-title">Voice Interface</div>
-      <div class="timeline-desc">Natural voice interaction with agents. Speak to your workspace, hear responses, hands-free collaboration.</div>
+    <div class="timeline-item shipped reveal reveal-delay-2">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Dual Bridge</div>
+      <div class="timeline-desc">Vox (ChatGPT) and Claude browser bridges with shared BridgeProtocol. Your AI accounts as workspace participants.</div>
     </div>
-    <div class="timeline-item reveal reveal-delay-3">
-      <div class="timeline-phase">Upcoming</div>
-      <div class="timeline-title">Multimodal Understanding</div>
-      <div class="timeline-desc">Image, document, and screen analysis integrated into the agent workflow. Agents that can see what you see.</div>
+    <div class="timeline-item shipped reveal reveal-delay-3">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Agent Memory</div>
+      <div class="timeline-desc">Three-tier memory system with relevance scoring. 400+ tests. Comprehensive audit and hardening.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-4">
-      <div class="timeline-phase">Horizon</div>
-      <div class="timeline-title">Collaborative Workshops</div>
-      <div class="timeline-desc">Multi-agent brainstorming sessions. Agents debate, challenge, and build on each other's ideas.</div>
+      <div class="timeline-phase">Now</div>
+      <div class="timeline-title">Multi-Participant Chat</div>
+      <div class="timeline-desc">@mention routing, conversation router, group conversations, cross-AI review.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-5">
-      <div class="timeline-phase">Future</div>
+      <div class="timeline-phase">Next</div>
+      <div class="timeline-title">Voice Interface</div>
+      <div class="timeline-desc">Natural voice interaction with agents.</div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-5">
+      <div class="timeline-phase">Horizon</div>
       <div class="timeline-title">Autonomous Pipelines</div>
-      <div class="timeline-desc">Agent-driven workflows with human checkpoints. Research, analysis, and execution chains with proposal gates.</div>
+      <div class="timeline-desc">Agent-driven workflows with human checkpoints and proposal gates.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-5">
       <div class="timeline-phase">Vision</div>
       <div class="timeline-title">Plugin Ecosystem &amp; Mobile</div>
-      <div class="timeline-desc">Community-built agents and tools. Take your workspace anywhere.</div>
+      <div class="timeline-desc">Community agents and tools. Take your workspace anywhere.</div>
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     9. CLOSE
+     12. CLOSE
      ============================================ -->
 <section id="close">
   <div class="hero-eyebrow reveal">
@@ -2123,7 +2480,7 @@ section {
     <a href="#hero" class="btn-primary">Back to Top &uarr;</a>
   </div>
   <div class="close-footer reveal reveal-delay-4">
-    <p>CHROMA &middot; A Vox OS Application &middot; 2025</p>
+    <p>CHROMA &middot; A Vox OS Application &middot; 2026</p>
   </div>
 </section>
 
@@ -2181,7 +2538,7 @@ sections.forEach(section => navObserver.observe(section));
 (function() {
   const canvas = document.getElementById('heroCanvas');
   const ctx = canvas.getContext('2d');
-  let w, h, particles = [], mouse = { x: 0, y: 0 };
+  let w, h, particles = [];
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
@@ -2199,7 +2556,7 @@ sections.forEach(section => navObserver.observe(section));
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
         r: Math.random() * 1.5 + 0.5,
-        color: ['rgba(57,217,255,', 'rgba(255,73,213,', 'rgba(159,120,255,', 'rgba(255,156,66,'][Math.floor(Math.random() * 4)]
+        color: ['rgba(57,217,255,', 'rgba(255,73,213,', 'rgba(159,120,255,', 'rgba(255,156,66,', 'rgba(232,168,56,', 'rgba(99,102,241,'][Math.floor(Math.random() * 6)]
       });
     }
   }
@@ -2219,7 +2576,6 @@ sections.forEach(section => navObserver.observe(section));
       ctx.fillStyle = p.color + '0.6)';
       ctx.fill();
 
-      // Connect nearby
       for (let j = i + 1; j < particles.length; j++) {
         const q = particles[j];
         const dx = p.x - q.x, dy = p.y - q.y;
@@ -2244,7 +2600,7 @@ sections.forEach(section => navObserver.observe(section));
 })();
 
 // ================================================
-// VOX BRIDGE VISUALIZATION
+// DUAL BRIDGE VISUALIZATION
 // ================================================
 (function() {
   const canvas = document.getElementById('bridgeCanvas');
@@ -2256,7 +2612,9 @@ sections.forEach(section => navObserver.observe(section));
     magenta: { r: 255, g: 73, b: 213 },
     purple: { r: 159, g: 120, b: 255 },
     orange: { r: 255, g: 156, b: 66 },
-    green: { r: 57, g: 255, b: 20 }
+    green: { r: 57, g: 255, b: 20 },
+    gold: { r: 232, g: 168, b: 56 },
+    indigo: { r: 99, g: 102, b: 241 }
   };
 
   const colorKeys = Object.keys(colors);
@@ -2272,11 +2630,16 @@ sections.forEach(section => navObserver.observe(section));
     nodes = [];
     const cx = w / 2, cy = h / 2;
 
-    // Central hub
-    nodes.push({ x: cx, y: cy, r: 28, label: 'VOX BRIDGE', type: 'hub', color: colors.cyan });
+    // Central hub — CONDUCTOR
+    nodes.push({ x: cx, y: cy, r: 28, label: 'CONDUCTOR', type: 'hub', color: colors.cyan });
 
-    // Agents ring
-    const agentNames = ['SURGE', 'PULSE', 'PRISM', 'EMBER'];
+    // Two bridge nodes flanking
+    const bridgeSpread = Math.min(w, h) * 0.18;
+    nodes.push({ x: cx - bridgeSpread, y: cy - bridgeSpread * 0.3, r: 22, label: 'VOX', type: 'bridge', color: colors.gold });
+    nodes.push({ x: cx + bridgeSpread, y: cy - bridgeSpread * 0.3, r: 22, label: 'CLAUDE', type: 'bridge', color: colors.indigo });
+
+    // Agent ring
+    const agentNames = ['SURGE', 'PULSE', 'PRISM', 'STATIC'];
     const agentColors = [colors.cyan, colors.orange, colors.purple, colors.magenta];
     const agentRadius = Math.min(w, h) * 0.32;
     agentNames.forEach((name, i) => {
@@ -2284,11 +2647,11 @@ sections.forEach(section => navObserver.observe(section));
       nodes.push({
         x: cx + Math.cos(angle) * agentRadius,
         y: cy + Math.sin(angle) * agentRadius,
-        r: 18, label: name, type: 'agent', color: agentColors[i]
+        r: 16, label: name, type: 'agent', color: agentColors[i]
       });
     });
 
-    // Outer services ring
+    // Service ring
     const services = ['MEMORY', 'MODELS', 'BROWSER', 'DOCUMENTS'];
     const svcColors = [colors.purple, colors.green, colors.orange, colors.cyan];
     const svcRadius = Math.min(w, h) * 0.46;
@@ -2307,22 +2670,21 @@ sections.forEach(section => navObserver.observe(section));
     const fromIdx = Math.floor(Math.random() * nodes.length);
     let toIdx = Math.floor(Math.random() * nodes.length);
     if (toIdx === fromIdx) toIdx = (toIdx + 1) % nodes.length;
+
     // Most pulses go through hub
     const goThroughHub = fromIdx !== 0 && toIdx !== 0 && Math.random() > 0.3;
-
-    const from = nodes[fromIdx];
     const to = goThroughHub ? nodes[0] : nodes[toIdx];
+    const from = nodes[fromIdx];
     const c = colorKeys[Math.floor(Math.random() * colorKeys.length)];
     const col = colors[c];
 
     pulses.push({
-      x: from.x, y: from.y,
-      tx: to.x, ty: to.y,
+      fromX: from.x, fromY: from.y,
+      toX: to.x, toY: to.y,
       progress: 0,
       speed: 0.008 + Math.random() * 0.008,
       color: col,
-      size: 2 + Math.random() * 2,
-      trail: []
+      size: 2 + Math.random() * 2
     });
   }
 
@@ -2330,7 +2692,7 @@ sections.forEach(section => navObserver.observe(section));
     time++;
     ctx.clearRect(0, 0, w, h);
 
-    // Draw connections
+    // Draw connections from hub to all other nodes
     const hub = nodes[0];
     for (let i = 1; i < nodes.length; i++) {
       const n = nodes[i];
@@ -2338,93 +2700,76 @@ sections.forEach(section => navObserver.observe(section));
       ctx.beginPath();
       ctx.moveTo(hub.x, hub.y);
       ctx.lineTo(n.x, n.y);
-      ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},0.08)`;
+      ctx.strokeStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.08)';
       ctx.lineWidth = 1;
       ctx.stroke();
     }
 
+    // Draw connections between bridges and hub with stronger lines
+    for (let i = 1; i <= 2; i++) {
+      const n = nodes[i];
+      const c = n.color;
+      ctx.beginPath();
+      ctx.moveTo(hub.x, hub.y);
+      ctx.lineTo(n.x, n.y);
+      ctx.strokeStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.2)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
     // Spawn pulses
-    if (time % 12 === 0) spawnPulse();
+    if (time % 10 === 0) spawnPulse();
 
     // Update & draw pulses
     pulses = pulses.filter(p => p.progress <= 1);
     pulses.forEach(p => {
       p.progress += p.speed;
       const t = p.progress;
-
-      // Lerp from hub center to target node
-      const startX = w / 2, startY = h / 2;
-      const ex = startX + (p.tx - startX) * t;
-      const ey = startY + (p.ty - startY) * t;
+      const ex = p.fromX + (p.toX - p.fromX) * t;
+      const ey = p.fromY + (p.toY - p.fromY) * t;
 
       ctx.beginPath();
       ctx.arc(ex, ey, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},${0.8 * (1 - t * 0.5)})`;
+      ctx.fillStyle = 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (0.8 * (1 - t * 0.5)) + ')';
       ctx.fill();
 
       // Glow
       ctx.beginPath();
       ctx.arc(ex, ey, p.size * 3, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},${0.15 * (1 - t)})`;
+      ctx.fillStyle = 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (0.15 * (1 - t)) + ')';
       ctx.fill();
     });
 
     // Draw nodes
-    nodes.forEach((n, i) => {
+    nodes.forEach(n => {
       const c = n.color;
-      const glowSize = n.type === 'hub' ? 60 : n.type === 'agent' ? 40 : 24;
-      const breathe = 1 + Math.sin(time * 0.02 + i) * 0.05;
+      const pulse = Math.sin(time * 0.03) * 0.2 + 0.8;
 
-      // Ambient glow
-      const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowSize * breathe);
-      grad.addColorStop(0, `rgba(${c.r},${c.g},${c.b},0.2)`);
-      grad.addColorStop(1, `rgba(${c.r},${c.g},${c.b},0)`);
+      // Outer glow
+      const grad = ctx.createRadialGradient(n.x, n.y, n.r * 0.5, n.x, n.y, n.r * 2.5);
+      grad.addColorStop(0, 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (0.2 * pulse) + ')');
+      grad.addColorStop(1, 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0)');
       ctx.beginPath();
-      ctx.arc(n.x, n.y, glowSize * breathe, 0, Math.PI * 2);
+      ctx.arc(n.x, n.y, n.r * 2.5, 0, Math.PI * 2);
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Node circle
+      // Node body
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${c.r},${c.g},${c.b},0.12)`;
+      ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.15)';
       ctx.fill();
-      ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},0.5)`;
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (0.6 * pulse) + ')';
+      ctx.lineWidth = n.type === 'hub' ? 2.5 : n.type === 'bridge' ? 2 : 1.5;
       ctx.stroke();
 
       // Label
-      ctx.fillStyle = `rgba(${c.r},${c.g},${c.b},0.9)`;
-      ctx.font = n.type === 'hub' ? '600 11px "JetBrains Mono"' : n.type === 'agent' ? '500 10px "JetBrains Mono"' : '500 9px "JetBrains Mono"';
+      ctx.font = (n.type === 'service' ? '9' : n.type === 'hub' ? '11' : '10') + 'px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (0.9 * pulse) + ')';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-
-      if (n.type === 'hub') {
-        ctx.fillText('VOX', n.x, n.y - 6);
-        ctx.fillText('BRIDGE', n.x, n.y + 6);
-      } else {
-        ctx.fillText(n.label, n.x, n.y + n.r + 14);
-      }
+      ctx.fillText(n.label, n.x, n.y + n.r + 14);
     });
-
-    // Orbiting ring around hub
-    if (nodes.length > 0) {
-      const hb = nodes[0];
-      ctx.beginPath();
-      ctx.arc(hb.x, hb.y, 42, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(57, 217, 255, 0.06)';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Orbiting dot
-      const orbAngle = time * 0.015;
-      const ox = hb.x + Math.cos(orbAngle) * 42;
-      const oy = hb.y + Math.sin(orbAngle) * 42;
-      ctx.beginPath();
-      ctx.arc(ox, oy, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 246, 255, 0.7)';
-      ctx.fill();
-    }
 
     requestAnimationFrame(drawBridge);
   }
@@ -2435,339 +2780,165 @@ sections.forEach(section => navObserver.observe(section));
 })();
 
 // ================================================
-// CHIP INTERACTIVITY
-// ================================================
-document.querySelectorAll('.chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    chip.classList.toggle('active');
-  });
-});
-
-// ================================================
-// PROVIDER SELECTION
-// ================================================
-document.querySelectorAll('.provider-item').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.provider-item').forEach(i => i.classList.remove('selected'));
-    item.classList.add('selected');
-  });
-});
-
-// ================================================
-// SMOOTH SCROLL FOR NAV LINKS
-// ================================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-// ================================================
-// MCP ECOSYSTEM — ANIMATED ARCHITECTURE CANVAS
+// MCP ARCHITECTURE CANVAS
 // ================================================
 (function() {
   const canvas = document.getElementById('mcpCanvas');
-  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w, h, time = 0, pulses = [], particles = [];
+  let w, h, mcpNodes = [], mcpPulses = [], mcpTime = 0;
 
-  const CYAN  = { r: 57,  g: 217, b: 255 };
-  const GOLD  = { r: 255, g: 156, b: 66  };
-  const VIOLET = { r: 159, g: 120, b: 255 };
-  const GREEN = { r: 57,  g: 255, b: 20  };
-  const MAGENTA = { r: 255, g: 73, b: 213 };
-  const WHITE = { r: 200, g: 220, b: 255 };
+  const mcpColors = {
+    cyan: { r: 57, g: 217, b: 255 },
+    green: { r: 57, g: 255, b: 20 },
+    purple: { r: 159, g: 120, b: 255 },
+    orange: { r: 255, g: 156, b: 66 },
+    magenta: { r: 255, g: 73, b: 213 }
+  };
 
-  // Architecture nodes (positions computed in resize)
-  const hub = { label: 'VOX BRIDGE', color: WHITE, r: 30, x: 0, y: 0 };
-  const mcpRingLabel = 'MCP PROTOCOL';
-
-  const servers = [
-    { label: 'FILESYSTEM', tools: 7, color: CYAN, angle: -Math.PI / 2 },
-    { label: 'SHELL',      tools: 4, color: GREEN, angle: 0 },
-    { label: 'DATABASE',   tools: 5, color: VIOLET, angle: Math.PI / 2 },
-    { label: 'BROWSER',    tools: 8, color: GOLD, angle: Math.PI },
-  ];
-
-  const agents = [
-    { label: 'SURGE', color: CYAN, angle: -Math.PI * 0.75, servers: [0, 1, 2] },
-    { label: 'PULSE', color: GOLD, angle: -Math.PI * 0.25, servers: [2, 3] },
-    { label: 'PRISM', color: VIOLET, angle: Math.PI * 0.35, servers: [0, 3] },
-  ];
-
-  let serverRadius, agentRadius, mcpRingRadius;
+  const mcpColorKeys = Object.keys(mcpColors);
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
     w = canvas.width = rect.width;
     h = canvas.height = rect.height;
+    createMcpNodes();
+  }
+
+  function createMcpNodes() {
+    mcpNodes = [];
     const cx = w / 2, cy = h / 2;
-    hub.x = cx; hub.y = cy;
-    const baseR = Math.min(w, h) * 0.5;
-    mcpRingRadius = baseR * 0.32;
-    serverRadius = baseR * 0.55;
-    agentRadius = baseR * 0.82;
 
-    servers.forEach(s => {
-      s.x = cx + Math.cos(s.angle) * serverRadius;
-      s.y = cy + Math.sin(s.angle) * serverRadius;
-      s.r = 20;
-    });
-    agents.forEach(a => {
-      a.x = cx + Math.cos(a.angle) * agentRadius;
-      a.y = cy + Math.sin(a.angle) * agentRadius;
-      a.r = 16;
-    });
+    // Central: MCP Router
+    mcpNodes.push({ x: cx, y: cy, r: 26, label: 'MCP ROUTER', type: 'hub', color: mcpColors.cyan });
 
-    // Seed ambient particles
-    particles = [];
-    for (let i = 0; i < 40; i++) {
-      particles.push({
-        x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15,
-        r: Math.random() * 1.2 + 0.3,
-        alpha: Math.random() * 0.3 + 0.1,
-        color: [CYAN, GOLD, VIOLET, GREEN][Math.floor(Math.random() * 4)]
+    // Inner ring: Servers
+    const servers = [
+      { label: 'FILESYSTEM', color: mcpColors.cyan },
+      { label: 'SHELL', color: mcpColors.green },
+      { label: 'POSTGRES', color: mcpColors.purple },
+      { label: 'BROWSER', color: mcpColors.orange }
+    ];
+    const srvRadius = Math.min(w, h) * 0.26;
+    servers.forEach((s, i) => {
+      const angle = (i / servers.length) * Math.PI * 2 - Math.PI / 2;
+      mcpNodes.push({
+        x: cx + Math.cos(angle) * srvRadius,
+        y: cy + Math.sin(angle) * srvRadius,
+        r: 18, label: s.label, type: 'server', color: s.color
       });
-    }
-  }
+    });
 
-  function rgba(c, a) {
-    return 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + a + ')';
-  }
-
-  function spawnPulse() {
-    // Agent -> server -> hub flow
-    const agent = agents[Math.floor(Math.random() * agents.length)];
-    const sIdx = agent.servers[Math.floor(Math.random() * agent.servers.length)];
-    const server = servers[sIdx];
-    const col = agent.color;
-    // Two-leg pulse: agent → server → hub
-    pulses.push({
-      x0: agent.x, y0: agent.y,
-      x1: server.x, y1: server.y,
-      x2: hub.x, y2: hub.y,
-      progress: 0,
-      speed: 0.006 + Math.random() * 0.004,
-      color: col,
-      size: 2.5 + Math.random() * 1.5,
-      leg: 0 // 0 = agent→server, 1 = server→hub
+    // Outer ring: Agents using MCP
+    const agents = [
+      { label: 'SURGE', color: mcpColors.cyan },
+      { label: 'PULSE', color: mcpColors.orange },
+      { label: 'PRISM', color: mcpColors.purple },
+      { label: 'STATIC', color: mcpColors.magenta }
+    ];
+    const agRadius = Math.min(w, h) * 0.44;
+    agents.forEach((a, i) => {
+      const angle = (i / agents.length) * Math.PI * 2 - Math.PI / 4;
+      mcpNodes.push({
+        x: cx + Math.cos(angle) * agRadius,
+        y: cy + Math.sin(angle) * agRadius,
+        r: 14, label: a.label, type: 'agent', color: a.color
+      });
     });
   }
 
-  function drawGlowCircle(x, y, r, color, glowR, breathe) {
-    const b = breathe || 1;
-    const grad = ctx.createRadialGradient(x, y, 0, x, y, glowR * b);
-    grad.addColorStop(0, rgba(color, 0.18));
-    grad.addColorStop(0.6, rgba(color, 0.04));
-    grad.addColorStop(1, rgba(color, 0));
-    ctx.beginPath();
-    ctx.arc(x, y, glowR * b, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = rgba(color, 0.08);
-    ctx.fill();
-    ctx.strokeStyle = rgba(color, 0.45);
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
+  function spawnMcpPulse() {
+    if (mcpNodes.length < 2) return;
+    const fromIdx = 1 + Math.floor(Math.random() * (mcpNodes.length - 1));
+    const toIdx = fromIdx < 5 ? 0 : 1 + Math.floor(Math.random() * 4);
+    const from = mcpNodes[fromIdx];
+    const to = mcpNodes[toIdx];
+    const c = mcpColorKeys[Math.floor(Math.random() * mcpColorKeys.length)];
+    mcpPulses.push({
+      fromX: from.x, fromY: from.y,
+      toX: to.x, toY: to.y,
+      progress: 0,
+      speed: 0.006 + Math.random() * 0.008,
+      color: mcpColors[c],
+      size: 2 + Math.random() * 1.5
+    });
   }
 
-  function draw() {
-    time++;
+  function drawMcp() {
+    mcpTime++;
     ctx.clearRect(0, 0, w, h);
 
-    // Ambient particles
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+    // Draw connections
+    const hub = mcpNodes[0];
+    for (let i = 1; i < mcpNodes.length; i++) {
+      const n = mcpNodes[i];
+      const c = n.color;
+      const target = n.type === 'agent' ? hub : hub;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = rgba(p.color, p.alpha * (0.5 + Math.sin(time * 0.02 + p.x) * 0.5));
+      ctx.moveTo(target.x, target.y);
+      ctx.lineTo(n.x, n.y);
+      ctx.strokeStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.06)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Spawn pulses
+    if (mcpTime % 14 === 0) spawnMcpPulse();
+
+    // Update & draw pulses
+    mcpPulses = mcpPulses.filter(p => p.progress <= 1);
+    mcpPulses.forEach(p => {
+      p.progress += p.speed;
+      const t = p.progress;
+      const ex = p.fromX + (p.toX - p.fromX) * t;
+      const ey = p.fromY + (p.toY - p.fromY) * t;
+
+      ctx.beginPath();
+      ctx.arc(ex, ey, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (0.8 * (1 - t * 0.5)) + ')';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(ex, ey, p.size * 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (0.12 * (1 - t)) + ')';
       ctx.fill();
     });
 
-    // MCP Protocol ring (dashed)
-    ctx.beginPath();
-    ctx.arc(hub.x, hub.y, mcpRingRadius, 0, Math.PI * 2);
-    ctx.strokeStyle = rgba(CYAN, 0.08);
-    ctx.lineWidth = 1;
-    ctx.setLineDash([4, 8]);
-    ctx.stroke();
-    ctx.setLineDash([]);
+    // Draw nodes
+    mcpNodes.forEach(n => {
+      const c = n.color;
+      const pulse = Math.sin(mcpTime * 0.025 + mcpNodes.indexOf(n)) * 0.2 + 0.8;
 
-    // MCP ring label
-    ctx.save();
-    ctx.translate(hub.x, hub.y);
-    ctx.rotate(-Math.PI / 2);
-    ctx.font = '500 9px "JetBrains Mono"';
-    ctx.fillStyle = rgba(CYAN, 0.25);
-    ctx.textAlign = 'center';
-    const labelR = mcpRingRadius + 12;
-    for (let i = 0; i < mcpRingLabel.length; i++) {
-      const charAngle = (i - mcpRingLabel.length / 2) * 0.12;
-      ctx.save();
-      ctx.rotate(charAngle);
-      ctx.translate(0, -labelR);
-      ctx.fillText(mcpRingLabel[i], 0, 0);
-      ctx.restore();
-    }
-    ctx.restore();
-
-    // Orbiting dot on MCP ring
-    const orbA = time * 0.012;
-    const ox = hub.x + Math.cos(orbA) * mcpRingRadius;
-    const oy = hub.y + Math.sin(orbA) * mcpRingRadius;
-    ctx.beginPath();
-    ctx.arc(ox, oy, 2.5, 0, Math.PI * 2);
-    ctx.fillStyle = rgba(CYAN, 0.6);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(ox, oy, 6, 0, Math.PI * 2);
-    ctx.fillStyle = rgba(CYAN, 0.12);
-    ctx.fill();
-
-    // Connection lines: agents → their permitted servers
-    agents.forEach(agent => {
-      agent.servers.forEach(sIdx => {
-        const server = servers[sIdx];
-        ctx.beginPath();
-        ctx.moveTo(agent.x, agent.y);
-        // Curve through midpoint offset toward hub
-        const mx = (agent.x + server.x) / 2 + (hub.x - (agent.x + server.x) / 2) * 0.25;
-        const my = (agent.y + server.y) / 2 + (hub.y - (agent.y + server.y) / 2) * 0.25;
-        ctx.quadraticCurveTo(mx, my, server.x, server.y);
-        ctx.strokeStyle = rgba(agent.color, 0.06);
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      });
-    });
-
-    // Connection lines: servers → hub
-    servers.forEach(s => {
+      // Glow
+      const grad = ctx.createRadialGradient(n.x, n.y, n.r * 0.5, n.x, n.y, n.r * 2.2);
+      grad.addColorStop(0, 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (0.18 * pulse) + ')');
+      grad.addColorStop(1, 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0)');
       ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(hub.x, hub.y);
-      ctx.strokeStyle = rgba(s.color, 0.06);
-      ctx.lineWidth = 1;
+      ctx.arc(n.x, n.y, n.r * 2.2, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Body
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.12)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (0.5 * pulse) + ')';
+      ctx.lineWidth = n.type === 'hub' ? 2 : 1.5;
       ctx.stroke();
-    });
-
-    // Spawn pulses
-    if (time % 18 === 0) spawnPulse();
-
-    // Update & draw pulses
-    pulses = pulses.filter(p => p.progress <= 1 || p.leg < 1);
-    pulses.forEach(p => {
-      p.progress += p.speed;
-      let fx, fy;
-      if (p.leg === 0) {
-        // Agent → Server
-        const t = Math.min(p.progress * 2, 1);
-        const mx = (p.x0 + p.x1) / 2 + (p.x2 - (p.x0 + p.x1) / 2) * 0.25;
-        const my = (p.y0 + p.y1) / 2 + (p.y2 - (p.y0 + p.y1) / 2) * 0.25;
-        const t1 = 1 - t;
-        fx = t1 * t1 * p.x0 + 2 * t1 * t * mx + t * t * p.x1;
-        fy = t1 * t1 * p.y0 + 2 * t1 * t * my + t * t * p.y1;
-        if (p.progress * 2 >= 1) { p.leg = 1; p.progress = 0.5; }
-      } else {
-        // Server → Hub
-        const t = (p.progress - 0.5) * 2;
-        fx = p.x1 + (p.x2 - p.x1) * t;
-        fy = p.y1 + (p.y2 - p.y1) * t;
-        if (t >= 1) { p.progress = 2; } // mark done
-      }
-
-      if (fx !== undefined) {
-        const fadeIn = Math.min(p.progress * 4, 1);
-        ctx.beginPath();
-        ctx.arc(fx, fy, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = rgba(p.color, 0.85 * fadeIn);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(fx, fy, p.size * 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = rgba(p.color, 0.12 * fadeIn);
-        ctx.fill();
-      }
-    });
-    pulses = pulses.filter(p => p.progress <= 1.5);
-
-    // Draw server nodes
-    servers.forEach((s, i) => {
-      const breathe = 1 + Math.sin(time * 0.018 + i * 1.5) * 0.06;
-      drawGlowCircle(s.x, s.y, s.r, s.color, s.r * 2.5, breathe);
-
-      // Icon character
-      const icons = ['\u{1F4C1}', '⚡', '\u{1F5C4}', '\u{1F310}'];
-      ctx.font = '16px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(icons[i], s.x, s.y);
 
       // Label
-      ctx.font = '600 10px "JetBrains Mono"';
-      ctx.fillStyle = rgba(s.color, 0.8);
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'top';
-      ctx.fillText(s.label, s.x, s.y + s.r + 10);
-
-      // Tool count
-      ctx.font = '400 9px "JetBrains Mono"';
-      ctx.fillStyle = rgba(s.color, 0.4);
-      ctx.fillText(s.tools + ' tools', s.x, s.y + s.r + 24);
-    });
-
-    // Draw agent nodes
-    agents.forEach((a, i) => {
-      const breathe = 1 + Math.sin(time * 0.02 + i * 2) * 0.08;
-      drawGlowCircle(a.x, a.y, a.r, a.color, a.r * 2.2, breathe);
-
-      const icons = ['⚡', '\u{1F4CA}', '\u{1F3A8}'];
-      ctx.font = '13px sans-serif';
+      ctx.font = (n.type === 'hub' ? '10' : '9') + 'px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (0.85 * pulse) + ')';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(icons[i], a.x, a.y);
-
-      ctx.font = '600 10px "JetBrains Mono"';
-      ctx.fillStyle = rgba(a.color, 0.9);
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'top';
-      ctx.fillText(a.label, a.x, a.y + a.r + 8);
+      ctx.fillText(n.label, n.x, n.y + n.r + 12);
     });
 
-    // Draw hub
-    const hubBreathe = 1 + Math.sin(time * 0.015) * 0.04;
-    drawGlowCircle(hub.x, hub.y, hub.r, WHITE, hub.r * 3, hubBreathe);
-
-    // Hub inner ring
-    ctx.beginPath();
-    ctx.arc(hub.x, hub.y, hub.r + 8, 0, Math.PI * 2);
-    ctx.strokeStyle = rgba(CYAN, 0.08);
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Hub label
-    ctx.font = '700 10px "JetBrains Mono"';
-    ctx.fillStyle = rgba(WHITE, 0.9);
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('VOX', hub.x, hub.y - 6);
-    ctx.font = '500 8px "JetBrains Mono"';
-    ctx.fillStyle = rgba(CYAN, 0.7);
-    ctx.fillText('BRIDGE', hub.x, hub.y + 6);
-
-    requestAnimationFrame(draw);
+    requestAnimationFrame(drawMcp);
   }
 
   resize();
-  draw();
+  drawMcp();
   window.addEventListener('resize', resize);
 })();
 </script>

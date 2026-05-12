@@ -38,10 +38,10 @@
   --vox-cyan-600: #00f6ff;
   --vox-magenta: #ff49d5;
   --vox-purple: #9f78ff;
-  --vox-orange: #ff9c42;
+  --vox-orange: #6366F1;
   --vox-green: #39ff14;
   --vox-red: #ff5b7c;
-  --vox-indigo: #6366F1;
+  --vox-indigo: #D97757;
   --vox-gold: #E8A838;
 
   --vox-font-sans: Inter, "Segoe UI", system-ui, sans-serif;
@@ -576,15 +576,15 @@ section {
 .agent-card[data-agent="vox"] .agent-avatar::after { border-color: #E8A838; }
 .agent-card[data-agent="vox"] .agent-name { color: #E8A838; }
 
-.agent-card[data-agent="claude"] .agent-avatar { background: rgba(99, 102, 241, 0.15); }
-.agent-card[data-agent="claude"] .agent-avatar::after { border-color: #6366F1; }
-.agent-card[data-agent="claude"] .agent-name { color: #6366F1; }
+.agent-card[data-agent="claude"] .agent-avatar { background: rgba(217, 119, 87, 0.15); }
+.agent-card[data-agent="claude"] .agent-avatar::after { border-color: #D97757; }
+.agent-card[data-agent="claude"] .agent-name { color: #D97757; }
 
 .agent-card[data-agent="surge"] .agent-avatar { background: rgba(57, 217, 255, 0.15); }
 .agent-card[data-agent="surge"] .agent-avatar::after { border-color: var(--vox-cyan-500); }
 .agent-card[data-agent="surge"] .agent-name { color: var(--vox-cyan-500); }
 
-.agent-card[data-agent="pulse"] .agent-avatar { background: rgba(255, 156, 66, 0.15); }
+.agent-card[data-agent="pulse"] .agent-avatar { background: rgba(99, 102, 241, 0.15); }
 .agent-card[data-agent="pulse"] .agent-avatar::after { border-color: var(--vox-orange); }
 .agent-card[data-agent="pulse"] .agent-name { color: var(--vox-orange); }
 
@@ -915,7 +915,7 @@ section {
 .chat-msg.john .chat-msg-name { color: #E9B574; }
 .chat-msg.vox .chat-msg-avatar { background: rgba(232, 168, 56, 0.15); border-color: var(--vox-gold); }
 .chat-msg.vox .chat-msg-name { color: var(--vox-gold); }
-.chat-msg.claude-msg .chat-msg-avatar { background: rgba(99, 102, 241, 0.15); border-color: var(--vox-indigo); }
+.chat-msg.claude-msg .chat-msg-avatar { background: rgba(217, 119, 87, 0.15); border-color: var(--vox-indigo); }
 .chat-msg.claude-msg .chat-msg-name { color: var(--vox-indigo); }
 .chat-msg.surge .chat-msg-avatar { background: rgba(57, 217, 255, 0.15); border-color: var(--vox-cyan-500); }
 .chat-msg.surge .chat-msg-name { color: var(--vox-cyan-500); }
@@ -1246,7 +1246,7 @@ section {
 
 .state-chip.idle { border-color: var(--vox-line-200); color: var(--vox-ink-400); }
 .state-chip.active { border-color: var(--vox-cyan-500); color: var(--vox-cyan-400); background: rgba(57,217,255,0.08); }
-.state-chip.pending { border-color: var(--vox-orange); color: var(--vox-orange); background: rgba(255,156,66,0.08); }
+.state-chip.pending { border-color: var(--vox-orange); color: var(--vox-orange); background: rgba(99,102,241,0.08); }
 .state-chip.approved { border-color: var(--vox-green); color: var(--vox-green); background: rgba(57,255,20,0.08); }
 .state-chip.error { border-color: var(--vox-red); color: var(--vox-red); background: rgba(255,91,124,0.08); }
 
@@ -1907,7 +1907,7 @@ section {
       <div class="agent-avatar">&#x2726;</div>
       <div class="agent-name">CLAUDE</div>
       <div class="agent-role">Your Claude</div>
-      <div class="agent-state"><span class="dot" style="color: #6366F1;"></span> CONNECTED</div>
+      <div class="agent-state"><span class="dot" style="color: #D97757;"></span> CONNECTED</div>
     </div>
     <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-3" data-agent="surge">
       <div class="agent-avatar">&#x26a1;</div>
@@ -2638,10 +2638,10 @@ sections.forEach(section => navObserver.observe(section));
     cyan: { r: 57, g: 217, b: 255 },
     magenta: { r: 255, g: 73, b: 213 },
     purple: { r: 159, g: 120, b: 255 },
-    orange: { r: 255, g: 156, b: 66 },
+    orange: { r: 99, g: 102, b: 241 },
     green: { r: 57, g: 255, b: 20 },
     gold: { r: 232, g: 168, b: 56 },
-    indigo: { r: 99, g: 102, b: 241 }
+    indigo: { r: 217, g: 119, b: 87 }
   };
 
   const colorKeys = Object.keys(colors);
@@ -2818,7 +2818,7 @@ sections.forEach(section => navObserver.observe(section));
     cyan: { r: 57, g: 217, b: 255 },
     green: { r: 57, g: 255, b: 20 },
     purple: { r: 159, g: 120, b: 255 },
-    orange: { r: 255, g: 156, b: 66 },
+    orange: { r: 99, g: 102, b: 241 },
     magenta: { r: 255, g: 73, b: 213 }
   };
 

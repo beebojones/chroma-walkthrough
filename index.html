@@ -1755,13 +1755,268 @@ section {
 }
 
 /* ============================================
+   CUSTOM GROUPS (MMO TRAY)
+   ============================================ */
+.tray-mockup {
+  width: 100%;
+  max-width: 720px;
+  border-radius: var(--vox-radius-4);
+  overflow: hidden;
+  margin-top: 24px;
+}
+.tray-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--vox-line-100);
+  background: var(--vox-alpha-panel-80);
+}
+.tray-dot { width: 10px; height: 10px; border-radius: 50%; }
+.tray-dot.red { background: #ff5f57; }
+.tray-dot.yellow { background: #ffbd2e; }
+.tray-dot.green { background: #28ca41; }
+.tray-title-bar {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  color: var(--vox-ink-400);
+  margin-left: 8px;
+}
+.tray-body {
+  padding: 24px;
+  background: var(--vox-alpha-panel-96);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.tray-row { display: flex; align-items: center; gap: 12px; }
+.tray-row-label {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vox-ink-500);
+  width: 56px;
+  flex-shrink: 0;
+}
+.tray-slots { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
+.tray-slot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 1.5px solid var(--vox-line-200);
+  background: rgba(5, 5, 12, 0.6);
+}
+.tray-slot.empty { color: var(--vox-ink-500); border-style: dashed; }
+.tray-slot.gold { border-color: var(--vox-gold); background: rgba(232,168,56,0.12); color: var(--vox-gold); }
+.tray-slot.indigo { border-color: var(--vox-indigo); background: rgba(217,119,87,0.12); color: var(--vox-indigo); }
+.tray-slot.cyan { border-color: var(--vox-cyan-500); background: rgba(57,217,255,0.12); color: var(--vox-cyan-500); }
+.tray-slot.orange { border-color: var(--vox-orange); background: rgba(99,102,241,0.12); color: var(--vox-orange); }
+.tray-slot.purple { border-color: var(--vox-purple); background: rgba(159,120,255,0.12); color: var(--vox-purple); }
+.tray-slot.magenta { border-color: var(--vox-magenta); background: rgba(255,73,213,0.12); color: var(--vox-magenta); }
+.tray-nav {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  color: var(--vox-cyan-400);
+  padding: 4px 10px;
+  border: 1px solid rgba(57, 217, 255, 0.25);
+  border-radius: var(--vox-radius-pill);
+  background: rgba(57, 217, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.groups-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 720px;
+  width: 100%;
+  margin-top: 32px;
+}
+.groups-feat { padding: 20px; text-align: center; }
+.groups-feat h4 {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--vox-orange);
+}
+.groups-feat p { font-size: 13px; line-height: 1.5; color: var(--vox-ink-400); }
+
+/* ============================================
+   CHAT REFINEMENTS
+   ============================================ */
+.refine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 24px;
+}
+.refine-card {
+  padding: 28px;
+  transition: transform 0.3s var(--vox-ease-out);
+}
+.refine-card:hover { transform: translateY(-2px); }
+.refine-icon-row {
+  font-family: var(--vox-font-mono);
+  font-size: 13px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.04em;
+}
+.refine-icon-row .arrow { color: var(--vox-ink-500); margin: 0 4px; }
+.refine-card h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--vox-ink-100);
+}
+.refine-card p { font-size: 13px; line-height: 1.6; color: var(--vox-ink-400); }
+.refine-card p code {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  color: var(--vox-cyan-400);
+  background: rgba(57, 217, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.refine-card.cyan .refine-icon-row { color: var(--vox-cyan-400); }
+.refine-card.purple .refine-icon-row { color: var(--vox-purple); }
+.refine-card.gold .refine-icon-row { color: var(--vox-gold); }
+
+/* ============================================
+   WORKSPACE PAGES (DIAGNOSTICS + TERMINAL)
+   ============================================ */
+.pages-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 24px;
+}
+.page-mockup {
+  border-radius: var(--vox-radius-4);
+  overflow: hidden;
+}
+.page-header {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--vox-line-100);
+  background: var(--vox-alpha-panel-80);
+}
+.page-dot { width: 9px; height: 9px; border-radius: 50%; }
+.page-dot.red { background: #ff5f57; }
+.page-dot.yellow { background: #ffbd2e; }
+.page-dot.green { background: #28ca41; }
+.page-title-bar {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  color: var(--vox-ink-400);
+  margin-left: 6px;
+}
+
+.diag-body {
+  padding: 18px;
+  background: var(--vox-alpha-panel-96);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.diag-card {
+  padding: 12px 14px;
+  border: 1px solid var(--vox-line-100);
+  border-radius: var(--vox-radius-3);
+  background: rgba(5, 5, 12, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.diag-card-name { font-size: 12px; font-weight: 600; color: var(--vox-ink-200); }
+.diag-card-status {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.diag-card.ok .diag-card-status { color: var(--vox-green); }
+.diag-card.warn .diag-card-status { color: var(--vox-orange); }
+.diag-card-status .pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.term-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 8px 14px 0;
+  background: var(--vox-alpha-panel-80);
+  border-bottom: 1px solid var(--vox-line-100);
+}
+.term-tab {
+  padding: 5px 10px;
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  color: var(--vox-ink-500);
+  border: 1px solid var(--vox-line-100);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  background: rgba(5, 5, 12, 0.4);
+}
+.term-tab.active {
+  color: var(--vox-cyan-400);
+  background: rgba(0, 0, 0, 0.85);
+  border-color: var(--vox-line-200);
+}
+.term-body {
+  padding: 16px 18px;
+  background: rgba(0, 0, 0, 0.85);
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  min-height: 240px;
+  overflow: hidden;
+}
+.term-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.term-prompt { color: var(--vox-green); }
+.term-cmd { color: var(--vox-cyan-400); }
+.term-out { color: var(--vox-ink-300); }
+.term-err { color: var(--vox-red); }
+.term-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 12px;
+  background: var(--vox-cyan-500);
+  vertical-align: middle;
+  animation: cursorBlink 1s step-end infinite;
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 920px) {
   .nav-links { display: none; }
   section { padding: 100px 20px 60px; }
-  .studio-body { grid-template-columns: 1fr; }
-  .memory-body { grid-template-columns: 1fr; }
+  #studio .studio-body { grid-template-columns: 1fr; }
+  #memory .memory-body { grid-template-columns: 1fr; }
   .bridge-features { grid-template-columns: 1fr 1fr; }
   .mcp-card-grid { grid-template-columns: 1fr; max-width: 480px; }
   .mcp-pipeline { flex-wrap: wrap; gap: 12px; }
@@ -1769,16 +2024,25 @@ section {
   .mcp-extend { flex-direction: column; text-align: center; }
   .mcp-extend-tags { justify-content: center; }
   #mcp .mcp-canvas-wrap { height: 380px; }
-  .vision-agents { grid-template-columns: repeat(2, minmax(140px, 200px)); }
+  #vision .vision-agents { grid-template-columns: repeat(2, minmax(140px, 1fr)); max-width: 480px; margin: 0 auto; }
   .memory-features { grid-template-columns: 1fr; max-width: 360px; }
   .chat-features { grid-template-columns: 1fr; max-width: 360px; }
+  .groups-features { grid-template-columns: 1fr; max-width: 360px; }
+  .refine-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .pages-grid { grid-template-columns: 1fr; max-width: 480px; }
 }
 
 @media (max-width: 600px) {
   .hero-title { font-size: 56px; }
   .bridge-features { grid-template-columns: 1fr; }
-  .problem-grid { grid-template-columns: 1fr; }
-  .vision-agents { grid-template-columns: repeat(2, 1fr); justify-items: center; max-width: 340px; margin: 0 auto; }
+  #problem .problem-grid { grid-template-columns: 1fr; }
+  #vision .vision-agents {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: stretch;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 12px;
+  }
   .hero-cta-row { flex-direction: column; align-items: center; }
   .mcp-pipeline { flex-direction: column; align-items: center; }
   .mcp-pipe-step { width: 100%; max-width: 200px; }
@@ -1787,22 +2051,30 @@ section {
   .mcp-extend { padding: 24px 20px; gap: 16px; }
   .mcp-extend-desc { font-size: 13px; }
   .chat-mockup { max-width: 100%; }
-  .studio-mockup { max-width: 100%; }
-  .memory-mockup { max-width: 100%; }
+  #studio .studio-mockup { max-width: 100%; }
+  #memory .memory-mockup { max-width: 100%; }
   .section-title { font-size: 28px; }
   .section-subtitle { font-size: 14px; }
-  .tech-grid { grid-template-columns: repeat(2, 1fr); }
-  .design-grid { grid-template-columns: 1fr; }
+  #tech .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  #design .design-grid { grid-template-columns: 1fr; }
+  .agent-card { padding: 18px 12px; }
+  .agent-avatar { width: 56px; height: 56px; font-size: 22px; }
+  .term-mockup { max-width: 100%; }
+  .diag-mockup { max-width: 100%; }
 }
 
 @media (max-width: 400px) {
   .hero-title { font-size: 44px; }
-  .vision-agents { grid-template-columns: 1fr; max-width: 200px; }
-  section { padding: 80px 16px 48px; }
+  #vision .vision-agents { gap: 10px; }
+  section { padding: 80px 14px 48px; }
   .nav { padding: 12px 16px; }
   .nav.scrolled { padding: 8px 16px; }
-  .agent-card { padding: 18px 14px; }
-  .tech-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .agent-card { padding: 16px 10px; }
+  .agent-avatar { width: 52px; height: 52px; font-size: 20px; margin-bottom: 12px; }
+  .agent-name { font-size: 12px; }
+  .agent-role { font-size: 11px; }
+  .agent-state { font-size: 9px; }
+  #tech .tech-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .tech-item { padding: 16px 12px; }
 }
 
@@ -1817,15 +2089,15 @@ section {
 <nav class="nav" id="mainNav">
   <a href="#hero" class="nav-brand">CHROMA</a>
   <ul class="nav-links">
-    <li><a href="#problem">Problem</a></li>
     <li><a href="#vision">Agents</a></li>
     <li><a href="#bridge">Bridge</a></li>
     <li><a href="#memory">Memory</a></li>
     <li><a href="#chat">Chat</a></li>
+    <li><a href="#groups">Groups</a></li>
     <li><a href="#studio">Studio</a></li>
-    <li><a href="#design">Design</a></li>
-    <li><a href="#tech">Tech</a></li>
+    <li><a href="#workspace">Pages</a></li>
     <li><a href="#mcp">MCP</a></li>
+    <li><a href="#tech">Tech</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ul>
 </nav>
@@ -2114,6 +2386,94 @@ section {
 </section>
 
 <!-- ============================================
+     6.5 CUSTOM GROUPS — MMO TRAY
+     ============================================ -->
+<section id="groups">
+  <div class="section-label reveal">Compose</div>
+  <h2 class="section-title reveal reveal-delay-1">Build Your Own <span style="background: linear-gradient(90deg, var(--vox-orange), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Posse</span></h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Spin up custom groups for any task. Engineering review? Surge + Claude + Static. Design crit? Prism + Claude. The MMO-style tray rotates through your saved parties &mdash; you decide who's at the table for each conversation.
+  </p>
+
+  <div class="tray-mockup glass-strong reveal reveal-delay-3">
+    <div class="tray-header">
+      <div class="tray-dot red"></div>
+      <div class="tray-dot yellow"></div>
+      <div class="tray-dot green"></div>
+      <span class="tray-title-bar">tray &mdash; rotate parties via &lt; &gt;</span>
+    </div>
+    <div class="tray-body">
+      <div class="tray-row">
+        <div class="tray-row-label">Tray 1</div>
+        <div class="tray-slots">
+          <div class="tray-slot gold">&#x1F4AC;</div>
+          <div class="tray-slot indigo">&#x2726;</div>
+          <div class="tray-slot cyan">&#x26A1;</div>
+          <div class="tray-slot orange">&#x1F4CA;</div>
+          <div class="tray-slot purple">&#x1F3A8;</div>
+          <div class="tray-slot magenta">&#x1F525;</div>
+        </div>
+        <div class="tray-nav">CORE</div>
+      </div>
+      <div class="tray-row">
+        <div class="tray-row-label">Tray 2</div>
+        <div class="tray-slots">
+          <div class="tray-slot purple">&#x1F3A8;</div>
+          <div class="tray-slot indigo">&#x2726;</div>
+          <div class="tray-slot empty">+</div>
+          <div class="tray-slot empty">+</div>
+        </div>
+        <div class="tray-nav">DESIGN-CRIT &nbsp;&gt;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="groups-features">
+    <div class="groups-feat glass reveal reveal-delay-3">
+      <h4>Pick Your Party</h4>
+      <p>Up to 4 agents per group. Name it, save it, summon it whenever you need that exact crew.</p>
+    </div>
+    <div class="groups-feat glass reveal reveal-delay-4">
+      <h4>Tray Rotation</h4>
+      <p>Two trays, one shortcut. Core six on top; rotate through your custom parties via the side chevron.</p>
+    </div>
+    <div class="groups-feat glass reveal reveal-delay-5">
+      <h4>Persistent</h4>
+      <p>Groups live in local settings. Restart Chroma &mdash; they're still there, ready to summon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     6.6 CHAT REFINEMENTS
+     ============================================ -->
+<section id="refinements">
+  <div class="section-label reveal">Polish</div>
+  <h2 class="section-title reveal reveal-delay-1">Conversation Refinements</h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    The thousand small things that make a chat feel alive. Live emoji conversion, soft history cleanup, mid-stream interrupts &mdash; details that get out of your way.
+  </p>
+
+  <div class="refine-grid">
+    <div class="refine-card glass cyan reveal reveal-delay-2">
+      <div class="refine-icon-row">:) &nbsp;&rarr;&nbsp; &#x1F642;</div>
+      <h4>Emoticon to Emoji</h4>
+      <p>Type <code>:)</code>, <code>&lt;3</code>, <code>:P</code> &mdash; Chroma swaps them live. 50+ classic emoticons mapped to modern emoji as you type.</p>
+    </div>
+    <div class="refine-card glass purple reveal reveal-delay-3">
+      <div class="refine-icon-row">CLEAR <span class="arrow">&rarr;</span> RECOVERABLE</div>
+      <h4>Soft Clear</h4>
+      <p>Wipe a channel from view without losing the audit trail. A per-channel clear timestamp hides old turns in the UI; the database keeps every word.</p>
+    </div>
+    <div class="refine-card glass gold reveal reveal-delay-4">
+      <div class="refine-icon-row">&#x270B; &nbsp;INTERRUPT</div>
+      <h4>Mid-Group Interrupt</h4>
+      <p>Group chat wandering off course? Drop a new message and the autonomous loop yields after the current speaker. Your turn jumps the queue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
      7. AGENT STUDIO
      ============================================ -->
 <section id="studio">
@@ -2169,6 +2529,71 @@ section {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7.5 WORKSPACE PAGES — DIAGNOSTICS + TERMINAL
+     ============================================ -->
+<section id="workspace">
+  <div class="section-label reveal">Operate</div>
+  <h2 class="section-title reveal reveal-delay-1">Workspace Pages</h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Chroma is a desktop OS for AI work. Built-in pages handle the operational stuff &mdash; health checks, raw shells &mdash; without leaving the workspace.
+  </p>
+
+  <div class="pages-grid">
+    <div class="page-mockup glass-strong reveal reveal-delay-2">
+      <div class="page-header">
+        <div class="page-dot red"></div><div class="page-dot yellow"></div><div class="page-dot green"></div>
+        <span class="page-title-bar">diagnostics &mdash; system health</span>
+      </div>
+      <div class="diag-body">
+        <div class="diag-card ok"><div class="diag-card-name">Chroma App</div><div class="diag-card-status"><span class="pulse"></span>OK</div></div>
+        <div class="diag-card ok"><div class="diag-card-name">Vox Bridge</div><div class="diag-card-status"><span class="pulse"></span>CDP READY</div></div>
+        <div class="diag-card ok"><div class="diag-card-name">Database</div><div class="diag-card-status"><span class="pulse"></span>NEON OK</div></div>
+        <div class="diag-card ok"><div class="diag-card-name">Schema Health</div><div class="diag-card-status"><span class="pulse"></span>UP-TO-DATE</div></div>
+        <div class="diag-card warn"><div class="diag-card-name">Browser Session</div><div class="diag-card-status"><span class="pulse"></span>IDLE</div></div>
+        <div class="diag-card ok"><div class="diag-card-name">Round Trip</div><div class="diag-card-status"><span class="pulse"></span>API OK</div></div>
+      </div>
+    </div>
+
+    <div class="page-mockup glass-strong reveal reveal-delay-3">
+      <div class="page-header">
+        <div class="page-dot red"></div><div class="page-dot yellow"></div><div class="page-dot green"></div>
+        <span class="page-title-bar">terminal &mdash; shells, tabbed</span>
+      </div>
+      <div class="term-tabs">
+        <span class="term-tab active">PS &middot; main</span>
+        <span class="term-tab">bash &middot; repo</span>
+        <span class="term-tab">wsl &middot; ubuntu</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line"><span class="term-prompt">PS C:\chroma_lab&gt;</span> <span class="term-cmd">git status</span></div>
+        <div class="term-line"><span class="term-out">On branch main</span></div>
+        <div class="term-line"><span class="term-out">Your branch is up to date with 'origin/main'.</span></div>
+        <div class="term-line"><span class="term-prompt">PS C:\chroma_lab&gt;</span> <span class="term-cmd">python -m chroma.run</span></div>
+        <div class="term-line"><span class="term-out">[runtime] conductor online</span></div>
+        <div class="term-line"><span class="term-out">[bridge] ChatGPT connected &middot; Claude connected</span></div>
+        <div class="term-line"><span class="term-out">[memory] three-tier service ready</span></div>
+        <div class="term-line"><span class="term-prompt">PS C:\chroma_lab&gt;</span> <span class="term-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="groups-features" style="max-width: 1000px;">
+    <div class="groups-feat glass reveal reveal-delay-3" style="text-align: left;">
+      <h4 style="color: var(--vox-cyan-400);">6 Health Checks</h4>
+      <p>App, bridge, database, schema, browser session, round-trip. Auto-runs on first load. Per-card retry. RUN ALL + COPY REPORT (no secrets).</p>
+    </div>
+    <div class="groups-feat glass reveal reveal-delay-4" style="text-align: left;">
+      <h4 style="color: var(--vox-green);">Multi-Shell</h4>
+      <p>PowerShell, CMD, Git Bash, WSL &mdash; all in tabs. Each session is its own QProcess with idle detection so the input field re-enables when commands finish.</p>
+    </div>
+    <div class="groups-feat glass reveal reveal-delay-5" style="text-align: left;">
+      <h4 style="color: var(--vox-magenta);">Vox-Styled Output</h4>
+      <p>ANSI codes stripped, output colorized by context: prompt green, command cyan, errors red. Same neon language as the rest of the OS.</p>
     </div>
   </div>
 </section>
@@ -2317,13 +2742,13 @@ section {
       </div>
       <div class="mcp-card-desc">Read, write, search, and organize files within sandboxed directories. Symlink-escape prevention keeps agents in their lane.</div>
       <div class="mcp-card-tools">
-        <span class="mcp-tool-chip">read</span>
-        <span class="mcp-tool-chip">write</span>
-        <span class="mcp-tool-chip">search</span>
-        <span class="mcp-tool-chip">move</span>
-        <span class="mcp-tool-chip">delete</span>
-        <span class="mcp-tool-chip">info</span>
-        <span class="mcp-tool-chip">list</span>
+        <span class="mcp-tool-chip">read_file</span>
+        <span class="mcp-tool-chip">write_file</span>
+        <span class="mcp-tool-chip">list_directory</span>
+        <span class="mcp-tool-chip">search_files</span>
+        <span class="mcp-tool-chip">move_file</span>
+        <span class="mcp-tool-chip">delete_file</span>
+        <span class="mcp-tool-chip">get_file_info</span>
       </div>
     </div>
     <div class="mcp-card glass shell-card reveal reveal-delay-2">
@@ -2336,10 +2761,10 @@ section {
       </div>
       <div class="mcp-card-desc">Execute system commands with allowlist protection. Dangerous commands are blocked at the protocol level. Injection-proof by design.</div>
       <div class="mcp-card-tools">
-        <span class="mcp-tool-chip">execute</span>
-        <span class="mcp-tool-chip">start</span>
+        <span class="mcp-tool-chip">execute_command</span>
+        <span class="mcp-tool-chip">start_process</span>
         <span class="mcp-tool-chip">read_output</span>
-        <span class="mcp-tool-chip">kill</span>
+        <span class="mcp-tool-chip">kill_process</span>
       </div>
     </div>
     <div class="mcp-card glass db-card reveal reveal-delay-3">
@@ -2350,13 +2775,13 @@ section {
           <div class="mcp-card-count">5 TOOLS</div>
         </div>
       </div>
-      <div class="mcp-card-desc">Query PostgreSQL with read-only safety by default. DDL is blocked. Connection pooling via asyncpg keeps things fast and safe.</div>
+      <div class="mcp-card-desc">Query Neon PostgreSQL with read-only safety by default. DDL is blocked. Connection pooling via asyncpg keeps things fast and safe.</div>
       <div class="mcp-card-tools">
         <span class="mcp-tool-chip">query</span>
         <span class="mcp-tool-chip">execute</span>
         <span class="mcp-tool-chip">list_tables</span>
-        <span class="mcp-tool-chip">describe</span>
-        <span class="mcp-tool-chip">explain</span>
+        <span class="mcp-tool-chip">describe_table</span>
+        <span class="mcp-tool-chip">explain_query</span>
       </div>
     </div>
     <div class="mcp-card glass browser-card reveal reveal-delay-3">
@@ -2367,16 +2792,16 @@ section {
           <div class="mcp-card-count">8 TOOLS</div>
         </div>
       </div>
-      <div class="mcp-card-desc">Headless Chromium via Playwright. Isolated contexts per session. Navigate, screenshot, click, type &mdash; full web automation.</div>
+      <div class="mcp-card-desc">Headless Chromium via Playwright. Isolated session contexts. Navigate, screenshot, click, type &mdash; full web automation.</div>
       <div class="mcp-card-tools">
+        <span class="mcp-tool-chip">create_session</span>
+        <span class="mcp-tool-chip">close_session</span>
         <span class="mcp-tool-chip">navigate</span>
         <span class="mcp-tool-chip">screenshot</span>
-        <span class="mcp-tool-chip">click</span>
-        <span class="mcp-tool-chip">type</span>
-        <span class="mcp-tool-chip">eval_js</span>
-        <span class="mcp-tool-chip">get_text</span>
-        <span class="mcp-tool-chip">wait</span>
-        <span class="mcp-tool-chip">scroll</span>
+        <span class="mcp-tool-chip">get_page_text</span>
+        <span class="mcp-tool-chip">click_element</span>
+        <span class="mcp-tool-chip">type_text</span>
+        <span class="mcp-tool-chip">evaluate_js</span>
       </div>
     </div>
   </div>
@@ -2469,13 +2894,28 @@ section {
       <div class="timeline-title">Agent Memory</div>
       <div class="timeline-desc">Three-tier memory system with relevance scoring. 400+ tests. Comprehensive audit and hardening.</div>
     </div>
-    <div class="timeline-item reveal reveal-delay-4">
-      <div class="timeline-phase">Now</div>
+    <div class="timeline-item shipped reveal reveal-delay-4">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
       <div class="timeline-title">Multi-Participant Chat</div>
-      <div class="timeline-desc">@mention routing, conversation router, group conversations, cross-AI review.</div>
+      <div class="timeline-desc">@mention routing, conversation router, group conversations, cross-AI review, mid-stream interrupt.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-4">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Custom Groups &amp; Tray Rotation</div>
+      <div class="timeline-desc">MMO-style two-tray UI. Save up to 4-agent custom parties; rotate between them in one click.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-4">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">MCP Ecosystem</div>
+      <div class="timeline-desc">Filesystem, Shell, PostgreSQL, Browser. Sandboxed, audited, permission-gated. Trust pipeline for every tool call.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-4">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Diagnostics &amp; Terminal Pages</div>
+      <div class="timeline-desc">Six health checks with retry + report copy. Tabbed multi-shell with PowerShell, CMD, Git Bash, WSL.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-5">
-      <div class="timeline-phase">Next</div>
+      <div class="timeline-phase">Now</div>
       <div class="timeline-title">Voice Interface</div>
       <div class="timeline-desc">Natural voice interaction with agents.</div>
     </div>

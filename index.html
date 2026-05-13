@@ -1424,6 +1424,55 @@ section {
 .mcp-card.db-card .mcp-tool-chip    { border-color: rgba(159, 120, 255, 0.15); color: rgba(159, 120, 255, 0.7); }
 .mcp-card.browser-card .mcp-tool-chip { border-color: rgba(255, 156, 66, 0.15); color: rgba(255, 156, 66, 0.7); }
 
+.mcp-conn-badge {
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border-radius: var(--vox-radius-pill);
+  border: 1px solid currentColor;
+  flex-shrink: 0;
+}
+.mcp-conn-badge.connected { color: var(--vox-green); }
+.mcp-conn-badge.disconnected { color: var(--vox-ink-500); }
+
+.mcp-agents-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.mcp-agents-row .agents-label {
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--vox-ink-500);
+  margin-right: 4px;
+}
+.agent-badge {
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: var(--vox-radius-pill);
+  border: 1px solid currentColor;
+}
+.agent-badge.surge   { color: var(--vox-cyan-500);  background: rgba(57, 217, 255, 0.08);  box-shadow: 0 0 8px rgba(57, 217, 255, 0.18); }
+.agent-badge.pulse   { color: var(--vox-indigo);    background: rgba(99, 102, 241, 0.08);  box-shadow: 0 0 8px rgba(99, 102, 241, 0.18); }
+.agent-badge.prism   { color: var(--vox-purple);    background: rgba(159, 120, 255, 0.08); box-shadow: 0 0 8px rgba(159, 120, 255, 0.18); }
+.agent-badge.static-a { color: var(--vox-magenta); background: rgba(255, 73, 213, 0.08);  box-shadow: 0 0 8px rgba(255, 73, 213, 0.18); }
+
+.mcp-conn-summary {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--vox-ink-400);
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+.mcp-conn-summary .conn-count { color: var(--vox-cyan-400); }
+
 /* Trust Pipeline */
 .mcp-pipeline {
   display: flex;
@@ -1755,79 +1804,230 @@ section {
 }
 
 /* ============================================
-   CUSTOM GROUPS (MMO TRAY)
+   CHANNEL BAR + COMPOSE MOCKUP
    ============================================ */
-.tray-mockup {
+.compose-mockup {
   width: 100%;
-  max-width: 720px;
+  max-width: 920px;
   border-radius: var(--vox-radius-4);
   overflow: hidden;
   margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 220px;
 }
-.tray-header {
-  padding: 14px 20px;
+.compose-main {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--vox-line-100);
+  min-width: 0;
+}
+.compose-window-bar {
+  padding: 12px 18px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   border-bottom: 1px solid var(--vox-line-100);
   background: var(--vox-alpha-panel-80);
 }
-.tray-dot { width: 10px; height: 10px; border-radius: 50%; }
-.tray-dot.red { background: #ff5f57; }
-.tray-dot.yellow { background: #ffbd2e; }
-.tray-dot.green { background: #28ca41; }
-.tray-title-bar {
+.compose-window-bar .pdot { width: 9px; height: 9px; border-radius: 50%; }
+.compose-window-bar .pdot.red { background: #ff5f57; }
+.compose-window-bar .pdot.yellow { background: #ffbd2e; }
+.compose-window-bar .pdot.green { background: #28ca41; }
+.compose-window-bar .ptitle {
   font-family: var(--vox-font-mono);
-  font-size: 12px;
+  font-size: 11px;
   color: var(--vox-ink-400);
-  margin-left: 8px;
+  margin-left: 6px;
 }
-.tray-body {
-  padding: 24px;
+.channel-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--vox-alpha-panel-80);
+  border-bottom: 1px solid var(--vox-line-100);
+  overflow-x: auto;
+}
+.channel-tab {
+  padding: 8px 14px;
+  border-radius: var(--vox-radius-pill);
+  border: 1px solid var(--vox-line-100);
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--vox-ink-400);
+  background: rgba(5, 5, 12, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.channel-tab.active {
+  color: var(--vox-cyan-400);
+  border-color: rgba(57, 217, 255, 0.4);
+  background: rgba(57, 217, 255, 0.08);
+  box-shadow: 0 0 12px rgba(57, 217, 255, 0.18);
+}
+.channel-tab .agent-mini {
+  font-size: 11px;
+  line-height: 1;
+}
+.channel-tab .agent-mini.gold { color: var(--vox-gold); }
+.channel-tab .agent-mini.indigo { color: var(--vox-indigo); }
+.channel-add {
+  color: var(--vox-ink-500);
+  border-style: dashed;
+}
+.compose-body {
+  padding: 18px 20px;
   background: var(--vox-alpha-panel-96);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
+  min-height: 200px;
 }
-.tray-row { display: flex; align-items: center; gap: 12px; }
-.tray-row-label {
-  font-family: var(--vox-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--vox-ink-500);
-  width: 56px;
-  flex-shrink: 0;
-}
-.tray-slots { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
-.tray-slot {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.compose-mode-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  border: 1.5px solid var(--vox-line-200);
-  background: rgba(5, 5, 12, 0.6);
+  gap: 10px;
 }
-.tray-slot.empty { color: var(--vox-ink-500); border-style: dashed; }
-.tray-slot.gold { border-color: var(--vox-gold); background: rgba(232,168,56,0.12); color: var(--vox-gold); }
-.tray-slot.indigo { border-color: var(--vox-indigo); background: rgba(217,119,87,0.12); color: var(--vox-indigo); }
-.tray-slot.cyan { border-color: var(--vox-cyan-500); background: rgba(57,217,255,0.12); color: var(--vox-cyan-500); }
-.tray-slot.orange { border-color: var(--vox-orange); background: rgba(99,102,241,0.12); color: var(--vox-orange); }
-.tray-slot.purple { border-color: var(--vox-purple); background: rgba(159,120,255,0.12); color: var(--vox-purple); }
-.tray-slot.magenta { border-color: var(--vox-magenta); background: rgba(255,73,213,0.12); color: var(--vox-magenta); }
-.tray-nav {
+.mode-tabs {
+  display: flex;
+  gap: 6px;
+  background: rgba(5, 5, 12, 0.6);
+  border: 1px solid var(--vox-line-100);
+  border-radius: var(--vox-radius-pill);
+  padding: 3px;
+}
+.mode-tab {
+  padding: 5px 12px;
   font-family: var(--vox-font-mono);
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--vox-ink-500);
+  border-radius: var(--vox-radius-pill);
+}
+.mode-tab.active {
+  color: var(--vox-cyan-400);
+  background: rgba(57, 217, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(57, 217, 255, 0.3);
+}
+.ask-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--vox-ink-400);
+}
+.toggle-switch {
+  width: 28px;
+  height: 16px;
+  border-radius: 8px;
+  background: rgba(57, 217, 255, 0.2);
+  border: 1px solid rgba(57, 217, 255, 0.4);
+  position: relative;
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vox-cyan-400);
+  box-shadow: 0 0 6px var(--vox-cyan-500);
+}
+.compose-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.compose-input {
+  flex: 1;
+  padding: 12px 14px;
+  background: rgba(5, 5, 12, 0.94);
+  border: 1px solid var(--vox-line-200);
+  border-radius: var(--vox-radius-3);
+  color: var(--vox-ink-400);
+  font-family: var(--vox-font-sans);
+  font-size: 13px;
+}
+.compose-btn {
+  padding: 9px 14px;
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  border-radius: var(--vox-radius-pill);
+  border: 1px solid var(--vox-line-200);
+  color: var(--vox-ink-300);
+  background: rgba(5, 5, 12, 0.5);
+}
+.compose-btn.send {
+  color: #05050c;
+  background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-cyan-400));
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(57, 217, 255, 0.4);
+}
+.compose-sidebar {
+  background: var(--vox-alpha-panel-96);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.compose-sidebar-label {
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--vox-ink-500);
+  text-transform: uppercase;
+}
+.sidebar-mode-pill {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
   color: var(--vox-cyan-400);
   padding: 4px 10px;
   border: 1px solid rgba(57, 217, 255, 0.25);
   border-radius: var(--vox-radius-pill);
   background: rgba(57, 217, 255, 0.06);
-  flex-shrink: 0;
+  align-self: flex-start;
 }
+.agent-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: var(--vox-radius-3);
+  background: rgba(5, 5, 12, 0.5);
+  border: 1px solid var(--vox-line-100);
+}
+.agent-row .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
+}
+.agent-row.surge .dot   { background: var(--vox-cyan-500);  color: var(--vox-cyan-500); }
+.agent-row.pulse .dot   { background: var(--vox-indigo);    color: var(--vox-indigo); }
+.agent-row.prism .dot   { background: var(--vox-purple);    color: var(--vox-purple); }
+.agent-row.static-a .dot { background: var(--vox-magenta);  color: var(--vox-magenta); }
+.agent-row .agent-name {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--vox-ink-200);
+}
+.agent-row.surge .agent-name   { color: var(--vox-cyan-400); }
+.agent-row.pulse .agent-name   { color: var(--vox-indigo); }
+.agent-row.prism .agent-name   { color: var(--vox-purple); }
+.agent-row.static-a .agent-name { color: var(--vox-magenta); }
 
 .groups-features {
   display: grid;
@@ -1928,8 +2128,54 @@ section {
   margin-left: 6px;
 }
 
+.page-toolbar {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--vox-alpha-panel-80);
+  border-bottom: 1px solid var(--vox-line-100);
+}
+.page-toolbar .page-icon {
+  color: var(--vox-cyan-500);
+  text-shadow: 0 0 8px rgba(57, 217, 255, 0.6);
+  font-size: 12px;
+}
+.page-toolbar .page-name {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--vox-ink-200);
+  font-weight: 700;
+}
+.page-toolbar .page-path {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  color: var(--vox-ink-500);
+  margin-left: 8px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.page-toolbar .page-btn {
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  border: 1px solid var(--vox-line-200);
+  border-radius: var(--vox-radius-pill);
+  color: var(--vox-ink-300);
+  background: rgba(5, 5, 12, 0.5);
+}
+.page-toolbar .page-btn.primary {
+  color: var(--vox-cyan-400);
+  border-color: rgba(57, 217, 255, 0.4);
+  background: rgba(57, 217, 255, 0.08);
+}
+
 .diag-body {
-  padding: 18px;
+  padding: 14px;
   background: var(--vox-alpha-panel-96);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1942,58 +2188,121 @@ section {
   background: rgba(5, 5, 12, 0.6);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  position: relative;
 }
-.diag-card-name { font-size: 12px; font-weight: 600; color: var(--vox-ink-200); }
-.diag-card-status {
-  font-family: var(--vox-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+.diag-card-top {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
-.diag-card.ok .diag-card-status { color: var(--vox-green); }
-.diag-card.warn .diag-card-status { color: var(--vox-orange); }
-.diag-card-status .pulse {
-  width: 6px;
-  height: 6px;
+.diag-card-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 6px currentColor;
-  animation: dotPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
 }
+.diag-card-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vox-ink-200);
+  flex: 1;
+}
+.diag-card-badge {
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: var(--vox-radius-pill);
+  border: 1px solid currentColor;
+}
+.diag-card-desc {
+  font-size: 10px;
+  color: var(--vox-ink-400);
+  line-height: 1.4;
+}
+.diag-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--vox-font-mono);
+  font-size: 9px;
+  color: var(--vox-ink-500);
+  letter-spacing: 0.06em;
+}
+.diag-card.pass .diag-card-dot,
+.diag-card.pass .diag-card-badge { color: var(--vox-green); }
+.diag-card.pass { border-color: rgba(57, 255, 20, 0.18); }
+.diag-card.partial .diag-card-dot,
+.diag-card.partial .diag-card-badge { color: var(--vox-cyan-400); }
+.diag-card.partial { border-color: rgba(57, 217, 255, 0.18); }
+.diag-card.stub .diag-card-dot,
+.diag-card.stub .diag-card-badge { color: var(--vox-purple); }
+.diag-card.stub { border-color: rgba(159, 120, 255, 0.18); }
+.diag-card-dot { background: currentColor; }
 
 .term-tabs {
   display: flex;
+  align-items: center;
   gap: 6px;
   padding: 8px 14px 0;
   background: var(--vox-alpha-panel-80);
   border-bottom: 1px solid var(--vox-line-100);
 }
 .term-tab {
-  padding: 5px 10px;
+  padding: 6px 12px;
   font-family: var(--vox-font-mono);
   font-size: 10px;
+  letter-spacing: 0.06em;
   color: var(--vox-ink-500);
   border: 1px solid var(--vox-line-100);
   border-bottom: none;
   border-radius: 6px 6px 0 0;
   background: rgba(5, 5, 12, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .term-tab.active {
   color: var(--vox-cyan-400);
-  background: rgba(0, 0, 0, 0.85);
-  border-color: var(--vox-line-200);
+  background: rgba(0, 0, 0, 0.92);
+  border-color: rgba(57, 217, 255, 0.45);
+  box-shadow: 0 0 10px rgba(57, 217, 255, 0.2), inset 0 -1px 0 rgba(0,0,0,0.92);
+}
+.term-tab .tab-close {
+  font-size: 11px;
+  color: var(--vox-ink-500);
+  margin-left: 2px;
+}
+.term-tab-add {
+  padding: 6px 10px;
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  color: var(--vox-cyan-400);
+  border: 1px solid rgba(57, 217, 255, 0.25);
+  border-radius: 6px;
+  background: rgba(57, 217, 255, 0.05);
 }
 .term-body {
-  padding: 16px 18px;
-  background: rgba(0, 0, 0, 0.85);
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.92);
   font-family: var(--vox-font-mono);
   font-size: 11px;
-  line-height: 1.7;
-  min-height: 240px;
+  line-height: 1.75;
+  min-height: 180px;
   overflow: hidden;
+}
+.term-banner {
+  color: var(--vox-cyan-400);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(57, 217, 255, 0.12);
+  opacity: 0.85;
 }
 .term-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .term-prompt { color: var(--vox-green); }
@@ -2005,8 +2314,44 @@ section {
   width: 7px;
   height: 12px;
   background: var(--vox-cyan-500);
+  box-shadow: 0 0 8px var(--vox-cyan-500);
   vertical-align: middle;
   animation: cursorBlink 1s step-end infinite;
+}
+.term-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(5, 5, 12, 0.85);
+  border-top: 1px solid rgba(57, 217, 255, 0.18);
+}
+.term-chevron {
+  color: var(--vox-cyan-400);
+  font-family: var(--vox-font-mono);
+  font-size: 14px;
+  text-shadow: 0 0 8px rgba(57, 217, 255, 0.6);
+}
+.term-input-field {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--vox-line-200);
+  border-radius: var(--vox-radius-3);
+  color: var(--vox-ink-500);
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+}
+.term-run-btn {
+  padding: 8px 16px;
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #05050c;
+  background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-cyan-400));
+  border-radius: var(--vox-radius-pill);
+  box-shadow: 0 0 16px rgba(57, 217, 255, 0.45);
 }
 
 /* ============================================
@@ -2030,6 +2375,8 @@ section {
   .groups-features { grid-template-columns: 1fr; max-width: 360px; }
   .refine-grid { grid-template-columns: 1fr; max-width: 480px; }
   .pages-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .compose-mockup { grid-template-columns: 1fr; max-width: 540px; }
+  .compose-main { border-right: none; border-bottom: 1px solid var(--vox-line-100); }
 }
 
 @media (max-width: 600px) {
@@ -2061,6 +2408,17 @@ section {
   .agent-avatar { width: 56px; height: 56px; font-size: 22px; }
   .term-mockup { max-width: 100%; }
   .diag-mockup { max-width: 100%; }
+  .diag-body { grid-template-columns: 1fr; }
+  .page-toolbar { flex-wrap: wrap; gap: 8px; }
+  .page-toolbar .page-path { display: none; }
+  .channel-bar { padding: 10px 12px; gap: 6px; }
+  .channel-tab { padding: 6px 10px; font-size: 10px; }
+  .compose-mode-row { flex-wrap: wrap; }
+  .ask-toggle { margin-left: 0; }
+  .compose-input-row { flex-wrap: wrap; }
+  .compose-input { min-width: 0; flex: 1 1 60%; }
+  .mcp-card-header { flex-wrap: wrap; }
+  .mcp-conn-badge { margin-top: 4px; }
 }
 
 @media (max-width: 400px) {
@@ -2386,60 +2744,77 @@ section {
 </section>
 
 <!-- ============================================
-     6.5 CUSTOM GROUPS — MMO TRAY
+     6.5 COMPOSE — CHANNEL BAR + MODE TABS + AGENTS PANEL
      ============================================ -->
 <section id="groups">
   <div class="section-label reveal">Compose</div>
-  <h2 class="section-title reveal reveal-delay-1">Build Your Own <span style="background: linear-gradient(90deg, var(--vox-orange), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Posse</span></h2>
+  <h2 class="section-title reveal reveal-delay-1">Pick Your <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Channel</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Spin up custom groups for any task. Engineering review? Surge + Claude + Static. Design crit? Prism + Claude. The MMO-style tray rotates through your saved parties &mdash; you decide who's at the table for each conversation.
+    Boardroom is everyone at the table. Six more group slots wait next to it &mdash; save any crew, switch with one click. Below the chat: three modes (CHAT, BRAINSTORM, BUILD), an ASK WHEN UNSURE safety toggle, and the active agent roster on the right.
   </p>
 
-  <div class="tray-mockup glass-strong reveal reveal-delay-3">
-    <div class="tray-header">
-      <div class="tray-dot red"></div>
-      <div class="tray-dot yellow"></div>
-      <div class="tray-dot green"></div>
-      <span class="tray-title-bar">tray &mdash; rotate parties via &lt; &gt;</span>
+  <div class="compose-mockup glass-strong reveal reveal-delay-3">
+    <div class="compose-main">
+      <div class="compose-window-bar">
+        <div class="pdot red"></div><div class="pdot yellow"></div><div class="pdot green"></div>
+        <span class="ptitle">chroma &mdash; channel bar &amp; compose</span>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-tab active">
+          <span class="agent-mini gold">&#x25C6;</span>
+          <span class="agent-mini indigo">&#x2726;</span>
+          BOARDROOM
+        </div>
+        <div class="channel-tab channel-add">+ Add group</div>
+        <div class="channel-tab channel-add">+ Add group</div>
+        <div class="channel-tab channel-add">+ Add group</div>
+        <div class="channel-tab channel-add">+ Add group</div>
+        <div class="channel-tab channel-add">+ Add group</div>
+        <div class="channel-tab channel-add">+ Add group</div>
+      </div>
+      <div class="compose-body">
+        <div class="compose-mode-row">
+          <div class="mode-tabs">
+            <span class="mode-tab active">CHAT</span>
+            <span class="mode-tab">BRAINSTORM</span>
+            <span class="mode-tab">BUILD</span>
+          </div>
+          <div class="ask-toggle">
+            ASK WHEN UNSURE
+            <span class="toggle-switch"></span>
+          </div>
+        </div>
+        <div class="compose-input-row">
+          <div class="compose-input">Message Boardroom&hellip;</div>
+          <span class="compose-btn">GIF</span>
+          <span class="compose-btn">ATTACH</span>
+          <span class="compose-btn send">SEND</span>
+        </div>
+      </div>
     </div>
-    <div class="tray-body">
-      <div class="tray-row">
-        <div class="tray-row-label">Tray 1</div>
-        <div class="tray-slots">
-          <div class="tray-slot gold">&#x1F4AC;</div>
-          <div class="tray-slot indigo">&#x2726;</div>
-          <div class="tray-slot cyan">&#x26A1;</div>
-          <div class="tray-slot orange">&#x1F4CA;</div>
-          <div class="tray-slot purple">&#x1F3A8;</div>
-          <div class="tray-slot magenta">&#x1F525;</div>
-        </div>
-        <div class="tray-nav">CORE</div>
-      </div>
-      <div class="tray-row">
-        <div class="tray-row-label">Tray 2</div>
-        <div class="tray-slots">
-          <div class="tray-slot purple">&#x1F3A8;</div>
-          <div class="tray-slot indigo">&#x2726;</div>
-          <div class="tray-slot empty">+</div>
-          <div class="tray-slot empty">+</div>
-        </div>
-        <div class="tray-nav">DESIGN-CRIT &nbsp;&gt;</div>
-      </div>
+    <div class="compose-sidebar">
+      <div class="compose-sidebar-label">Active</div>
+      <span class="sidebar-mode-pill">GROUP MODE</span>
+      <div class="compose-sidebar-label">Agents</div>
+      <div class="agent-row surge"><span class="dot"></span><span class="agent-name">SURGE</span></div>
+      <div class="agent-row pulse"><span class="dot"></span><span class="agent-name">PULSE</span></div>
+      <div class="agent-row prism"><span class="dot"></span><span class="agent-name">PRISM</span></div>
+      <div class="agent-row static-a"><span class="dot"></span><span class="agent-name">STATIC</span></div>
     </div>
   </div>
 
   <div class="groups-features">
     <div class="groups-feat glass reveal reveal-delay-3">
-      <h4>Pick Your Party</h4>
-      <p>Up to 4 agents per group. Name it, save it, summon it whenever you need that exact crew.</p>
+      <h4>Boardroom + 6 Groups</h4>
+      <p>The default channel is Boardroom. Save up to six more named groups next to it &mdash; each with its own agents, history, and mode.</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-4">
-      <h4>Tray Rotation</h4>
-      <p>Two trays, one shortcut. Core six on top; rotate through your custom parties via the side chevron.</p>
+      <h4>Three Modes</h4>
+      <p>CHAT for conversation, BRAINSTORM for ideation rounds, BUILD for proposal-driven work. The mode shapes how agents respond.</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-5">
-      <h4>Persistent</h4>
-      <p>Groups live in local settings. Restart Chroma &mdash; they're still there, ready to summon.</p>
+      <h4>Ask When Unsure</h4>
+      <p>Toggle on to make agents stop and ask before acting on ambiguity. Off for fast flow when intent is clear.</p>
     </div>
   </div>
 </section>
@@ -2545,39 +2920,71 @@ section {
 
   <div class="pages-grid">
     <div class="page-mockup glass-strong reveal reveal-delay-2">
-      <div class="page-header">
-        <div class="page-dot red"></div><div class="page-dot yellow"></div><div class="page-dot green"></div>
-        <span class="page-title-bar">diagnostics &mdash; system health</span>
+      <div class="page-toolbar">
+        <span class="page-icon">&#x25C6;</span>
+        <span class="page-name">DIAGNOSTICS</span>
+        <span class="page-path">Quick health snapshot of the Chroma runtime</span>
+        <span class="page-btn">COPY REPORT</span>
+        <span class="page-btn primary">RUN ALL</span>
       </div>
       <div class="diag-body">
-        <div class="diag-card ok"><div class="diag-card-name">Chroma App</div><div class="diag-card-status"><span class="pulse"></span>OK</div></div>
-        <div class="diag-card ok"><div class="diag-card-name">Vox Bridge</div><div class="diag-card-status"><span class="pulse"></span>CDP READY</div></div>
-        <div class="diag-card ok"><div class="diag-card-name">Database</div><div class="diag-card-status"><span class="pulse"></span>NEON OK</div></div>
-        <div class="diag-card ok"><div class="diag-card-name">Schema Health</div><div class="diag-card-status"><span class="pulse"></span>UP-TO-DATE</div></div>
-        <div class="diag-card warn"><div class="diag-card-name">Browser Session</div><div class="diag-card-status"><span class="pulse"></span>IDLE</div></div>
-        <div class="diag-card ok"><div class="diag-card-name">Round Trip</div><div class="diag-card-status"><span class="pulse"></span>API OK</div></div>
+        <div class="diag-card pass">
+          <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Chroma App</span><span class="diag-card-badge">PASS</span></div>
+          <div class="diag-card-desc">Desktop shell responding, event loop healthy.</div>
+          <div class="diag-card-foot"><span>&#x25B8; details</span><span>12 ms</span></div>
+        </div>
+        <div class="diag-card pass">
+          <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Vox Bridge</span><span class="diag-card-badge">PASS</span></div>
+          <div class="diag-card-desc">CDP attached, both Claude and ChatGPT reachable.</div>
+          <div class="diag-card-foot"><span>&#x25B8; details</span><span>84 ms</span></div>
+        </div>
+        <div class="diag-card pass">
+          <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Database</span><span class="diag-card-badge">PASS</span></div>
+          <div class="diag-card-desc">Neon Postgres pool warm, queries returning.</div>
+          <div class="diag-card-foot"><span>&#x25B8; details</span><span>41 ms</span></div>
+        </div>
+        <div class="diag-card pass">
+          <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Schema Health</span><span class="diag-card-badge">PASS</span></div>
+          <div class="diag-card-desc">Migrations up to date, audit columns present.</div>
+          <div class="diag-card-foot"><span>&#x25B8; details</span><span>27 ms</span></div>
+        </div>
+        <div class="diag-card stub">
+          <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Browser Session</span><span class="diag-card-badge">STUB</span></div>
+          <div class="diag-card-desc">Playwright sandbox idle, no live session.</div>
+          <div class="diag-card-foot"><span>&#x25B8; details</span><span>&mdash;</span></div>
+        </div>
+        <div class="diag-card partial">
+          <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Message Round Trip</span><span class="diag-card-badge">PARTIAL</span></div>
+          <div class="diag-card-desc">API path OK; bridge fan-out check pending.</div>
+          <div class="diag-card-foot"><span>&#x25B8; details</span><span>312 ms</span></div>
+        </div>
       </div>
     </div>
 
     <div class="page-mockup glass-strong reveal reveal-delay-3">
-      <div class="page-header">
-        <div class="page-dot red"></div><div class="page-dot yellow"></div><div class="page-dot green"></div>
-        <span class="page-title-bar">terminal &mdash; shells, tabbed</span>
+      <div class="page-toolbar">
+        <span class="page-icon">&#x25C6;</span>
+        <span class="page-name">TERMINAL</span>
+        <span class="page-path">C:/chroma_lab/chroma/workspace</span>
+        <span class="page-btn">CLEAR</span>
+        <span class="page-btn">RESTART</span>
       </div>
       <div class="term-tabs">
-        <span class="term-tab active">PS &middot; main</span>
-        <span class="term-tab">bash &middot; repo</span>
-        <span class="term-tab">wsl &middot; ubuntu</span>
+        <span class="term-tab active">PowerShell <span class="tab-close">&times;</span></span>
+        <span class="term-tab-add">+</span>
       </div>
       <div class="term-body">
-        <div class="term-line"><span class="term-prompt">PS C:\chroma_lab&gt;</span> <span class="term-cmd">git status</span></div>
-        <div class="term-line"><span class="term-out">On branch main</span></div>
-        <div class="term-line"><span class="term-out">Your branch is up to date with 'origin/main'.</span></div>
-        <div class="term-line"><span class="term-prompt">PS C:\chroma_lab&gt;</span> <span class="term-cmd">python -m chroma.run</span></div>
+        <div class="term-banner">Chroma Terminal &middot; PowerShell &middot; cwd C:/chroma_lab/chroma/workspace</div>
+        <div class="term-line"><span class="term-prompt">PS&gt;</span> <span class="term-cmd">python -m chroma.run</span></div>
         <div class="term-line"><span class="term-out">[runtime] conductor online</span></div>
         <div class="term-line"><span class="term-out">[bridge] ChatGPT connected &middot; Claude connected</span></div>
         <div class="term-line"><span class="term-out">[memory] three-tier service ready</span></div>
-        <div class="term-line"><span class="term-prompt">PS C:\chroma_lab&gt;</span> <span class="term-cursor"></span></div>
+        <div class="term-line"><span class="term-prompt">PS&gt;</span> <span class="term-cursor"></span></div>
+      </div>
+      <div class="term-input-bar">
+        <span class="term-chevron">&#10095;</span>
+        <div class="term-input-field">Enter command&hellip;</div>
+        <span class="term-run-btn">&#9654; RUN</span>
       </div>
     </div>
   </div>
@@ -2585,15 +2992,15 @@ section {
   <div class="groups-features" style="max-width: 1000px;">
     <div class="groups-feat glass reveal reveal-delay-3" style="text-align: left;">
       <h4 style="color: var(--vox-cyan-400);">6 Health Checks</h4>
-      <p>App, bridge, database, schema, browser session, round-trip. Auto-runs on first load. Per-card retry. RUN ALL + COPY REPORT (no secrets).</p>
+      <p>Chroma App, Vox Bridge, Database, Schema Health, Browser Session, Message Round Trip. PASS / PARTIAL / STUB badges. Per-card refresh, RUN ALL, COPY REPORT (no secrets).</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-4" style="text-align: left;">
-      <h4 style="color: var(--vox-green);">Multi-Shell</h4>
-      <p>PowerShell, CMD, Git Bash, WSL &mdash; all in tabs. Each session is its own QProcess with idle detection so the input field re-enables when commands finish.</p>
+      <h4 style="color: var(--vox-green);">Tabbed PowerShell</h4>
+      <p>One PowerShell session per tab, rooted at the Chroma workspace. Open new tabs with +, close with the inline &times;. Each tab is its own QProcess with idle detection so RUN re-enables when commands finish.</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-5" style="text-align: left;">
       <h4 style="color: var(--vox-magenta);">Vox-Styled Output</h4>
-      <p>ANSI codes stripped, output colorized by context: prompt green, command cyan, errors red. Same neon language as the rest of the OS.</p>
+      <p>ANSI codes stripped, output colorized by context: prompt green, command cyan, errors red. Cyan &#10095; chevron, neon RUN button &mdash; same language as the rest of the OS.</p>
     </div>
   </div>
 </section>
@@ -2729,6 +3136,7 @@ section {
   <div class="mcp-sub-heading reveal">
     <h3>Tier 1 MCP Servers</h3>
     <p>Four foundational servers ship with Chroma. Each is sandboxed, audited, and permission-gated per agent.</p>
+    <div class="mcp-conn-summary reveal reveal-delay-2"><span class="conn-count">2/4 connected</span> &middot; 11 tools discovered</div>
   </div>
 
   <div class="mcp-card-grid">
@@ -2739,6 +3147,14 @@ section {
           <div class="mcp-card-title">Filesystem</div>
           <div class="mcp-card-count">7 TOOLS</div>
         </div>
+        <span class="mcp-conn-badge connected">CONNECTED</span>
+      </div>
+      <div class="mcp-agents-row">
+        <span class="agents-label">AGENTS</span>
+        <span class="agent-badge surge">SURGE</span>
+        <span class="agent-badge pulse">PULSE</span>
+        <span class="agent-badge prism">PRISM</span>
+        <span class="agent-badge static-a">STATIC</span>
       </div>
       <div class="mcp-card-desc">Read, write, search, and organize files within sandboxed directories. Symlink-escape prevention keeps agents in their lane.</div>
       <div class="mcp-card-tools">
@@ -2758,6 +3174,11 @@ section {
           <div class="mcp-card-title">Shell</div>
           <div class="mcp-card-count">4 TOOLS</div>
         </div>
+        <span class="mcp-conn-badge connected">CONNECTED</span>
+      </div>
+      <div class="mcp-agents-row">
+        <span class="agents-label">AGENTS</span>
+        <span class="agent-badge surge">SURGE</span>
       </div>
       <div class="mcp-card-desc">Execute system commands with allowlist protection. Dangerous commands are blocked at the protocol level. Injection-proof by design.</div>
       <div class="mcp-card-tools">
@@ -2772,8 +3193,14 @@ section {
         <div class="mcp-card-icon db">&#x1f5c4;</div>
         <div class="mcp-card-meta">
           <div class="mcp-card-title">PostgreSQL</div>
-          <div class="mcp-card-count">5 TOOLS</div>
+          <div class="mcp-card-count">READY</div>
         </div>
+        <span class="mcp-conn-badge disconnected">DISCONNECTED</span>
+      </div>
+      <div class="mcp-agents-row">
+        <span class="agents-label">AGENTS</span>
+        <span class="agent-badge surge">SURGE</span>
+        <span class="agent-badge pulse">PULSE</span>
       </div>
       <div class="mcp-card-desc">Query Neon PostgreSQL with read-only safety by default. DDL is blocked. Connection pooling via asyncpg keeps things fast and safe.</div>
       <div class="mcp-card-tools">
@@ -2789,8 +3216,15 @@ section {
         <div class="mcp-card-icon browser">&#x1f310;</div>
         <div class="mcp-card-meta">
           <div class="mcp-card-title">Browser</div>
-          <div class="mcp-card-count">8 TOOLS</div>
+          <div class="mcp-card-count">READY</div>
         </div>
+        <span class="mcp-conn-badge disconnected">DISCONNECTED</span>
+      </div>
+      <div class="mcp-agents-row">
+        <span class="agents-label">AGENTS</span>
+        <span class="agent-badge surge">SURGE</span>
+        <span class="agent-badge pulse">PULSE</span>
+        <span class="agent-badge prism">PRISM</span>
       </div>
       <div class="mcp-card-desc">Headless Chromium via Playwright. Isolated session contexts. Navigate, screenshot, click, type &mdash; full web automation.</div>
       <div class="mcp-card-tools">
@@ -2901,8 +3335,8 @@ section {
     </div>
     <div class="timeline-item shipped reveal reveal-delay-4">
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
-      <div class="timeline-title">Custom Groups &amp; Tray Rotation</div>
-      <div class="timeline-desc">MMO-style two-tray UI. Save up to 4-agent custom parties; rotate between them in one click.</div>
+      <div class="timeline-title">Channel Bar &amp; Custom Groups</div>
+      <div class="timeline-desc">Boardroom plus six savable group slots. Switch crews with one click; each group keeps its own agents, history, and mode.</div>
     </div>
     <div class="timeline-item shipped reveal reveal-delay-4">
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>

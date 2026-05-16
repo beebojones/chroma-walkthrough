@@ -2095,6 +2095,394 @@ section {
 .refine-card.gold .refine-icon-row { color: var(--vox-gold); }
 
 /* ============================================
+   WORKSHOP BUILD PIPELINE
+   ============================================ */
+.workshop-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1100px;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.workshop-window {
+  border-radius: var(--vox-radius-4);
+  overflow: hidden;
+  background: var(--vox-alpha-panel-80);
+  border: 1px solid var(--vox-line-200);
+}
+.workshop-window-bar {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--vox-alpha-panel-96);
+  border-bottom: 1px solid var(--vox-line-100);
+}
+.workshop-window-bar .wdot { width: 9px; height: 9px; border-radius: 50%; }
+.workshop-window-bar .wdot.red { background: #ff5f57; }
+.workshop-window-bar .wdot.yellow { background: #ffbd2e; }
+.workshop-window-bar .wdot.green { background: #28ca41; }
+.workshop-window-bar .wtitle {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  color: var(--vox-ink-400);
+  margin-left: 6px;
+}
+.workshop-window-bar .wstep {
+  margin-left: auto;
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--vox-cyan-400);
+  padding: 4px 10px;
+  border: 1px solid rgba(57, 217, 255, 0.3);
+  border-radius: var(--vox-radius-pill);
+}
+
+.workshop-stage {
+  padding: 28px 24px 30px;
+}
+.workshop-stage h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vox-ink-200);
+  margin-bottom: 4px;
+}
+.workshop-stage .stage-sub {
+  font-size: 13px;
+  color: var(--vox-ink-400);
+  margin-bottom: 20px;
+}
+
+/* Build type selector — chromatic border breathing */
+.buildtype-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.buildtype-card {
+  position: relative;
+  padding: 22px 18px;
+  border-radius: var(--vox-radius-3);
+  background: var(--vox-alpha-panel-65);
+  text-align: center;
+  cursor: default;
+  overflow: hidden;
+  isolation: isolate;
+}
+.buildtype-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--vox-radius-3);
+  padding: 1px;
+  background: conic-gradient(
+    from var(--bt-angle, 0deg),
+    var(--vox-cyan-500),
+    var(--vox-magenta),
+    var(--vox-purple),
+    var(--vox-gold),
+    var(--vox-green),
+    var(--vox-cyan-500)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: bt-spin 6s linear infinite, bt-breath 2.4s ease-in-out infinite;
+  z-index: -1;
+}
+.buildtype-card::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 18px;
+  background: conic-gradient(
+    from var(--bt-angle, 0deg),
+    rgba(57, 217, 255, 0.45),
+    rgba(255, 73, 213, 0.45),
+    rgba(159, 120, 255, 0.45),
+    rgba(232, 168, 56, 0.45),
+    rgba(57, 217, 255, 0.45)
+  );
+  filter: blur(14px);
+  opacity: 0.55;
+  animation: bt-spin 6s linear infinite, bt-breath 2.4s ease-in-out infinite;
+  z-index: -2;
+}
+.buildtype-card:nth-child(2)::before, .buildtype-card:nth-child(2)::after { animation-delay: -0.6s; }
+.buildtype-card:nth-child(3)::before, .buildtype-card:nth-child(3)::after { animation-delay: -1.2s; }
+.buildtype-card:nth-child(4)::before, .buildtype-card:nth-child(4)::after { animation-delay: -1.8s; }
+
+@property --bt-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes bt-spin {
+  to { --bt-angle: 360deg; }
+}
+@keyframes bt-breath {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.85; }
+}
+.buildtype-card .bt-icon {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 6px rgba(57, 217, 255, 0.4));
+}
+.buildtype-card .bt-name {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--vox-ink-100);
+  margin-bottom: 4px;
+}
+.buildtype-card .bt-desc {
+  font-size: 11px;
+  color: var(--vox-ink-400);
+  line-height: 1.4;
+}
+
+/* Design style chips */
+.designstyle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.designstyle-chip {
+  padding: 10px 16px;
+  border-radius: var(--vox-radius-pill);
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--vox-ink-200);
+  background: var(--vox-alpha-panel-65);
+  border: 1px solid var(--vox-line-200);
+  transition: all 0.3s var(--vox-ease-out);
+}
+.designstyle-chip.voxos { color: var(--vox-cyan-400); border-color: rgba(57, 217, 255, 0.35); box-shadow: 0 0 16px rgba(57, 217, 255, 0.18) inset; }
+.designstyle-chip.glass { color: #c8e8ff; border-color: rgba(186, 212, 255, 0.4); }
+.designstyle-chip.brutal { color: #ffd25c; border-color: rgba(232, 168, 56, 0.45); }
+.designstyle-chip.midnight { color: var(--vox-purple); border-color: rgba(159, 120, 255, 0.4); }
+.designstyle-chip.softlight { color: #ffe4a0; border-color: rgba(255, 228, 160, 0.3); }
+.designstyle-chip.cyberpunk { color: var(--vox-magenta); border-color: rgba(255, 73, 213, 0.45); }
+.designstyle-chip.custom { color: var(--vox-green); border-color: rgba(57, 255, 20, 0.35); border-style: dashed; }
+
+/* Multi-agent build flow */
+.build-flow {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.flow-architect {
+  padding: 22px 18px;
+  border-radius: var(--vox-radius-3);
+  background: linear-gradient(160deg, rgba(99, 102, 241, 0.16), rgba(99, 102, 241, 0.04));
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.flow-architect .fa-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.flow-architect .fa-name {
+  font-family: var(--vox-font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--vox-orange);
+  letter-spacing: 0.14em;
+  margin-bottom: 4px;
+}
+.flow-architect .fa-role {
+  font-size: 11px;
+  color: var(--vox-ink-300);
+  margin-bottom: 12px;
+}
+.flow-architect .fa-task {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  color: var(--vox-ink-400);
+  line-height: 1.5;
+}
+
+.flow-arrow {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  color: var(--vox-cyan-400);
+  text-align: center;
+  padding: 6px 0;
+  letter-spacing: 0.18em;
+}
+
+.flow-specialists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.flow-spec {
+  padding: 18px 14px;
+  border-radius: var(--vox-radius-3);
+  background: var(--vox-alpha-panel-65);
+  border: 1px solid var(--vox-line-200);
+  position: relative;
+}
+.flow-spec.surge { border-color: rgba(57, 217, 255, 0.35); }
+.flow-spec.prism { border-color: rgba(159, 120, 255, 0.35); }
+.flow-spec.static-s { border-color: rgba(255, 73, 213, 0.35); }
+.flow-spec .fs-name {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+.flow-spec.surge .fs-name { color: var(--vox-cyan-400); }
+.flow-spec.prism .fs-name { color: var(--vox-purple); }
+.flow-spec.static-s .fs-name { color: var(--vox-magenta); }
+.flow-spec .fs-role { font-size: 11px; color: var(--vox-ink-300); margin-bottom: 10px; }
+.flow-spec .fs-files {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  color: var(--vox-ink-400);
+  line-height: 1.6;
+}
+.flow-spec .fs-files div::before { content: '\25B8'; color: var(--vox-cyan-500); margin-right: 6px; }
+
+/* Activity panel */
+.activity-panel {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: var(--vox-radius-3);
+  background: rgba(5, 5, 12, 0.75);
+  border: 1px solid var(--vox-line-200);
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+}
+.activity-panel .ap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.activity-panel .ap-title {
+  letter-spacing: 0.14em;
+  color: var(--vox-ink-300);
+}
+.activity-panel .ap-halt {
+  padding: 4px 12px;
+  border-radius: var(--vox-radius-pill);
+  background: rgba(255, 91, 124, 0.12);
+  border: 1px solid rgba(255, 91, 124, 0.45);
+  color: var(--vox-red);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+.activity-panel .ap-line {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+  color: var(--vox-ink-300);
+}
+.activity-panel .ap-tag {
+  width: 64px;
+  letter-spacing: 0.1em;
+}
+.activity-panel .ap-tag.pulse { color: var(--vox-orange); }
+.activity-panel .ap-tag.surge { color: var(--vox-cyan-400); }
+.activity-panel .ap-tag.prism { color: var(--vox-purple); }
+.activity-panel .ap-tag.static { color: var(--vox-magenta); }
+.activity-panel .ap-tag.exec { color: var(--vox-green); }
+.activity-panel .ap-tag.fix { color: var(--vox-gold); }
+.activity-panel .ap-pct { margin-left: auto; color: var(--vox-cyan-400); }
+
+/* Auto-fix loop visual */
+.autofix-loop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.autofix-step {
+  flex: 1;
+  min-width: 130px;
+  padding: 14px 16px;
+  border-radius: var(--vox-radius-3);
+  background: var(--vox-alpha-panel-65);
+  border: 1px solid var(--vox-line-200);
+  text-align: center;
+}
+.autofix-step .as-num {
+  font-family: var(--vox-font-mono);
+  font-size: 10px;
+  color: var(--vox-cyan-500);
+  letter-spacing: 0.16em;
+  margin-bottom: 4px;
+}
+.autofix-step .as-label {
+  font-family: var(--vox-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--vox-ink-100);
+  margin-bottom: 2px;
+}
+.autofix-step .as-desc { font-size: 10px; color: var(--vox-ink-400); line-height: 1.4; }
+.autofix-step.fix { border-color: rgba(232, 168, 56, 0.4); background: rgba(232, 168, 56, 0.06); }
+.autofix-step.fix .as-num { color: var(--vox-gold); }
+.autofix-step.done { border-color: rgba(57, 255, 20, 0.4); background: rgba(57, 255, 20, 0.06); }
+.autofix-step.done .as-num { color: var(--vox-green); }
+.autofix-arrow { color: var(--vox-ink-500); font-family: var(--vox-font-mono); }
+
+.workshop-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1100px;
+  width: 100%;
+  margin-top: 30px;
+}
+.workshop-feat {
+  padding: 22px;
+  text-align: left;
+}
+.workshop-feat h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--vox-cyan-400);
+}
+.workshop-feat p { font-size: 12px; line-height: 1.6; color: var(--vox-ink-400); }
+.workshop-feat code {
+  font-family: var(--vox-font-mono);
+  font-size: 11px;
+  color: var(--vox-cyan-400);
+  background: rgba(57, 217, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 920px) {
+  .buildtype-grid { grid-template-columns: repeat(2, 1fr); }
+  .build-flow { grid-template-columns: 1fr; }
+  .flow-specialists { grid-template-columns: 1fr; }
+  .workshop-features { grid-template-columns: 1fr; max-width: 480px; }
+  .autofix-loop { flex-direction: column; align-items: stretch; }
+  .autofix-arrow { transform: rotate(90deg); }
+}
+
+/* ============================================
    WORKSPACE PAGES (DIAGNOSTICS + TERMINAL)
    ============================================ */
 .pages-grid {
@@ -2452,6 +2840,7 @@ section {
     <li><a href="#memory">Memory</a></li>
     <li><a href="#chat">Chat</a></li>
     <li><a href="#groups">Groups</a></li>
+    <li><a href="#workshop">Workshop</a></li>
     <li><a href="#studio">Studio</a></li>
     <li><a href="#workspace">Pages</a></li>
     <li><a href="#mcp">MCP</a></li>
@@ -2530,38 +2919,38 @@ section {
     <div class="agent-card glass console-edge reveal reveal-delay-1" data-agent="vox">
       <div class="agent-avatar">&#x1F4AC;</div>
       <div class="agent-name">CHATGPT</div>
-      <div class="agent-role">Your ChatGPT</div>
+      <div class="agent-role">ChatGPT Bridge &middot; Orchestrator</div>
       <div class="agent-state"><span class="dot" style="color: #E8A838;"></span> CONNECTED</div>
     </div>
     <div class="agent-card glass console-edge console-edge-b reveal reveal-delay-2" data-agent="claude">
       <div class="agent-avatar">&#x2726;</div>
       <div class="agent-name">CLAUDE</div>
-      <div class="agent-role">Your Claude</div>
+      <div class="agent-role">Claude Bridge</div>
       <div class="agent-state"><span class="dot" style="color: #D97757;"></span> CONNECTED</div>
     </div>
-    <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-3" data-agent="surge">
-      <div class="agent-avatar">&#x26a1;</div>
-      <div class="agent-name">SURGE</div>
-      <div class="agent-role">Engineering Agent</div>
-      <div class="agent-state"><span class="dot" style="color: var(--vox-cyan-500);"></span> OBSERVING</div>
-    </div>
-    <div class="agent-card glass console-edge console-edge-d reveal reveal-delay-4" data-agent="pulse">
+    <div class="agent-card glass console-edge console-edge-d reveal reveal-delay-3" data-agent="pulse">
       <div class="agent-avatar">&#x1f4ca;</div>
       <div class="agent-name">PULSE</div>
-      <div class="agent-role">Analysis Agent</div>
-      <div class="agent-state"><span class="dot" style="color: var(--vox-orange);"></span> ANALYSIS</div>
+      <div class="agent-role">Analyst &amp; Architect</div>
+      <div class="agent-state"><span class="dot" style="color: var(--vox-orange);"></span> PLANNING</div>
+    </div>
+    <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-4" data-agent="surge">
+      <div class="agent-avatar">&#x26a1;</div>
+      <div class="agent-name">SURGE</div>
+      <div class="agent-role">Lead Engineer</div>
+      <div class="agent-state"><span class="dot" style="color: var(--vox-cyan-500);"></span> BUILDING</div>
     </div>
     <div class="agent-card glass console-edge console-edge-e reveal reveal-delay-5" data-agent="prism">
       <div class="agent-avatar">&#x1f3a8;</div>
       <div class="agent-name">PRISM</div>
-      <div class="agent-role">Design Agent</div>
+      <div class="agent-role">UI / UX Designer</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-purple);"></span> DESIGN</div>
     </div>
     <div class="agent-card glass console-edge console-edge-f reveal reveal-delay-6" data-agent="static">
-      <div class="agent-avatar">&#x1f525;</div>
+      <div class="agent-avatar">&#x1f5c4;</div>
       <div class="agent-name">STATIC</div>
-      <div class="agent-role">Disruption Agent</div>
-      <div class="agent-state"><span class="dot" style="color: var(--vox-magenta);"></span> RISK</div>
+      <div class="agent-role">Data &amp; Backend Specialist</div>
+      <div class="agent-state"><span class="dot" style="color: var(--vox-magenta);"></span> PERSIST</div>
     </div>
   </div>
 </section>
@@ -2590,10 +2979,18 @@ section {
       <p>Playwright drives real browser windows with trusted keyboard input. No spoofed events, no brittle hacks.</p>
     </div>
     <div class="bridge-feat glass purple reveal reveal-delay-4">
-      <h4>Persistent Memory</h4>
-      <p>Three tiers of recall: curated knowledge, per-agent learnings, and compressed conversation history.</p>
+      <h4>SAVE-Locked Endpoints</h4>
+      <p>Endpoint URLs commit only when you press SAVE. Clobber protection blocks accidental edits from overwriting a working bridge URL.</p>
     </div>
     <div class="bridge-feat glass indigo reveal reveal-delay-5">
+      <h4>READY Gate</h4>
+      <p>Claude can&rsquo;t flip to READY without a live endpoint. No phantom-connected states &mdash; if it says ready, it actually is.</p>
+    </div>
+    <div class="bridge-feat glass cyan reveal reveal-delay-5">
+      <h4>Reload That Works</h4>
+      <p>Subprocess spawn with socket retry. The app rebinds cleanly without zombie processes or port collisions.</p>
+    </div>
+    <div class="bridge-feat glass gold reveal reveal-delay-6">
       <h4>Smart Routing</h4>
       <p>@mention any agent, fan out to the group, or let the router pick the best responder automatically.</p>
     </div>
@@ -2831,19 +3228,34 @@ section {
 
   <div class="refine-grid">
     <div class="refine-card glass cyan reveal reveal-delay-2">
+      <div class="refine-icon-row">&darr; &nbsp;STICKY BOTTOM</div>
+      <h4>Sticky-Bottom Autoscroll</h4>
+      <p>Pinned to the latest message while you&rsquo;re at the floor; scroll up and it stays put with hysteresis so a stray pixel doesn&rsquo;t yank you back down mid-read.</p>
+    </div>
+    <div class="refine-card glass purple reveal reveal-delay-3">
+      <div class="refine-icon-row">@ &nbsp;AUTOCOMPLETE</div>
+      <h4>@Mention Names, Done Right</h4>
+      <p>Type <code>@</code> and the popup shows real agent display names &mdash; CHATGPT, CLAUDE, SURGE, PULSE, PRISM, STATIC. Arrow keys to pick, Enter to insert. No more raw slugs.</p>
+    </div>
+    <div class="refine-card glass gold reveal reveal-delay-4">
+      <div class="refine-icon-row">CLEAR &nbsp;&rarr;&nbsp; PERSISTS</div>
+      <h4>Clear That Sticks</h4>
+      <p>Hit clear and the channel stays cleared across reloads. The clear timestamp is per-channel and durable; the database keeps every word, but the UI honors what you wiped.</p>
+    </div>
+    <div class="refine-card glass cyan reveal reveal-delay-2">
       <div class="refine-icon-row">:) &nbsp;&rarr;&nbsp; &#x1F642;</div>
       <h4>Emoticon to Emoji</h4>
       <p>Type <code>:)</code>, <code>&lt;3</code>, <code>:P</code> &mdash; Chroma swaps them live. 50+ classic emoticons mapped to modern emoji as you type.</p>
     </div>
     <div class="refine-card glass purple reveal reveal-delay-3">
-      <div class="refine-icon-row">CLEAR <span class="arrow">&rarr;</span> RECOVERABLE</div>
-      <h4>Soft Clear</h4>
-      <p>Wipe a channel from view without losing the audit trail. A per-channel clear timestamp hides old turns in the UI; the database keeps every word.</p>
-    </div>
-    <div class="refine-card glass gold reveal reveal-delay-4">
       <div class="refine-icon-row">&#x270B; &nbsp;INTERRUPT</div>
       <h4>Mid-Group Interrupt</h4>
       <p>Group chat wandering off course? Drop a new message and the autonomous loop yields after the current speaker. Your turn jumps the queue.</p>
+    </div>
+    <div class="refine-card glass gold reveal reveal-delay-4">
+      <div class="refine-icon-row">SOFT &nbsp;CLEAR</div>
+      <h4>Audit Trail Intact</h4>
+      <p>Clear hides turns from view but never from history. Every word stays in Postgres &mdash; recoverable, queryable, audit-clean.</p>
     </div>
   </div>
 </section>
@@ -3001,6 +3413,229 @@ section {
     <div class="groups-feat glass reveal reveal-delay-5" style="text-align: left;">
       <h4 style="color: var(--vox-magenta);">Vox-Styled Output</h4>
       <p>ANSI codes stripped, output colorized by context: prompt green, command cyan, errors red. Cyan &#10095; chevron, neon RUN button &mdash; same language as the rest of the OS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     7.7 WORKSHOP — BUILD PIPELINE
+     ============================================ -->
+<section id="workshop">
+  <div class="section-label reveal">Build</div>
+  <h2 class="section-title reveal reveal-delay-1">The <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Workshop</span></h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Describe what you want. Pick a build type, pick a style, hit go. Pulse architects the manifest, then Surge, Prism, and Static build their assigned files in parallel. The executor validates, the auto-fix loop heals what breaks, and you watch the whole thing happen live.
+  </p>
+
+  <div class="workshop-stack reveal reveal-delay-3">
+
+    <!-- STAGE 1: Build Type Selector -->
+    <div class="workshop-window">
+      <div class="workshop-window-bar">
+        <div class="wdot red"></div><div class="wdot yellow"></div><div class="wdot green"></div>
+        <span class="wtitle">workshop &mdash; new build</span>
+        <span class="wstep">STEP 1 &middot; BUILD TYPE</span>
+      </div>
+      <div class="workshop-stage">
+        <h4>Pick a Build Type</h4>
+        <p class="stage-sub">Animated chromatic borders breathe while you choose. Each type maps to its own scaffolding, deps, and runner.</p>
+        <div class="buildtype-grid">
+          <div class="buildtype-card">
+            <span class="bt-icon">&#x1f310;</span>
+            <div class="bt-name">WEB APP</div>
+            <div class="bt-desc">React / Next.js / Vite</div>
+          </div>
+          <div class="buildtype-card">
+            <span class="bt-icon">&#x1f5a5;</span>
+            <div class="bt-name">DESKTOP APP</div>
+            <div class="bt-desc">PySide6 / Tauri</div>
+          </div>
+          <div class="buildtype-card">
+            <span class="bt-icon">&#x26a1;</span>
+            <div class="bt-name">SCRIPT / TOOL</div>
+            <div class="bt-desc">CLI &middot; automation</div>
+          </div>
+          <div class="buildtype-card">
+            <span class="bt-icon">&#x1f3ae;</span>
+            <div class="bt-name">GAME</div>
+            <div class="bt-desc">Canvas &middot; Pygame</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2: Design Style Selector -->
+    <div class="workshop-window">
+      <div class="workshop-window-bar">
+        <div class="wdot red"></div><div class="wdot yellow"></div><div class="wdot green"></div>
+        <span class="wtitle">workshop &mdash; new build</span>
+        <span class="wstep">STEP 2 &middot; DESIGN STYLE</span>
+      </div>
+      <div class="workshop-stage">
+        <h4>Pick a Design Style</h4>
+        <p class="stage-sub">Prism scaffolds the UI in the style you pick. Seven curated palettes plus full custom.</p>
+        <div class="designstyle-row">
+          <span class="designstyle-chip voxos">VOX OS</span>
+          <span class="designstyle-chip glass">GLASS MORPHISM</span>
+          <span class="designstyle-chip brutal">NEO BRUTALIST</span>
+          <span class="designstyle-chip midnight">MIDNIGHT LUXE</span>
+          <span class="designstyle-chip softlight">SOFT LIGHT</span>
+          <span class="designstyle-chip cyberpunk">CYBERPUNK</span>
+          <span class="designstyle-chip custom">+ CUSTOM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3: Multi-Agent Build -->
+    <div class="workshop-window">
+      <div class="workshop-window-bar">
+        <div class="wdot red"></div><div class="wdot yellow"></div><div class="wdot green"></div>
+        <span class="wtitle">workshop &mdash; live build</span>
+        <span class="wstep">STEP 3 &middot; MULTI-AGENT BUILD</span>
+      </div>
+      <div class="workshop-stage">
+        <h4>Pulse Architects. Specialists Build.</h4>
+        <p class="stage-sub">Pulse produces the file manifest and assigns each file to the right specialist. Surge, Prism, and Static execute in parallel &mdash; each writing only the files they own.</p>
+
+        <div class="build-flow">
+          <div class="flow-architect">
+            <div class="fa-icon">&#x1f4ca;</div>
+            <div class="fa-name">PULSE</div>
+            <div class="fa-role">Analyst &amp; Architect</div>
+            <div class="fa-task">Reads your prompt &middot; produces file manifest &middot; assigns owners &middot; orders dependencies</div>
+          </div>
+          <div>
+            <div class="flow-arrow">&darr; ASSIGNS FILES &darr;</div>
+            <div class="flow-specialists">
+              <div class="flow-spec surge">
+                <div class="fs-name">SURGE</div>
+                <div class="fs-role">Lead Engineer &middot; core logic</div>
+                <div class="fs-files">
+                  <div>main.py</div>
+                  <div>core/runner.py</div>
+                  <div>utils/parser.py</div>
+                </div>
+              </div>
+              <div class="flow-spec prism">
+                <div class="fs-name">PRISM</div>
+                <div class="fs-role">UI / UX &middot; styling</div>
+                <div class="fs-files">
+                  <div>ui/window.py</div>
+                  <div>ui/theme.qss</div>
+                  <div>assets/icons.svg</div>
+                </div>
+              </div>
+              <div class="flow-spec static-s">
+                <div class="fs-name">STATIC</div>
+                <div class="fs-role">Data &amp; Backend</div>
+                <div class="fs-files">
+                  <div>db/schema.sql</div>
+                  <div>db/migrate.py</div>
+                  <div>api/routes.py</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-panel">
+          <div class="ap-head">
+            <span class="ap-title">LIVE ACTIVITY</span>
+            <span class="ap-halt">&#9632; HALT</span>
+          </div>
+          <div class="ap-line"><span class="ap-tag pulse">PULSE</span><span>Manifest ready &middot; 9 files assigned</span><span class="ap-pct">100%</span></div>
+          <div class="ap-line"><span class="ap-tag exec">DEPS</span><span>Auto-installing pyside6, asyncpg, anthropic&hellip;</span><span class="ap-pct">100%</span></div>
+          <div class="ap-line"><span class="ap-tag surge">SURGE</span><span>Writing core/runner.py</span><span class="ap-pct">62%</span></div>
+          <div class="ap-line"><span class="ap-tag prism">PRISM</span><span>Writing ui/theme.qss</span><span class="ap-pct">48%</span></div>
+          <div class="ap-line"><span class="ap-tag static">STATIC</span><span>Writing db/schema.sql</span><span class="ap-pct">71%</span></div>
+          <div class="ap-line"><span class="ap-tag exec">EXEC</span><span>Validating build &middot; running entrypoint&hellip;</span><span class="ap-pct">&middot;&middot;&middot;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4: Auto-fix loop -->
+    <div class="workshop-window">
+      <div class="workshop-window-bar">
+        <div class="wdot red"></div><div class="wdot yellow"></div><div class="wdot green"></div>
+        <span class="wtitle">workshop &mdash; auto-fix loop</span>
+        <span class="wstep">STEP 4 &middot; VALIDATE &amp; HEAL</span>
+      </div>
+      <div class="workshop-stage">
+        <h4>Validate. Fail. Fix. Repeat.</h4>
+        <p class="stage-sub">The executor runs the build, captures errors, and feeds them back to the agents. Up to three auto-fix attempts before it surfaces a failure card with a one-click rebuild.</p>
+        <div class="autofix-loop">
+          <div class="autofix-step">
+            <div class="as-num">RUN</div>
+            <div class="as-label">EXECUTE</div>
+            <div class="as-desc">Spawn the build, capture stdout / stderr</div>
+          </div>
+          <div class="autofix-arrow">&rarr;</div>
+          <div class="autofix-step fix">
+            <div class="as-num">ATTEMPT 1</div>
+            <div class="as-label">AUTO-FIX</div>
+            <div class="as-desc">Agents read error, patch files</div>
+          </div>
+          <div class="autofix-arrow">&rarr;</div>
+          <div class="autofix-step fix">
+            <div class="as-num">ATTEMPT 2</div>
+            <div class="as-label">AUTO-FIX</div>
+            <div class="as-desc">Re-run, narrower diff</div>
+          </div>
+          <div class="autofix-arrow">&rarr;</div>
+          <div class="autofix-step fix">
+            <div class="as-num">ATTEMPT 3</div>
+            <div class="as-label">AUTO-FIX</div>
+            <div class="as-desc">Last try before surfacing</div>
+          </div>
+          <div class="autofix-arrow">&rarr;</div>
+          <div class="autofix-step done">
+            <div class="as-num">PASS</div>
+            <div class="as-label">SHIP IT</div>
+            <div class="as-desc">Build summary card with artifacts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Workshop features grid -->
+  <div class="workshop-features">
+    <div class="workshop-feat glass reveal reveal-delay-2">
+      <h4>Inline New-Workshop Form</h4>
+      <p>No more system dialog. The new-build form lives inside the workspace &mdash; same dark glass, same focus state, no context switch.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-2">
+      <h4>Validation Gate</h4>
+      <p>Vague or nonsense prompts get rejected at the door. A clarification state asks the right follow-ups before any agent burns tokens.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-3">
+      <h4>Auto Dependency Install</h4>
+      <p>Pulse&rsquo;s manifest doubles as a dep manifest. <code>pip</code> / <code>npm</code> runs <em>before</em> the first file is written. No half-built projects with missing imports.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-3">
+      <h4>Build Executor</h4>
+      <p>Every build runs. Output is parsed, errors captured, exit codes checked. If it doesn&rsquo;t start, it didn&rsquo;t build &mdash; no false greens.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-4">
+      <h4>Resume with <code>/rebuild</code></h4>
+      <p>Interrupted a build? Closed the app? <code>/rebuild</code> picks it up where it left off &mdash; same manifest, same assignments, same state.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-4">
+      <h4>Halt Button</h4>
+      <p>Mid-build U-turn? Hit halt. Agents stop cleanly, the partial state is preserved, and the workshop returns to idle.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-5">
+      <h4>Build Summary Cards</h4>
+      <p>Every successful build lands as a summary card &mdash; files written, deps installed, runtime, artifact path. One click to open.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-5">
+      <h4>Failure Error Cards</h4>
+      <p>When auto-fix exhausts its attempts, the failure surfaces as a rich error card with the captured trace and a rebuild button.</p>
+    </div>
+    <div class="workshop-feat glass reveal reveal-delay-5">
+      <h4>Live Activity Panel</h4>
+      <p>Real-time agent progress as the build runs. Percentages per agent, current file, current phase. See exactly where you are.</p>
     </div>
   </div>
 </section>
@@ -3347,6 +3982,11 @@ section {
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
       <div class="timeline-title">Diagnostics &amp; Terminal Pages</div>
       <div class="timeline-desc">Six health checks with retry + report copy. Tabbed multi-shell with PowerShell, CMD, Git Bash, WSL.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-5">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Workshop Build Pipeline</div>
+      <div class="timeline-desc">Build Type + Design Style selectors, Pulse-led manifest, parallel specialist builds, auto deps, executor + 3-attempt auto-fix loop, <code>/rebuild</code> resume, live activity panel, halt button.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-5">
       <div class="timeline-phase">Now</div>

@@ -2919,37 +2919,37 @@ section {
     <div class="agent-card glass console-edge reveal reveal-delay-1" data-agent="vox">
       <div class="agent-avatar">&#x1F4AC;</div>
       <div class="agent-name">CHATGPT</div>
-      <div class="agent-role">ChatGPT Bridge &middot; Orchestrator</div>
+      <div class="agent-role">Bridge</div>
       <div class="agent-state"><span class="dot" style="color: #E8A838;"></span> CONNECTED</div>
     </div>
     <div class="agent-card glass console-edge console-edge-b reveal reveal-delay-2" data-agent="claude">
       <div class="agent-avatar">&#x2726;</div>
       <div class="agent-name">CLAUDE</div>
-      <div class="agent-role">Claude Bridge</div>
+      <div class="agent-role">Bridge</div>
       <div class="agent-state"><span class="dot" style="color: #D97757;"></span> CONNECTED</div>
     </div>
     <div class="agent-card glass console-edge console-edge-d reveal reveal-delay-3" data-agent="pulse">
       <div class="agent-avatar">&#x1f4ca;</div>
       <div class="agent-name">PULSE</div>
-      <div class="agent-role">Analyst &amp; Architect</div>
+      <div class="agent-role">Analyst</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-orange);"></span> PLANNING</div>
     </div>
     <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-4" data-agent="surge">
       <div class="agent-avatar">&#x26a1;</div>
       <div class="agent-name">SURGE</div>
-      <div class="agent-role">Lead Engineer</div>
+      <div class="agent-role">Engineer</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-cyan-500);"></span> BUILDING</div>
     </div>
     <div class="agent-card glass console-edge console-edge-e reveal reveal-delay-5" data-agent="prism">
       <div class="agent-avatar">&#x1f3a8;</div>
       <div class="agent-name">PRISM</div>
-      <div class="agent-role">UI / UX Designer</div>
+      <div class="agent-role">Designer</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-purple);"></span> DESIGN</div>
     </div>
     <div class="agent-card glass console-edge console-edge-f reveal reveal-delay-6" data-agent="static">
       <div class="agent-avatar">&#x1f5c4;</div>
       <div class="agent-name">STATIC</div>
-      <div class="agent-role">Data &amp; Backend Specialist</div>
+      <div class="agent-role">Architect</div>
       <div class="agent-state"><span class="dot" style="color: var(--vox-magenta);"></span> PERSIST</div>
     </div>
   </div>
@@ -3424,7 +3424,7 @@ section {
   <div class="section-label reveal">Build</div>
   <h2 class="section-title reveal reveal-delay-1">The <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Workshop</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Describe what you want. Pick a build type, pick a style, hit go. Pulse architects the manifest, then Surge, Prism, and Static build their assigned files in parallel. The executor validates, the auto-fix loop heals what breaks, and you watch the whole thing happen live.
+    Describe what you want. Pick a build type, pick a style, hit go. Pulse analyzes your prompt and produces the file manifest, then Surge, Prism, and Static build their assigned files in parallel. The executor validates, the auto-fix loop heals what breaks, and you watch the whole thing happen live.
   </p>
 
   <div class="workshop-stack reveal reveal-delay-3">
@@ -3494,14 +3494,14 @@ section {
         <span class="wstep">STEP 3 &middot; MULTI-AGENT BUILD</span>
       </div>
       <div class="workshop-stage">
-        <h4>Pulse Architects. Specialists Build.</h4>
+        <h4>Pulse Plans. Specialists Build.</h4>
         <p class="stage-sub">Pulse produces the file manifest and assigns each file to the right specialist. Surge, Prism, and Static execute in parallel &mdash; each writing only the files they own.</p>
 
         <div class="build-flow">
           <div class="flow-architect">
             <div class="fa-icon">&#x1f4ca;</div>
             <div class="fa-name">PULSE</div>
-            <div class="fa-role">Analyst &amp; Architect</div>
+            <div class="fa-role">Analyst</div>
             <div class="fa-task">Reads your prompt &middot; produces file manifest &middot; assigns owners &middot; orders dependencies</div>
           </div>
           <div>
@@ -3509,7 +3509,7 @@ section {
             <div class="flow-specialists">
               <div class="flow-spec surge">
                 <div class="fs-name">SURGE</div>
-                <div class="fs-role">Lead Engineer &middot; core logic</div>
+                <div class="fs-role">Engineer &middot; core logic</div>
                 <div class="fs-files">
                   <div>main.py</div>
                   <div>core/runner.py</div>
@@ -3518,7 +3518,7 @@ section {
               </div>
               <div class="flow-spec prism">
                 <div class="fs-name">PRISM</div>
-                <div class="fs-role">UI / UX &middot; styling</div>
+                <div class="fs-role">Designer &middot; styling</div>
                 <div class="fs-files">
                   <div>ui/window.py</div>
                   <div>ui/theme.qss</div>
@@ -3527,7 +3527,7 @@ section {
               </div>
               <div class="flow-spec static-s">
                 <div class="fs-name">STATIC</div>
-                <div class="fs-role">Data &amp; Backend</div>
+                <div class="fs-role">Architect &middot; data &amp; backend</div>
                 <div class="fs-files">
                   <div>db/schema.sql</div>
                   <div>db/migrate.py</div>

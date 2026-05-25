@@ -2976,19 +2976,19 @@ section {
     </div>
     <div class="bridge-feat glass gold reveal reveal-delay-3">
       <h4>Real Browser Sessions</h4>
-      <p>Playwright drives real browser windows with trusted keyboard input. No spoofed events, no brittle hacks.</p>
+      <p>Playwright drives real browser windows with trusted keyboard input. No spoofed events, no brittle hacks. Personal logged-in sessions preserved &mdash; no API swap, no new subscription.</p>
     </div>
     <div class="bridge-feat glass purple reveal reveal-delay-4">
-      <h4>SAVE-Locked Endpoints</h4>
-      <p>Endpoint URLs commit only when you press SAVE. Clobber protection blocks accidental edits from overwriting a working bridge URL.</p>
+      <h4>Invisible Autoconnect</h4>
+      <p>Chrome launches offscreen, hidden from the Windows taskbar. No focus stealing, no flashing windows &mdash; the bridges feel like background services. <code>Open Helper Browser</code> reveals a visible window for login or debug.</p>
     </div>
     <div class="bridge-feat glass indigo reveal reveal-delay-5">
-      <h4>READY Gate</h4>
-      <p>Claude can&rsquo;t flip to READY without a live endpoint. No phantom-connected states &mdash; if it says ready, it actually is.</p>
+      <h4>Warm-Session Reuse</h4>
+      <p>If the page is already on the target URL and the composer is ready, the bridge skips the reload and reconnects in milliseconds. No more &ldquo;Connecting&hellip;&rdquo; flash on every UI mount.</p>
     </div>
     <div class="bridge-feat glass cyan reveal reveal-delay-5">
-      <h4>Reload That Works</h4>
-      <p>Subprocess spawn with socket retry. The app rebinds cleanly without zombie processes or port collisions.</p>
+      <h4>READY Gate</h4>
+      <p>Bridges can&rsquo;t flip to READY without a live composer. Polled ready-check + status codes (READY, LOGIN_REQUIRED, VERIFICATION_REQUIRED, BLOCKED) &mdash; if it says ready, it actually is.</p>
     </div>
     <div class="bridge-feat glass gold reveal reveal-delay-6">
       <h4>Smart Routing</h4>
@@ -3057,16 +3057,16 @@ section {
 
   <div class="memory-features">
     <div class="memory-feat glass reveal reveal-delay-3">
-      <h4>Relevance Scoring</h4>
-      <p>Importance + recency decay. Recent high-importance memories surface first.</p>
+      <h4>Highlights Reel</h4>
+      <p>Pinned, importance-ranked memories surface to every agent in every chat. The compressed view of what matters &mdash; auto-curated, manually overridable.</p>
     </div>
     <div class="memory-feat glass reveal reveal-delay-4">
-      <h4>Fire &amp; Forget</h4>
-      <p>Memory hooks run asynchronously. Zero latency impact on conversations.</p>
+      <h4>Per-Agent Access Control</h4>
+      <p>Agents read only what they&rsquo;re cleared for. MemoryAccessError on the rest. Shared memories are global; per-agent learnings stay private.</p>
     </div>
     <div class="memory-feat glass reveal reveal-delay-5">
-      <h4>Fail-Soft Design</h4>
-      <p>Memory service failures never break conversations. CHROMA_MEMORY_DISABLED kill switch.</p>
+      <h4>Memory Settings Tab</h4>
+      <p>Live tunables: recall depth, highlight cap, summary cadence, write enable. Tweak from the UI, no restart. Fail-soft &mdash; CHROMA_MEMORY_DISABLED kill switch on the env side.</p>
     </div>
   </div>
 </section>
@@ -3126,16 +3126,16 @@ section {
 
   <div class="chat-features">
     <div class="chat-feat glass reveal reveal-delay-3">
-      <h4>8 Participants</h4>
-      <p>You, ChatGPT, Claude, Surge, Pulse, Prism, Static, and Group &mdash; each with distinct identity.</p>
+      <h4>Multi-Voice Rounds</h4>
+      <p>Stake-based scoring picks every agent with skin in the question and dispatches them in parallel. Each peer gets a lane blurb so replies stay distinct &mdash; no clones, no restated framing.</p>
     </div>
     <div class="chat-feat glass reveal reveal-delay-4">
       <h4>@Mention Routing</h4>
-      <p>Autocomplete popup, regex parsing, direct/group/fanout modes.</p>
+      <p>Autocomplete popup with real display names. Direct, group, and fanout modes. <code>@Group</code> brings everyone in; <code>@Surge</code> opens with that lane.</p>
     </div>
     <div class="chat-feat glass reveal reveal-delay-5">
-      <h4>Cross-Review</h4>
-      <p>ChatGPT and Claude can review each other's work for multi-perspective reasoning.</p>
+      <h4>Autonomous Debate</h4>
+      <p>When agents conflict, the conductor opens a structured debate round with an LLM judge for resolution. Disagreement becomes signal, not noise.</p>
     </div>
   </div>
 </section>
@@ -3279,40 +3279,40 @@ section {
     </div>
     <div class="studio-body">
       <div class="studio-pane">
-        <h4>Personality Chips</h4>
+        <h4>Tone &middot; Style &middot; Verbosity</h4>
         <div class="chip-row">
-          <span class="chip active">Analytical</span>
+          <span class="chip active">Excitable</span>
           <span class="chip active">Direct</span>
-          <span class="chip">Creative</span>
-          <span class="chip active">Precise</span>
-          <span class="chip">Empathetic</span>
+          <span class="chip">Dry</span>
+          <span class="chip active">Medium</span>
+          <span class="chip">Warm</span>
           <span class="chip">Provocative</span>
         </div>
         <h4>System Prompt</h4>
-        <textarea class="mock-input" rows="5" spellcheck="false">You are Surge, Chroma's engineering agent. You approach problems with precision and technical depth. When proposing actions with side effects, always use the proposal workflow for human approval.&#10;&#10;Focus: architecture, code, systems thinking.</textarea>
+        <textarea class="mock-input" rows="5" spellcheck="false">You are Surge, lead engineer and builder. You create the load-bearing files, choose the practical path, and assign the rest.&#10;&#10;Reflex when asked anything: "What is the simplest thing that works, and can we build it now?"&#10;&#10;Yield: visual feel to Prism, data shape to Static, runtime confidence to Pulse.</textarea>
       </div>
       <div class="studio-pane">
         <h4>Model Provider</h4>
         <div class="provider-list">
           <div class="provider-item selected">
-            <span class="provider-name">Claude Opus 4</span>
-            <span class="provider-tag">API</span>
+            <span class="provider-name">claude-sonnet-4-6</span>
+            <span class="provider-tag">ANTHROPIC</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">GPT-4o</span>
-            <span class="provider-tag">API</span>
+            <span class="provider-name">claude-opus-4-7</span>
+            <span class="provider-tag">ANTHROPIC</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">Claude 3.5 Sonnet</span>
-            <span class="provider-tag">API</span>
+            <span class="provider-name">claude-haiku-4-5</span>
+            <span class="provider-tag">ANTHROPIC</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">Llama 3.1 70B</span>
-            <span class="provider-tag local">LOCAL</span>
+            <span class="provider-name">gpt-5.4-mini</span>
+            <span class="provider-tag">OPENAI</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">Qwen 2.5 72B</span>
-            <span class="provider-tag local">LOCAL</span>
+            <span class="provider-name">mistral / qwen / llama</span>
+            <span class="provider-tag local">OLLAMA</span>
           </div>
         </div>
       </div>
@@ -3602,8 +3602,8 @@ section {
   <!-- Workshop features grid -->
   <div class="workshop-features">
     <div class="workshop-feat glass reveal reveal-delay-2">
-      <h4>Inline New-Workshop Form</h4>
-      <p>No more system dialog. The new-build form lives inside the workspace &mdash; same dark glass, same focus state, no context switch.</p>
+      <h4>Popup-First Build Flow</h4>
+      <p>Build type, design style, then the task prompt &mdash; each as its own focused popup, in that order. No long inline form, no context switching. Three quick picks and Pulse takes it from there.</p>
     </div>
     <div class="workshop-feat glass reveal reveal-delay-2">
       <h4>Validation Gate</h4>
@@ -3987,6 +3987,16 @@ section {
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
       <div class="timeline-title">Workshop Build Pipeline</div>
       <div class="timeline-desc">Build Type + Design Style selectors, Pulse-led manifest, parallel specialist builds, auto deps, executor + 3-attempt auto-fix loop, <code>/rebuild</code> resume, live activity panel, halt button.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-5">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Conductor Intelligence</div>
+      <div class="timeline-desc">Stake-scored multi-voice rounds, anti-redundancy lane briefs, autonomous debate with LLM judge, reactive commentary, tool-equipped research, Ollama tiered routing for cheap local work.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-5">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Invisible Bridges &amp; Autosaved Studio</div>
+      <div class="timeline-desc">Offscreen-headed Chrome, taskbar-hidden, warm-session reuse on autoconnect. Agent Studio General tab autosaves &mdash; SAVE button retired. Memory Settings tab exposes live tunables.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-5">
       <div class="timeline-phase">Now</div>

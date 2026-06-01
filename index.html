@@ -2932,7 +2932,7 @@ section {
       <div class="agent-avatar">&#x1f4ca;</div>
       <div class="agent-name">PULSE</div>
       <div class="agent-role">Analyst</div>
-      <div class="agent-state"><span class="dot" style="color: var(--vox-orange);"></span> PLANNING</div>
+      <div class="agent-state"><span class="dot" style="color: var(--vox-orange);"></span> REVIEWING</div>
     </div>
     <div class="agent-card glass console-edge console-edge-c reveal reveal-delay-4" data-agent="surge">
       <div class="agent-avatar">&#x26a1;</div>
@@ -3177,7 +3177,7 @@ section {
             <span class="mode-tab">BUILD</span>
           </div>
           <div class="ask-toggle">
-            ASK WHEN UNSURE
+            MULTI-VOICE
             <span class="toggle-switch"></span>
           </div>
         </div>
@@ -3210,8 +3210,8 @@ section {
       <p>CHAT for conversation, BRAINSTORM for ideation rounds, BUILD for proposal-driven work. The mode shapes how agents respond.</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-5">
-      <h4>Ask When Unsure</h4>
-      <p>Toggle on to make agents stop and ask before acting on ambiguity. Off for fast flow when intent is clear.</p>
+      <h4>Multi-Voice Toggle</h4>
+      <p>Workspace-wide switch in Agent Studio &gt; General. On = every agent with stake responds in parallel. Off = single best responder per turn for tighter back-and-forth.</p>
     </div>
   </div>
 </section>
@@ -3424,7 +3424,7 @@ section {
   <div class="section-label reveal">Build</div>
   <h2 class="section-title reveal reveal-delay-1">The <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Workshop</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Describe what you want. Pick a build type, pick a style, hit go. Pulse analyzes your prompt and produces the file manifest, then Surge, Prism, and Static build their assigned files in parallel. The executor validates, the auto-fix loop heals what breaks, and you watch the whole thing happen live.
+    Describe what you want. Pick a build type, pick a style, hit go. Surge drafts the file manifest and assigns each file to the right specialist. Surge, Prism, and Static build their assigned files in parallel, then Pulse runs the QA integration check across everything. The executor validates, the auto-fix loop heals what breaks, and you watch the whole thing happen live.
   </p>
 
   <div class="workshop-stack reveal reveal-delay-3">
@@ -3494,15 +3494,15 @@ section {
         <span class="wstep">STEP 3 &middot; MULTI-AGENT BUILD</span>
       </div>
       <div class="workshop-stage">
-        <h4>Pulse Plans. Specialists Build.</h4>
-        <p class="stage-sub">Pulse produces the file manifest and assigns each file to the right specialist. Surge, Prism, and Static execute in parallel &mdash; each writing only the files they own.</p>
+        <h4>Surge Plans. Specialists Build. Pulse Reviews.</h4>
+        <p class="stage-sub">Surge drafts the file manifest and assigns each file to the right specialist. Surge, Prism, and Static execute in parallel &mdash; each writing only the files they own. Pulse runs the QA integration check at the end.</p>
 
         <div class="build-flow">
           <div class="flow-architect">
-            <div class="fa-icon">&#x1f4ca;</div>
-            <div class="fa-name">PULSE</div>
-            <div class="fa-role">Analyst</div>
-            <div class="fa-task">Reads your prompt &middot; produces file manifest &middot; assigns owners &middot; orders dependencies</div>
+            <div class="fa-icon">&#x26a1;</div>
+            <div class="fa-name">SURGE</div>
+            <div class="fa-role">Architect</div>
+            <div class="fa-task">Reads your prompt &middot; drafts file manifest &middot; assigns owners &middot; orders dependencies</div>
           </div>
           <div>
             <div class="flow-arrow">&darr; ASSIGNS FILES &darr;</div>
@@ -3543,11 +3543,12 @@ section {
             <span class="ap-title">LIVE ACTIVITY</span>
             <span class="ap-halt">&#9632; HALT</span>
           </div>
-          <div class="ap-line"><span class="ap-tag pulse">PULSE</span><span>Manifest ready &middot; 9 files assigned</span><span class="ap-pct">100%</span></div>
+          <div class="ap-line"><span class="ap-tag surge">SURGE</span><span>Manifest ready &middot; 9 files assigned</span><span class="ap-pct">100%</span></div>
           <div class="ap-line"><span class="ap-tag exec">DEPS</span><span>Auto-installing pyside6, asyncpg, anthropic&hellip;</span><span class="ap-pct">100%</span></div>
           <div class="ap-line"><span class="ap-tag surge">SURGE</span><span>Writing core/runner.py</span><span class="ap-pct">62%</span></div>
           <div class="ap-line"><span class="ap-tag prism">PRISM</span><span>Writing ui/theme.qss</span><span class="ap-pct">48%</span></div>
           <div class="ap-line"><span class="ap-tag static">STATIC</span><span>Writing db/schema.sql</span><span class="ap-pct">71%</span></div>
+          <div class="ap-line"><span class="ap-tag pulse">PULSE</span><span>QA integration check &middot; cross-file consistency &middot; bug hunt</span><span class="ap-pct">&middot;&middot;&middot;</span></div>
           <div class="ap-line"><span class="ap-tag exec">EXEC</span><span>Validating build &middot; running entrypoint&hellip;</span><span class="ap-pct">&middot;&middot;&middot;</span></div>
         </div>
       </div>

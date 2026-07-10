@@ -452,35 +452,68 @@ section {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  animation: scrollBounce 2s ease-in-out infinite;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 3;
 }
 
 .scroll-indicator span {
   font-family: var(--vox-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--vox-ink-500);
+  color: var(--vox-cyan-400);
+  padding: 8px 18px;
+  border-radius: var(--vox-radius-pill);
+  background: rgba(57, 217, 255, 0.08);
+  border: 1px solid rgba(57, 217, 255, 0.35);
+  white-space: nowrap;
+  animation: scrollGlow 2s ease-in-out infinite;
 }
 
-.scroll-indicator .arrow {
-  width: 20px;
-  height: 20px;
-  border-right: 1px solid var(--vox-ink-500);
-  border-bottom: 1px solid var(--vox-ink-500);
-  transform: rotate(45deg);
+.scroll-chevrons {
+  position: relative;
+  width: 24px;
+  height: 22px;
 }
 
-@keyframes scrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-  50% { transform: translateX(-50%) translateY(8px); opacity: 0.5; }
+.scroll-chevrons i {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid var(--vox-cyan-500);
+  border-bottom: 2px solid var(--vox-cyan-500);
+  transform: translateX(-50%) rotate(45deg);
+  filter: drop-shadow(0 0 6px rgba(57, 217, 255, 0.7));
+  animation: chevDrop 1.5s ease-in-out infinite;
+}
+
+.scroll-chevrons i:nth-child(2) { animation-delay: 0.25s; }
+
+.scroll-indicator:hover span {
+  color: #ffffff;
+  border-color: rgba(57, 217, 255, 0.7);
+}
+
+@keyframes chevDrop {
+  0% { opacity: 0; top: -3px; }
+  40% { opacity: 1; }
+  100% { opacity: 0; top: 11px; }
+}
+
+@keyframes scrollGlow {
+  0%, 100% { box-shadow: 0 0 14px rgba(57, 217, 255, 0.20); }
+  50% { box-shadow: 0 0 26px rgba(57, 217, 255, 0.45); }
 }
 
 /* ============================================
@@ -2868,10 +2901,10 @@ section {
       <a href="#vision" class="btn-ghost">Meet the Agents</a>
     </div>
   </div>
-  <div class="scroll-indicator">
-    <span>Scroll</span>
-    <div class="arrow"></div>
-  </div>
+  <a href="#problem" class="scroll-indicator" aria-label="Scroll down to explore the full page">
+    <span>Scroll to explore</span>
+    <span class="scroll-chevrons"><i></i><i></i></span>
+  </a>
 </section>
 
 <!-- ============================================

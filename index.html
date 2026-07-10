@@ -2831,15 +2831,20 @@ section {
 <div class="ambient-bg"></div>
 <div class="grid-overlay"></div>
 
+<style>
+.nav-brand { display: inline-flex; align-items: center; gap: 9px; }
+.nav-brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--vox-green); box-shadow: 0 0 8px var(--vox-green); animation: dotPulse 2s ease-in-out infinite; }
+</style>
 <!-- NAV -->
 <nav class="nav" id="mainNav">
-  <a href="#hero" class="nav-brand">CHROMA</a>
+  <a href="#hero" class="nav-brand"><span class="nav-brand-dot"></span>CHROMA</a>
   <ul class="nav-links">
     <li><a href="#vision">Agents</a></li>
     <li><a href="#bridge">Bridge</a></li>
     <li><a href="#memory">Memory</a></li>
     <li><a href="#chat">Chat</a></li>
     <li><a href="#groups">Groups</a></li>
+    <li><a href="#blueprint">Blueprint</a></li>
     <li><a href="#workshop">Workshop</a></li>
     <li><a href="#studio">Studio</a></li>
     <li><a href="#workspace">Pages</a></li>
@@ -2856,7 +2861,7 @@ section {
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
     <div class="hero-eyebrow reveal">
-      <span></span> VOX OS <span></span>
+      <span></span> VOX OS &middot; 2026 <span></span>
     </div>
     <h1 class="hero-title reveal reveal-delay-1">CHROMA</h1>
     <p class="hero-tagline reveal reveal-delay-2">
@@ -2994,6 +2999,10 @@ section {
       <h4>Smart Routing</h4>
       <p>@mention any agent, fan out to the group, or let the router pick the best responder automatically.</p>
     </div>
+    <div class="bridge-feat glass purple reveal reveal-delay-6">
+      <h4>Or Skip the Browser</h4>
+      <p>Every agent can run on a first-class API path instead &mdash; Anthropic, OpenAI, and local Ollama, with fast / balanced / smart tiers, streaming, and an agentic tool-use loop. Same agents, keys instead of tabs.</p>
+    </div>
   </div>
 </section>
 
@@ -3037,7 +3046,7 @@ section {
           <span class="step-arrow">&#x25B6;</span>
         </div>
         <div class="pipeline-step">
-          <span class="step-icon">&#x2728;</span> Haiku Extraction
+          <span class="step-icon">&#x2728;</span> Haiku 4.5 Extraction
           <span class="step-arrow">&#x25B6;</span>
         </div>
         <div class="pipeline-step">
@@ -3147,7 +3156,7 @@ section {
   <div class="section-label reveal">Compose</div>
   <h2 class="section-title reveal reveal-delay-1">Pick Your <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Channel</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Boardroom is everyone at the table. Six more group slots wait next to it &mdash; save any crew, switch with one click. Below the chat: three modes (CHAT, BRAINSTORM, BUILD), an ASK WHEN UNSURE safety toggle, and the active agent roster on the right.
+    Boardroom is everyone at the table; Collective is the local four. Save more named crews next to them &mdash; switch with one click. Below the chat: two modes (CHAT for talk, BRAINSTORM to shape a Blueprint), a MULTI-VOICE toggle, and the active agent roster on the right. Build moved to the Workshop, sourced straight from your Blueprint.
   </p>
 
   <div class="compose-mockup glass-strong reveal reveal-delay-3">
@@ -3174,7 +3183,6 @@ section {
           <div class="mode-tabs">
             <span class="mode-tab active">CHAT</span>
             <span class="mode-tab">BRAINSTORM</span>
-            <span class="mode-tab">BUILD</span>
           </div>
           <div class="ask-toggle">
             MULTI-VOICE
@@ -3202,16 +3210,115 @@ section {
 
   <div class="groups-features">
     <div class="groups-feat glass reveal reveal-delay-3">
-      <h4>Boardroom + 6 Groups</h4>
-      <p>The default channel is Boardroom. Save up to six more named groups next to it &mdash; each with its own agents, history, and mode.</p>
+      <h4>Boardroom, Collective + Groups</h4>
+      <p>Boardroom is the full table; Collective is your local four. Save more named groups next to them &mdash; each with its own agents, history, and mode.</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-4">
-      <h4>Three Modes</h4>
-      <p>CHAT for conversation, BRAINSTORM for ideation rounds, BUILD for proposal-driven work. The mode shapes how agents respond.</p>
+      <h4>Two Modes</h4>
+      <p>CHAT for conversation, BRAINSTORM for ideation rounds that crystallize into a versioned Blueprint. The mode shapes how agents respond &mdash; and what they produce.</p>
     </div>
     <div class="groups-feat glass reveal reveal-delay-5">
       <h4>Multi-Voice Toggle</h4>
       <p>Workspace-wide switch in Agent Studio &gt; General. On = every agent with stake responds in parallel. Off = single best responder per turn for tighter back-and-forth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     6.55 BLUEPRINT — BRAINSTORM OUTPUT
+     ============================================ -->
+<style>
+.bp-mockup { width: 100%; max-width: 960px; border-radius: var(--vox-radius-4); overflow: hidden; margin-top: 24px; }
+.bp-header { padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--vox-line-100); background: var(--vox-alpha-panel-80); }
+.bp-header .mem-dot { width: 10px; height: 10px; border-radius: 50%; }
+.bp-title-bar { font-family: var(--vox-font-mono); font-size: 12px; color: var(--vox-ink-400); margin-left: 8px; }
+.bp-ver { margin-left: auto; font-family: var(--vox-font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--vox-purple); padding: 3px 10px; border: 1px solid rgba(159,120,255,0.35); border-radius: var(--vox-radius-pill); background: rgba(159,120,255,0.08); }
+.bp-body { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1px; background: var(--vox-line-100); }
+.bp-pane { padding: 26px; background: var(--vox-alpha-panel-96); }
+.bp-pane h4 { font-family: var(--vox-font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--vox-ink-500); margin-bottom: 16px; }
+.bp-readiness { margin-bottom: 22px; }
+.bp-readiness-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.bp-readiness-label { font-family: var(--vox-font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--vox-ink-400); text-transform: uppercase; }
+.bp-readiness-pct { font-family: var(--vox-font-mono); font-size: 18px; font-weight: 700; color: var(--vox-green); }
+.bp-meter { height: 8px; border-radius: 999px; background: rgba(5,5,12,0.7); border: 1px solid var(--vox-line-100); overflow: hidden; }
+.bp-meter-fill { height: 100%; width: 82%; border-radius: 999px; background: linear-gradient(90deg, var(--vox-purple), var(--vox-cyan-500), var(--vox-green)); box-shadow: 0 0 14px rgba(57,255,20,0.35); }
+.bp-row { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid var(--vox-line-100); border-radius: var(--vox-radius-3); background: rgba(5,5,12,0.6); margin-bottom: 9px; transition: border-color 0.2s; }
+.bp-row:hover { border-color: var(--vox-line-300); }
+.bp-row .bp-key { font-size: 13px; font-weight: 600; color: var(--vox-ink-200); }
+.bp-row .bp-val { font-size: 12px; color: var(--vox-ink-400); margin-left: 2px; }
+.bp-row .bp-status { margin-left: auto; font-family: var(--vox-font-mono); font-size: 9px; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; }
+.bp-row .bp-status.locked { color: var(--vox-green); }
+.bp-row .bp-status.open { color: var(--vox-gold); }
+.bp-card { border: 1px solid rgba(57,217,255,0.28); border-radius: var(--vox-radius-3); background: rgba(57,217,255,0.05); padding: 16px 16px 14px; }
+.bp-card-q { font-size: 13px; font-weight: 600; color: var(--vox-ink-100); margin-bottom: 12px; line-height: 1.4; }
+.bp-opt { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border: 1px solid var(--vox-line-200); border-radius: var(--vox-radius-3); background: rgba(5,5,12,0.5); margin-bottom: 8px; font-size: 12px; color: var(--vox-ink-300); }
+.bp-opt .bp-optkey { font-family: var(--vox-font-mono); font-size: 10px; color: var(--vox-ink-500); border: 1px solid var(--vox-line-200); border-radius: 5px; padding: 1px 6px; }
+.bp-opt.picked { border-color: rgba(57,217,255,0.45); background: rgba(57,217,255,0.1); color: var(--vox-cyan-400); box-shadow: 0 0 12px rgba(57,217,255,0.15); }
+.bp-opt.picked .bp-optkey { color: var(--vox-cyan-400); border-color: rgba(57,217,255,0.4); }
+.bp-opt.custom { border-style: dashed; color: var(--vox-green); }
+.bp-card-note { font-family: var(--vox-font-mono); font-size: 9px; letter-spacing: 0.08em; color: var(--vox-ink-500); margin-top: 8px; }
+.bp-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 960px; width: 100%; margin-top: 32px; }
+.bp-feat { padding: 20px; text-align: center; }
+.bp-feat h4 { font-family: var(--vox-font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--vox-purple); }
+.bp-feat p { font-size: 13px; line-height: 1.5; color: var(--vox-ink-400); }
+@media (max-width: 920px) { .bp-body { grid-template-columns: 1fr; } .bp-features { grid-template-columns: 1fr; max-width: 360px; } }
+</style>
+<section id="blueprint">
+  <div class="section-label reveal">Brainstorm &rarr; Blueprint</div>
+  <h2 class="section-title reveal reveal-delay-1">The <span style="background: linear-gradient(90deg, var(--vox-purple), var(--vox-cyan-500)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Blueprint</span></h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Brainstorm mode doesn&rsquo;t just talk &mdash; it builds. Every round updates a persistent, versioned Blueprint of what you&rsquo;re making, and a readiness score climbs as the plan firms up. Decision Cards force the real choices out into the open. When the Blueprint is ready, the Workshop builds straight from it.
+  </p>
+
+  <div class="bp-mockup glass-strong reveal reveal-delay-3">
+    <div class="bp-header">
+      <div class="mem-dot red"></div>
+      <div class="mem-dot yellow"></div>
+      <div class="mem-dot green"></div>
+      <span class="bp-title-bar">blueprint &mdash; support-triage-tool</span>
+      <span class="bp-ver">v4 &middot; READY</span>
+    </div>
+    <div class="bp-body">
+      <div class="bp-pane">
+        <div class="bp-readiness">
+          <div class="bp-readiness-top">
+            <span class="bp-readiness-label">Readiness</span>
+            <span class="bp-readiness-pct">82%</span>
+          </div>
+          <div class="bp-meter"><div class="bp-meter-fill"></div></div>
+        </div>
+        <h4>Blueprint Sections</h4>
+        <div class="bp-row"><span class="bp-key">Goal</span><span class="bp-val">&middot; agent that triages inbound tickets</span><span class="bp-status locked">LOCKED</span></div>
+        <div class="bp-row"><span class="bp-key">Stack</span><span class="bp-val">&middot; PySide6 &middot; Postgres &middot; API</span><span class="bp-status locked">LOCKED</span></div>
+        <div class="bp-row"><span class="bp-key">Milestones</span><span class="bp-val">&middot; 5 defined</span><span class="bp-status locked">LOCKED</span></div>
+        <div class="bp-row"><span class="bp-key">Open Questions</span><span class="bp-val">&middot; 1 remaining</span><span class="bp-status open">OPEN</span></div>
+      </div>
+      <div class="bp-pane">
+        <h4>Decision Card</h4>
+        <div class="bp-card">
+          <div class="bp-card-q">How should tickets be classified when confidence is low?</div>
+          <div class="bp-opt"><span class="bp-optkey">A</span> Route to a human queue</div>
+          <div class="bp-opt picked"><span class="bp-optkey">B</span> Ask a clarifying question first</div>
+          <div class="bp-opt"><span class="bp-optkey">C</span> Best-guess label + flag for review</div>
+          <div class="bp-opt custom"><span class="bp-optkey">&#9998;</span> Custom response&hellip;</div>
+          <div class="bp-card-note">A custom response is always required &mdash; no rubber-stamping.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bp-features">
+    <div class="bp-feat glass reveal reveal-delay-3">
+      <h4>Versioned &amp; Persistent</h4>
+      <p>Each brainstorm round bumps the Blueprint version and saves it to Postgres. Close the app, come back tomorrow &mdash; the plan is exactly where you left it, history intact.</p>
+    </div>
+    <div class="bp-feat glass reveal reveal-delay-4">
+      <h4>Readiness Score</h4>
+      <p>A live score tracks how buildable the plan is &mdash; goal, stack, milestones, open questions. The Workshop won&rsquo;t build vapor; it waits until the Blueprint is actually ready.</p>
+    </div>
+    <div class="bp-feat glass reveal reveal-delay-5">
+      <h4>Decision Cards</h4>
+      <p>When a real fork appears, agents surface it as an inline card with concrete options &mdash; and a mandatory custom-response field so the call is always yours, in your words.</p>
     </div>
   </div>
 </section>
@@ -3295,11 +3402,11 @@ section {
         <h4>Model Provider</h4>
         <div class="provider-list">
           <div class="provider-item selected">
-            <span class="provider-name">claude-sonnet-4-6</span>
+            <span class="provider-name">claude-sonnet-5</span>
             <span class="provider-tag">ANTHROPIC</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">claude-opus-4-7</span>
+            <span class="provider-name">claude-opus-4-8</span>
             <span class="provider-tag">ANTHROPIC</span>
           </div>
           <div class="provider-item">
@@ -3311,7 +3418,7 @@ section {
             <span class="provider-tag">OPENAI</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">mistral / qwen / llama</span>
+            <span class="provider-name">qwen3.5 / llama / mistral</span>
             <span class="provider-tag local">OLLAMA</span>
           </div>
         </div>
@@ -3424,7 +3531,7 @@ section {
   <div class="section-label reveal">Build</div>
   <h2 class="section-title reveal reveal-delay-1">The <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Workshop</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Describe what you want. Pick a build type, pick a style, hit go. Surge drafts the file manifest and assigns each file to the right specialist. Surge, Prism, and Static build their assigned files in parallel, then Pulse runs the QA integration check across everything. The executor validates, the auto-fix loop heals what breaks, and you watch the whole thing happen live.
+    Your Blueprint is the input. Pick where the build comes from &mdash; the current Blueprint, a custom brief, or a combine of both &mdash; then Chroma runs the pipeline: OBSERVE the plan, PRESSURE-test it, REFINE the manifest, BUILD in parallel, and BREAK it on purpose to see what fails. Surge assigns each file to a specialist; the executor validates every build for real; the auto-fix loop heals what breaks; and you watch it happen live behind a plan-review gate.
   </p>
 
   <div class="workshop-stack reveal reveal-delay-3">
@@ -3438,7 +3545,7 @@ section {
       </div>
       <div class="workshop-stage">
         <h4>Pick a Build Type</h4>
-        <p class="stage-sub">Animated chromatic borders breathe while you choose. Each type maps to its own scaffolding, deps, and runner.</p>
+        <p class="stage-sub">Source the build from your current Blueprint, a custom brief, or a combine of both. Animated chromatic borders breathe while you choose &mdash; each type maps to its own scaffolding, deps, and runner.</p>
         <div class="buildtype-grid">
           <div class="buildtype-card">
             <span class="bt-icon">&#x1f310;</span>
@@ -3563,7 +3670,7 @@ section {
       </div>
       <div class="workshop-stage">
         <h4>Validate. Fail. Fix. Repeat.</h4>
-        <p class="stage-sub">The executor runs the build, captures errors, and feeds them back to the agents. Up to three auto-fix attempts before it surfaces a failure card with a one-click rebuild.</p>
+        <p class="stage-sub">The executor runs the build for real and fails it hard when ES-module imports don&rsquo;t resolve on disk or the manifest has unwritten files &mdash; no false greens. Errors feed back to the agents for up to three auto-fix attempts, then a BREAK pass critiques the survivor before it surfaces a failure card with one-click rebuild.</p>
         <div class="autofix-loop">
           <div class="autofix-step">
             <div class="as-num">RUN</div>
@@ -3607,16 +3714,16 @@ section {
       <p>Build type, design style, then the task prompt &mdash; each as its own focused popup, in that order. No long inline form, no context switching. Three quick picks and Pulse takes it from there.</p>
     </div>
     <div class="workshop-feat glass reveal reveal-delay-2">
-      <h4>Validation Gate</h4>
-      <p>Vague or nonsense prompts get rejected at the door. A clarification state asks the right follow-ups before any agent burns tokens.</p>
+      <h4>Plan-Review Gate</h4>
+      <p>Before a single file is written, the plan surfaces for review: <code>APPROVE</code>, <code>DENY</code>, or <code>RETURN TO BRAINSTORM</code> to reshape the Blueprint. Nothing builds until you sign off.</p>
     </div>
     <div class="workshop-feat glass reveal reveal-delay-3">
       <h4>Auto Dependency Install</h4>
       <p>Pulse&rsquo;s manifest doubles as a dep manifest. <code>pip</code> / <code>npm</code> runs <em>before</em> the first file is written. No half-built projects with missing imports.</p>
     </div>
     <div class="workshop-feat glass reveal reveal-delay-3">
-      <h4>Build Executor</h4>
-      <p>Every build runs. Output is parsed, errors captured, exit codes checked. If it doesn&rsquo;t start, it didn&rsquo;t build &mdash; no false greens.</p>
+      <h4>Hardened Executor</h4>
+      <p>Every build runs. Output parsed, errors captured, exit codes checked &mdash; plus import-resolution and manifest cross-checks so a build that silently skipped a file can&rsquo;t pass. If it doesn&rsquo;t start, it didn&rsquo;t build.</p>
     </div>
     <div class="workshop-feat glass reveal reveal-delay-4">
       <h4>Resume with <code>/rebuild</code></h4>
@@ -3749,6 +3856,111 @@ section {
       <span class="tech-icon">&#x1f517;</span>
       <div class="tech-name">MCP Protocol</div>
       <div class="tech-desc">Extensible tool layer</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     9.5 BENCHMARK LADDER
+     ============================================ -->
+<style>
+.bench-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; max-width: 960px; width: 100%; margin-top: 24px; }
+.bench-panel { border-radius: var(--vox-radius-4); overflow: hidden; }
+.bench-head { padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--vox-line-100); background: var(--vox-alpha-panel-80); }
+.bench-head .mem-dot { width: 10px; height: 10px; border-radius: 50%; }
+.bench-head .bench-titlebar { font-family: var(--vox-font-mono); font-size: 12px; color: var(--vox-ink-400); margin-left: 8px; }
+.bench-body { padding: 22px 24px; background: var(--vox-alpha-panel-96); }
+.bench-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; }
+.bench-rank { font-family: var(--vox-font-mono); font-size: 11px; color: var(--vox-ink-500); width: 18px; text-align: right; }
+.bench-model { font-family: var(--vox-font-mono); font-size: 12px; color: var(--vox-ink-200); width: 108px; flex-shrink: 0; }
+.bench-track { flex: 1; height: 7px; border-radius: 999px; background: rgba(5,5,12,0.7); border: 1px solid var(--vox-line-100); overflow: hidden; }
+.bench-fill { height: 100%; border-radius: 999px; }
+.bench-score { font-family: var(--vox-font-mono); font-size: 12px; font-weight: 600; color: var(--vox-ink-100); width: 30px; text-align: right; }
+.bench-row.lead .bench-model { color: var(--vox-gold); }
+.bench-row.lead .bench-score { color: var(--vox-gold); }
+.bench-ladder { padding: 22px 24px; background: var(--vox-alpha-panel-96); }
+.bench-ladder h4 { font-family: var(--vox-font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--vox-ink-500); margin-bottom: 16px; }
+.bench-rung { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border: 1px solid var(--vox-line-100); border-radius: var(--vox-radius-3); background: rgba(5,5,12,0.6); margin-bottom: 8px; }
+.bench-rung .rung-tag { font-family: var(--vox-font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--vox-cyan-400); width: 24px; }
+.bench-rung .rung-name { font-size: 12px; color: var(--vox-ink-300); flex: 1; }
+.bench-rung .rung-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--vox-green); box-shadow: 0 0 8px var(--vox-green); }
+.bench-rung.hard .rung-dot { background: var(--vox-gold); box-shadow: 0 0 8px var(--vox-gold); }
+.bench-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 960px; width: 100%; margin-top: 28px; }
+.bench-feat { padding: 20px; text-align: center; }
+.bench-feat h4 { font-family: var(--vox-font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--vox-gold); }
+.bench-feat p { font-size: 13px; line-height: 1.5; color: var(--vox-ink-400); }
+@media (max-width: 920px) { .bench-wrap { grid-template-columns: 1fr; } .bench-features { grid-template-columns: 1fr; max-width: 360px; } }
+</style>
+<section id="benchmark">
+  <div class="section-label reveal">Orchestrate &amp; Measure</div>
+  <h2 class="section-title reveal reveal-delay-1">The Benchmark <span style="background: linear-gradient(90deg, var(--vox-gold), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Ladder</span></h2>
+  <p class="section-subtitle reveal reveal-delay-2">
+    Chroma doesn&rsquo;t just run models &mdash; it measures them. The ladder harness sends real build tasks of rising difficulty through the full pipeline and scores each result on a rubric, so you can see which model actually ships working software, not which one looks good on a leaderboard.
+  </p>
+
+  <div class="bench-wrap reveal reveal-delay-3">
+    <div class="bench-panel glass-strong">
+      <div class="bench-head">
+        <div class="mem-dot red"></div><div class="mem-dot yellow"></div><div class="mem-dot green"></div>
+        <span class="bench-titlebar">ladder_results &mdash; rubric score</span>
+      </div>
+      <div class="bench-body">
+        <div class="bench-row lead">
+          <span class="bench-rank">1</span><span class="bench-model">fable-5</span>
+          <span class="bench-track"><span class="bench-fill" style="width:94%; background:linear-gradient(90deg,var(--vox-gold),var(--vox-magenta));"></span></span>
+          <span class="bench-score">94</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-rank">2</span><span class="bench-model">opus-4-8</span>
+          <span class="bench-track"><span class="bench-fill" style="width:91%; background:linear-gradient(90deg,var(--vox-indigo),var(--vox-cyan-500));"></span></span>
+          <span class="bench-score">91</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-rank">3</span><span class="bench-model">sonnet-5</span>
+          <span class="bench-track"><span class="bench-fill" style="width:88%; background:linear-gradient(90deg,var(--vox-indigo),var(--vox-cyan-500));"></span></span>
+          <span class="bench-score">88</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-rank">4</span><span class="bench-model">gpt-5.4</span>
+          <span class="bench-track"><span class="bench-fill" style="width:83%; background:linear-gradient(90deg,var(--vox-green),var(--vox-cyan-500));"></span></span>
+          <span class="bench-score">83</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-rank">5</span><span class="bench-model">qwen3.5 &middot; local</span>
+          <span class="bench-track"><span class="bench-fill" style="width:71%; background:linear-gradient(90deg,var(--vox-purple),var(--vox-cyan-500));"></span></span>
+          <span class="bench-score">71</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bench-panel glass-strong">
+      <div class="bench-head">
+        <div class="mem-dot red"></div><div class="mem-dot yellow"></div><div class="mem-dot green"></div>
+        <span class="bench-titlebar">build ladder</span>
+      </div>
+      <div class="bench-ladder">
+        <h4>Rising Difficulty</h4>
+        <div class="bench-rung"><span class="rung-tag">L1</span><span class="rung-name">CLI script</span><span class="rung-dot"></span></div>
+        <div class="bench-rung"><span class="rung-tag">L2</span><span class="rung-name">Tool with state</span><span class="rung-dot"></span></div>
+        <div class="bench-rung"><span class="rung-tag">L3</span><span class="rung-name">Web app + UI</span><span class="rung-dot"></span></div>
+        <div class="bench-rung hard"><span class="rung-tag">L4</span><span class="rung-name">Desktop app + DB</span><span class="rung-dot"></span></div>
+        <div class="bench-rung hard"><span class="rung-tag">L5</span><span class="rung-name">Full-stack, multi-file</span><span class="rung-dot"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bench-features">
+    <div class="bench-feat glass reveal reveal-delay-3">
+      <h4>Real Builds, Real Runs</h4>
+      <p>Every rung is an actual build the executor runs and validates. Scores come from software that compiled and started &mdash; not a multiple-choice quiz.</p>
+    </div>
+    <div class="bench-feat glass reveal reveal-delay-4">
+      <h4>Rubric Scoring</h4>
+      <p>Each result is graded on the same rubric: does it run, does it match the brief, is it clean. Comparable across models and across runs, logged to <code>ladder_results/</code>.</p>
+    </div>
+    <div class="bench-feat glass reveal reveal-delay-5">
+      <h4>Pick the Right Model</h4>
+      <p>The data drives routing. Cheap local models for the easy rungs, frontier models where it counts &mdash; measured, not guessed.</p>
     </div>
   </div>
 </section>
@@ -3962,7 +4174,7 @@ section {
     <div class="timeline-item shipped reveal reveal-delay-3">
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
       <div class="timeline-title">Agent Memory</div>
-      <div class="timeline-desc">Three-tier memory system with relevance scoring. 400+ tests. Comprehensive audit and hardening.</div>
+      <div class="timeline-desc">Typed memory buckets with relevance scoring, per-agent visibility, and a rolling highlights reel. Hardened as part of a 1,600+ test suite.</div>
     </div>
     <div class="timeline-item shipped reveal reveal-delay-4">
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
@@ -3998,6 +4210,16 @@ section {
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
       <div class="timeline-title">Invisible Bridges &amp; Autosaved Studio</div>
       <div class="timeline-desc">Offscreen-headed Chrome, taskbar-hidden, warm-session reuse on autoconnect. Agent Studio General tab autosaves &mdash; SAVE button retired. Memory Settings tab exposes live tunables.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-5">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Blueprint &amp; Decision Cards</div>
+      <div class="timeline-desc">Brainstorm mode builds a persistent, versioned Blueprint with a readiness score. Decision Cards force real forks into the open with a mandatory custom response. Build moved out of chat &mdash; the Workshop now builds straight from the Blueprint.</div>
+    </div>
+    <div class="timeline-item shipped reveal reveal-delay-5">
+      <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
+      <div class="timeline-title">Benchmark Ladder &amp; Executor Hardening</div>
+      <div class="timeline-desc">Rising-difficulty build harness that runs real tasks through the pipeline and scores each model on a rubric. Executor now fails on unresolved imports and unwritten manifest files. 1,600+ tests across the platform.</div>
     </div>
     <div class="timeline-item reveal reveal-delay-5">
       <div class="timeline-phase">Now</div>

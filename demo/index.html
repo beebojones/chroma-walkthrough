@@ -533,7 +533,7 @@ section {
    ============================================ */
 #vision .vision-agents {
   display: grid;
-  grid-template-columns: repeat(3, minmax(160px, 200px));
+  grid-template-columns: repeat(4, minmax(150px, 200px));
   gap: 20px;
   justify-content: center;
   max-width: 1000px;
@@ -576,9 +576,6 @@ section {
 .agent-card[data-agent="vox"] .agent-avatar::after { border-color: #E8A838; }
 .agent-card[data-agent="vox"] .agent-name { color: #E8A838; }
 
-.agent-card[data-agent="claude"] .agent-avatar { background: rgba(217, 119, 87, 0.15); }
-.agent-card[data-agent="claude"] .agent-avatar::after { border-color: #D97757; }
-.agent-card[data-agent="claude"] .agent-name { color: #D97757; }
 
 .agent-card[data-agent="surge"] .agent-avatar { background: rgba(57, 217, 255, 0.15); }
 .agent-card[data-agent="surge"] .agent-avatar::after { border-color: var(--vox-cyan-500); }
@@ -915,8 +912,8 @@ section {
 .chat-msg.john .chat-msg-name { color: #E9B574; }
 .chat-msg.vox .chat-msg-avatar { background: rgba(232, 168, 56, 0.15); border-color: var(--vox-gold); }
 .chat-msg.vox .chat-msg-name { color: var(--vox-gold); }
-.chat-msg.claude-msg .chat-msg-avatar { background: rgba(217, 119, 87, 0.15); border-color: var(--vox-indigo); }
-.chat-msg.claude-msg .chat-msg-name { color: var(--vox-indigo); }
+.chat-msg.prism-msg .chat-msg-avatar { background: rgba(217, 119, 87, 0.15); border-color: var(--vox-indigo); }
+.chat-msg.prism-msg .chat-msg-name { color: var(--vox-indigo); }
 .chat-msg.surge .chat-msg-avatar { background: rgba(57, 217, 255, 0.15); border-color: var(--vox-cyan-500); }
 .chat-msg.surge .chat-msg-name { color: var(--vox-cyan-500); }
 
@@ -2864,7 +2861,7 @@ section {
     </div>
     <h1 class="hero-title reveal reveal-delay-1">CHROMA</h1>
     <p class="hero-tagline reveal reveal-delay-2">
-      Your ChatGPT and Claude, working together in one workspace &mdash; with memory, context, and a team of specialized agents alongside them.
+      A team of specialized AI agents, working together in one workspace &mdash; with shared memory, context, and the right model behind each one.
     </p>
     <div class="hero-cta-row reveal reveal-delay-3">
       <a href="#memory" class="btn-primary">Explore the Architecture &darr;</a>
@@ -2916,22 +2913,11 @@ section {
   <div class="section-label reveal">The Vision</div>
   <h2 class="section-title reveal reveal-delay-1">A living command center for <span style="background: linear-gradient(90deg, var(--vox-cyan-500), var(--vox-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">intelligence</span></h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Chroma isn't another chatbot wrapper. It's a persistent workspace where your ChatGPT, your Claude, and specialized AI agents collaborate in real time &mdash; each with distinct expertise, all sharing context.
+    Chroma isn't another chatbot wrapper. It's a persistent workspace where specialized AI agents collaborate in real time &mdash; each with its own expertise, its own model, all sharing context.
   </p>
 
   <div class="vision-agents">
-    <div class="agent-card glass console-edge reveal reveal-delay-1" data-agent="vox">
-      <div class="agent-avatar">&#x1F4AC;</div>
-      <div class="agent-name">CHATGPT</div>
-      <div class="agent-role">Reasoning</div>
-      <div class="agent-state"><span class="dot" style="color: #E8A838;"></span> CONNECTED</div>
-    </div>
-    <div class="agent-card glass console-edge console-edge-b reveal reveal-delay-2" data-agent="claude">
-      <div class="agent-avatar">&#x2726;</div>
-      <div class="agent-name">CLAUDE</div>
-      <div class="agent-role">Reasoning</div>
-      <div class="agent-state"><span class="dot" style="color: #D97757;"></span> CONNECTED</div>
-    </div>
+
     <div class="agent-card glass console-edge console-edge-d reveal reveal-delay-3" data-agent="pulse">
       <div class="agent-avatar">&#x1f4ca;</div>
       <div class="agent-name">PULSE</div>
@@ -3040,7 +3026,7 @@ section {
   <div class="section-label reveal">Conversation</div>
   <h2 class="section-title reveal reveal-delay-1">Everyone at the Table</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    Type @ChatGPT and your ChatGPT responds. Type @Claude and your Claude responds. @Surge for code, @Pulse for analysis. Or just talk to the group and let the router decide.
+    Type @Surge for code, @Pulse for analysis, @Prism for design &mdash; or just talk to the group and let the router pick whoever has the most stake in the question.
   </p>
 
   <div class="chat-mockup glass-strong reveal reveal-delay-3">
@@ -3059,24 +3045,24 @@ section {
         </div>
       </div>
       <div class="chat-msg vox">
-        <div class="chat-msg-avatar">&#x1F4AC;</div>
+        <div class="chat-msg-avatar">&#x1f4ca;</div>
         <div class="chat-msg-body">
-          <div class="chat-msg-name">CHATGPT</div>
-          <div class="chat-msg-text">@Claude can you review the security implications?</div>
+          <div class="chat-msg-name">PULSE</div>
+          <div class="chat-msg-text">Rotation&rsquo;s solid. One flag &mdash; add PKCE on the authorization-code exchange to prevent interception.</div>
         </div>
       </div>
-      <div class="chat-msg claude-msg">
-        <div class="chat-msg-avatar">&#x2726;</div>
+      <div class="chat-msg prism-msg">
+        <div class="chat-msg-avatar">&#x1f3a8;</div>
         <div class="chat-msg-body">
-          <div class="chat-msg-name">CLAUDE</div>
-          <div class="chat-msg-text">I've reviewed the flow. The token rotation is solid, but I'd add PKCE for the authorization code exchange to prevent interception attacks.</div>
+          <div class="chat-msg-name">PRISM</div>
+          <div class="chat-msg-text">And the consent screen needs a clearer scope list &mdash; I&rsquo;ll mock it.</div>
         </div>
       </div>
       <div class="chat-msg surge">
         <div class="chat-msg-avatar">&#x26a1;</div>
         <div class="chat-msg-body">
           <div class="chat-msg-name">SURGE</div>
-          <div class="chat-msg-text">I can implement that. Want me to draft a proposal?</div>
+          <div class="chat-msg-text">Got it &mdash; I&rsquo;ll build the PKCE flow and wire Prism&rsquo;s screen. Drafting the plan now.</div>
         </div>
       </div>
     </div>
@@ -3295,7 +3281,7 @@ section {
     <div class="refine-card glass purple reveal reveal-delay-3">
       <div class="refine-icon-row">@ &nbsp;AUTOCOMPLETE</div>
       <h4>@Mention Names, Done Right</h4>
-      <p>Type <code>@</code> and the popup shows real agent display names &mdash; CHATGPT, CLAUDE, SURGE, PULSE, PRISM, STATIC. Arrow keys to pick, Enter to insert. No more raw slugs.</p>
+      <p>Type <code>@</code> and the popup shows real agent display names &mdash; SURGE, PULSE, PRISM, STATIC. Arrow keys to pick, Enter to insert. No more raw slugs.</p>
     </div>
     <div class="refine-card glass gold reveal reveal-delay-4">
       <div class="refine-icon-row">CLEAR &nbsp;&rarr;&nbsp; PERSISTS</div>
@@ -3355,23 +3341,23 @@ section {
         <h4>Model Provider</h4>
         <div class="provider-list">
           <div class="provider-item selected">
-            <span class="provider-name">claude-sonnet-5</span>
-            <span class="provider-tag">ANTHROPIC</span>
+            <span class="provider-name">Balanced</span>
+            <span class="provider-tag">SMART TIER</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">claude-opus-4-8</span>
-            <span class="provider-tag">ANTHROPIC</span>
+            <span class="provider-name">Frontier</span>
+            <span class="provider-tag">MAX TIER</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">claude-haiku-4-5</span>
-            <span class="provider-tag">ANTHROPIC</span>
+            <span class="provider-name">Fast</span>
+            <span class="provider-tag">FAST TIER</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">gpt-5.4-mini</span>
-            <span class="provider-tag">OPENAI</span>
+            <span class="provider-name">Cloud API</span>
+            <span class="provider-tag">BRING KEY</span>
           </div>
           <div class="provider-item">
-            <span class="provider-name">qwen3.5 / llama / mistral</span>
+            <span class="provider-name">Local model</span>
             <span class="provider-tag local">OLLAMA</span>
           </div>
         </div>
@@ -3407,7 +3393,7 @@ section {
         </div>
         <div class="diag-card pass">
           <div class="diag-card-top"><span class="diag-card-dot"></span><span class="diag-card-name">Providers</span><span class="diag-card-badge">PASS</span></div>
-          <div class="diag-card-desc">Anthropic and OpenAI APIs reachable, keys valid.</div>
+          <div class="diag-card-desc">Cloud model providers reachable, API keys valid.</div>
           <div class="diag-card-foot"><span>&#x25B8; details</span><span>84 ms</span></div>
         </div>
         <div class="diag-card pass">
@@ -3449,7 +3435,7 @@ section {
         <div class="term-banner">Chroma Terminal &middot; PowerShell &middot; cwd C:/chroma_lab/chroma/workspace</div>
         <div class="term-line"><span class="term-prompt">PS&gt;</span> <span class="term-cmd">python -m chroma.run</span></div>
         <div class="term-line"><span class="term-out">[runtime] conductor online</span></div>
-        <div class="term-line"><span class="term-out">[providers] anthropic + openai ready &middot; ollama local</span></div>
+        <div class="term-line"><span class="term-out">[providers] cloud models ready &middot; ollama local</span></div>
         <div class="term-line"><span class="term-out">[memory] three-tier service ready</span></div>
         <div class="term-line"><span class="term-prompt">PS&gt;</span> <span class="term-cursor"></span></div>
       </div>
@@ -3604,7 +3590,7 @@ section {
             <span class="ap-halt">&#9632; HALT</span>
           </div>
           <div class="ap-line"><span class="ap-tag surge">SURGE</span><span>Manifest ready &middot; 9 files assigned</span><span class="ap-pct">100%</span></div>
-          <div class="ap-line"><span class="ap-tag exec">DEPS</span><span>Auto-installing pyside6, asyncpg, anthropic&hellip;</span><span class="ap-pct">100%</span></div>
+          <div class="ap-line"><span class="ap-tag exec">DEPS</span><span>Auto-installing pyside6, asyncpg, httpx&hellip;</span><span class="ap-pct">100%</span></div>
           <div class="ap-line"><span class="ap-tag surge">SURGE</span><span>Writing core/runner.py</span><span class="ap-pct">62%</span></div>
           <div class="ap-line"><span class="ap-tag prism">PRISM</span><span>Writing ui/theme.qss</span><span class="ap-pct">48%</span></div>
           <div class="ap-line"><span class="ap-tag static">STATIC</span><span>Writing db/schema.sql</span><span class="ap-pct">71%</span></div>
@@ -3793,7 +3779,7 @@ section {
     <div class="tech-item glass reveal reveal-delay-4">
       <span class="tech-icon">&#x1f50c;</span>
       <div class="tech-name">Modular Providers</div>
-      <div class="tech-desc">OpenAI, Anthropic, local</div>
+      <div class="tech-desc">Cloud + local, swappable</div>
     </div>
     <div class="tech-item glass reveal reveal-delay-4">
       <span class="tech-icon">&#x1f6e1;</span>
@@ -3859,27 +3845,27 @@ section {
       </div>
       <div class="bench-body">
         <div class="bench-row lead">
-          <span class="bench-rank">1</span><span class="bench-model">fable-5</span>
+          <span class="bench-rank">1</span><span class="bench-model">frontier-xl</span>
           <span class="bench-track"><span class="bench-fill" style="width:94%; background:linear-gradient(90deg,var(--vox-gold),var(--vox-magenta));"></span></span>
           <span class="bench-score">94</span>
         </div>
         <div class="bench-row">
-          <span class="bench-rank">2</span><span class="bench-model">opus-4-8</span>
+          <span class="bench-rank">2</span><span class="bench-model">frontier-lg</span>
           <span class="bench-track"><span class="bench-fill" style="width:91%; background:linear-gradient(90deg,var(--vox-indigo),var(--vox-cyan-500));"></span></span>
           <span class="bench-score">91</span>
         </div>
         <div class="bench-row">
-          <span class="bench-rank">3</span><span class="bench-model">sonnet-5</span>
+          <span class="bench-rank">3</span><span class="bench-model">frontier-md</span>
           <span class="bench-track"><span class="bench-fill" style="width:88%; background:linear-gradient(90deg,var(--vox-indigo),var(--vox-cyan-500));"></span></span>
           <span class="bench-score">88</span>
         </div>
         <div class="bench-row">
-          <span class="bench-rank">4</span><span class="bench-model">gpt-5.4</span>
+          <span class="bench-rank">4</span><span class="bench-model">cloud-sm</span>
           <span class="bench-track"><span class="bench-fill" style="width:83%; background:linear-gradient(90deg,var(--vox-green),var(--vox-cyan-500));"></span></span>
           <span class="bench-score">83</span>
         </div>
         <div class="bench-row">
-          <span class="bench-rank">5</span><span class="bench-model">qwen3.5 &middot; local</span>
+          <span class="bench-rank">5</span><span class="bench-model">local-7b</span>
           <span class="bench-track"><span class="bench-fill" style="width:71%; background:linear-gradient(90deg,var(--vox-purple),var(--vox-cyan-500));"></span></span>
           <span class="bench-score">71</span>
         </div>
@@ -4122,7 +4108,7 @@ section {
     <div class="timeline-item shipped reveal reveal-delay-2">
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
       <div class="timeline-title">Multi-Provider Core</div>
-      <div class="timeline-desc">Anthropic, OpenAI, and local Ollama behind one interface &mdash; fast / balanced / smart tiers, streaming, and an agentic tool-use loop.</div>
+      <div class="timeline-desc">Cloud and local model providers behind one interface &mdash; fast / balanced / smart tiers, streaming, and an agentic tool-use loop.</div>
     </div>
     <div class="timeline-item shipped reveal reveal-delay-3">
       <div class="timeline-phase">Shipped <span class="check">&#x2713;</span></div>
@@ -4201,7 +4187,7 @@ section {
   </div>
   <h2 class="close-title reveal reveal-delay-1">The future of work<br>is collaborative.</h2>
   <p class="close-sub reveal reveal-delay-2">
-    Not a pitch deck promise. A working prototype where your ChatGPT and Claude already collaborate &mdash; evolving daily, grounded in real engineering.
+    Not a pitch deck promise. A working prototype where specialized AI agents already collaborate &mdash; evolving daily, grounded in real engineering.
   </p>
   <div class="hero-cta-row reveal reveal-delay-3">
     <a href="#hero" class="btn-primary">Back to Top &uarr;</a>

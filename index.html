@@ -303,7 +303,7 @@ section {
    1. HERO SECTION
    ============================================ */
 #hero {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -466,17 +466,13 @@ section {
 
 .scroll-indicator span {
   font-family: var(--vox-font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--vox-cyan-400);
-  padding: 8px 18px;
-  border-radius: var(--vox-radius-pill);
-  background: rgba(57, 217, 255, 0.08);
-  border: 1px solid rgba(57, 217, 255, 0.35);
+  text-shadow: 0 0 10px rgba(57, 217, 255, 0.5);
   white-space: nowrap;
-  animation: scrollGlow 2s ease-in-out infinite;
 }
 
 .scroll-chevrons {
@@ -500,10 +496,7 @@ section {
 
 .scroll-chevrons i:nth-child(2) { animation-delay: 0.25s; }
 
-.scroll-indicator:hover span {
-  color: #ffffff;
-  border-color: rgba(57, 217, 255, 0.7);
-}
+.scroll-indicator:hover span { color: #ffffff; }
 
 @keyframes chevDrop {
   0% { opacity: 0; top: -3px; }
@@ -511,10 +504,6 @@ section {
   100% { opacity: 0; top: 11px; }
 }
 
-@keyframes scrollGlow {
-  0%, 100% { box-shadow: 0 0 14px rgba(57, 217, 255, 0.20); }
-  50% { box-shadow: 0 0 26px rgba(57, 217, 255, 0.45); }
-}
 
 /* ============================================
    2. THE PROBLEM

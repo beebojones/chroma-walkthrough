@@ -29,13 +29,13 @@
     }
 
     /* Self-hosted brand fonts — same faces the Tether app ships (SIL OFL), no network. */
-    @font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url('assets/fonts/inter-400.woff2') format('woff2'); }
-    @font-face { font-family: 'Inter'; font-weight: 600; font-display: swap; src: url('assets/fonts/inter-600.woff2') format('woff2'); }
-    @font-face { font-family: 'Inter'; font-weight: 700; font-display: swap; src: url('assets/fonts/inter-700.woff2') format('woff2'); }
-    @font-face { font-family: 'Space Grotesk'; font-weight: 500; font-display: swap; src: url('assets/fonts/space-grotesk-500.woff2') format('woff2'); }
-    @font-face { font-family: 'Space Grotesk'; font-weight: 700; font-display: swap; src: url('assets/fonts/space-grotesk-700.woff2') format('woff2'); }
-    @font-face { font-family: 'Fira Code'; font-weight: 400; font-display: swap; src: url('assets/fonts/fira-code-400.woff2') format('woff2'); }
-    @font-face { font-family: 'Fira Code'; font-weight: 600; font-display: swap; src: url('assets/fonts/fira-code-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url('/tether/assets/fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-weight: 600; font-display: swap; src: url('/tether/assets/fonts/inter-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-weight: 700; font-display: swap; src: url('/tether/assets/fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-weight: 500; font-display: swap; src: url('/tether/assets/fonts/space-grotesk-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-weight: 700; font-display: swap; src: url('/tether/assets/fonts/space-grotesk-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Fira Code'; font-weight: 400; font-display: swap; src: url('/tether/assets/fonts/fira-code-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Fira Code'; font-weight: 600; font-display: swap; src: url('/tether/assets/fonts/fira-code-600.woff2') format('woff2'); }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--bg); }
@@ -1038,7 +1038,7 @@
         <p class="lead">Dashboard, all work, board, roadmap, access tracker, decisions, meetings, risks, reports, activity, conflicts, and settings are all views over the same local SQLite project record.</p>
       </div>
       <div class="screenshot ws-shot reveal">
-        <img src="assets/dashboard.png" alt="Tether dashboard showing project health, focus, blockers, access, and milestone panels">
+        <img src="/tether/assets/dashboard.png" alt="Tether dashboard showing project health, focus, blockers, access, and milestone panels">
       </div>
       <div class="signal-row ws-stats reveal">
         <div class="signal"><strong>13</strong><span>Item types</span></div>
@@ -1288,28 +1288,28 @@
       <p class="lead reveal">Tether has purpose-built screens for day-to-day execution and leadership communication. These are live screenshots from the current browser-preview build.</p>
       <div class="gallery">
         <article class="shot-card reveal">
-          <img src="assets/board.png" alt="Tether board view with work item columns">
+          <img src="/tether/assets/board.png" alt="Tether board view with work item columns">
           <div>
             <h3>Board view</h3>
             <p>Move cards through status lanes while preserving item history, owner, priority, and linked context.</p>
           </div>
         </article>
         <article class="shot-card reveal">
-          <img src="assets/reports.png" alt="Tether reports view with generated report options">
+          <img src="/tether/assets/reports.png" alt="Tether reports view with generated report options">
           <div>
             <h3>Reports</h3>
             <p>Generate leadership updates, copy them into Teams or email, save Markdown, or print a PDF snapshot.</p>
           </div>
         </article>
         <article class="shot-card reveal">
-          <img src="assets/present.png" alt="Tether presentation mode title slide">
+          <img src="/tether/assets/present.png" alt="Tether presentation mode title slide">
           <div>
             <h3>Presentation mode</h3>
             <p>Fullscreen walkthrough for screen sharing, navigable with arrow keys, space, and Escape.</p>
           </div>
         </article>
         <article class="shot-card reveal">
-          <img src="assets/dashboard.png" alt="Tether dashboard overview">
+          <img src="/tether/assets/dashboard.png" alt="Tether dashboard overview">
           <div>
             <h3>Project health</h3>
             <p>Dashboard health, blocked work, pending access, active risks, due dates, activity, and milestone progress in one view.</p>
